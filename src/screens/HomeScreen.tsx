@@ -114,8 +114,15 @@ const HomeScreen: React.FC = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['bottom']}>
       <StatusBar barStyle="light-content" backgroundColor="#f4511e" />
+      
+      {/* 顶部标题栏 */}
+      <View style={styles.headerContainer}>
+        <Text style={styles.appTitle}>炒菜助手</Text>
+      </View>
+      
+      {/* 搜索栏 */}
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
@@ -131,6 +138,8 @@ const HomeScreen: React.FC = () => {
           <Text style={styles.importButtonText}>+ 导入</Text>
         </TouchableOpacity>
       </View>
+      
+      {/* 分类栏 */}
       <View style={styles.categoryContainer}>
         <FlatList
           horizontal
@@ -155,6 +164,8 @@ const HomeScreen: React.FC = () => {
           )}
         />
       </View>
+      
+      {/* 菜谱列表 */}
       <FlatList
         data={filteredRecipes}
         keyExtractor={(item) => item.id}
@@ -167,6 +178,7 @@ const HomeScreen: React.FC = () => {
         }
       />
 
+      {/* 导入模态框 */}
       <Modal
         visible={showImportModal}
         animationType="slide"
@@ -187,7 +199,7 @@ const HomeScreen: React.FC = () => {
             <View style={styles.formatGuide}>
               <Text style={styles.formatGuideTitle}>📋 菜谱格式参考</Text>
               <Text style={styles.formatGuideText}>
-                {'番茄炒蛋\n菜品图片\nhttps://example.com/photo.jpg\n📝 简介\n家常菜经典款，酸甜可口\n⏱️ 基本信息\n准备时间\t10分钟\n烹饪时间\t5分钟\n份量\t2人份\n难度\t简单\n🥦 食材清单\n鸡蛋\t3个\n番茄\t2个\n盐\t适量\n📋 备料步骤\n番茄洗净，在顶部划十字刀\n将番茄放入开水中烫30秒 💡 小贴士：更容易去皮\n🍳 炒制步骤\n操作：热锅凉油，倒入蛋液，耗时约1分钟 💡 小贴士：油温七成热'}
+                {'番茄炒蛋\n\n📝 简介\n家常菜经典款，酸甜可口\n\n⏱️ 基本信息\n准备时间\t10分钟\n烹饪时间\t5分钟\n份量\t2人份\n难度\t简单\n分类\t家常菜\n\n🥦 食材清单\n鸡蛋\t3个\n番茄\t2个\n盐\t适量\n\n📋 备料步骤\n番茄洗净，在顶部划十字刀\n将番茄放入开水中烫30秒 💡 小贴士：更容易去皮\n\n🍳 炒制步骤\n热锅凉油，倒入蛋液 耗时：1分钟 💡 小贴士：油温七成热\n\n🏷️ 标签\n家常菜、快手菜、下饭菜'}
               </Text>
             </View>
 
@@ -223,8 +235,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
+  headerContainer: {
+    backgroundColor: '#f4511e',
+    paddingVertical: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  appTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
   searchContainer: {
-    padding: 16,
+    padding: 12,
     backgroundColor: '#f4511e',
     flexDirection: 'row',
     alignItems: 'center',
@@ -232,45 +255,45 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     flex: 1,
-    height: 44,
+    height: 40,
     backgroundColor: '#fff',
-    borderRadius: 22,
-    paddingHorizontal: 20,
-    fontSize: 16,
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    fontSize: 15,
     color: '#333',
   },
   importButton: {
-    height: 44,
-    paddingHorizontal: 16,
-    borderRadius: 22,
+    height: 40,
+    paddingHorizontal: 14,
+    borderRadius: 20,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
   },
   importButtonText: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#f4511e',
     fontWeight: 'bold',
   },
   categoryContainer: {
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },
   categoryButton: {
-    paddingHorizontal: 20,
-    paddingVertical: 8,
-    marginRight: 12,
-    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    marginRight: 10,
+    borderRadius: 16,
     backgroundColor: '#f0f0f0',
   },
   categoryButtonActive: {
     backgroundColor: '#f4511e',
   },
   categoryText: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#666',
   },
   categoryTextActive: {
@@ -278,13 +301,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   recipeList: {
-    padding: 16,
+    padding: 12,
   },
   recipeCard: {
     backgroundColor: '#fff',
     borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
+    padding: 14,
+    marginBottom: 12,
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -295,10 +318,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   recipeName: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
     color: '#333',
     flex: 1,

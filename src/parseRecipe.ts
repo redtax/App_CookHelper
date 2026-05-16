@@ -1,3 +1,5 @@
+import { Recipe } from './types';
+
 const parseRecipeText = (text: string) => {
   const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
 
@@ -73,6 +75,10 @@ const parseRecipeText = (text: string) => {
         else difficulty = 'medium';
         continue;
       }
+      if (line.match(/^分类/)) {
+        category = line.replace(/^分类\s*/, '').trim() || category;
+        continue;
+      }
       if (line.match(/^(项目|信息|食材|用量)\s*$/) || line.match(/项目\s+信息/) || line.match(/食材\s+用量/)) {
         continue;
       }
@@ -90,6 +96,9 @@ const parseRecipeText = (text: string) => {
           if (val.match(/简单|容易|一星/)) difficulty = 'easy';
           else if (val.match(/困难|复杂|三星/)) difficulty = 'hard';
           else difficulty = 'medium';
+        }
+        else if (key.match(/分类/)) {
+          category = val || category;
         }
       }
       continue;
@@ -279,4 +288,72 @@ const parseRecipeText = (text: string) => {
   };
 };
 
+const exportRecipeToText = (recipe: Recipe): string => {
+  const lines: string[] = [];
+
+  lines.push(recipe.name);
+  lines.push('');
+
+  if (recipe.description) {
+    lines.push('📝 简介');
+    lines.push(recipe.description);
+    lines.push('');
+  }
+
+  lines.push('⏱️ 基本信息');
+  lines.push(`准备时间\t${recipe.prepTime}`);
+  lines.push(`烹饪时间\t${recipe.cookTime}`);
+  lines.push(`份量\t${recipe.servings}人份`);
+  const difficultyText = recipe.difficulty === 'easy' ? '简单' : recipe.difficulty === 'medium' ? '中等' : '困难';
+  lines.push(`难度\t${difficultyText}`);
+  lines.push(`分类\t${recipe.category}`);
+  lines.push('');
+
+  lines.push('🥦 食材清单');
+  recipe.ingredients.forEach(ing => {
+    let amountStr = ing.amount;
+    if (ing.unit) {
+      amountStr += ing.unit;
+    }
+    if (ing.notes) {
+      amountStr += `（${ing.notes}）`;
+    }
+    lines.push(`${ing.name}\t${amountStr}`);
+  });
+  lines.push('');
+
+  if (recipe.preparationSteps.length > 0) {
+    lines.push('📋 备料步骤');
+    recipe.preparationSteps.forEach((step, index) => {
+      let line = `${index + 1}. ${step.description}`;
+      if (step.tips) {
+        line += ` 💡 小贴士：${step.tips}`;
+      }
+      lines.push(line);
+    });
+    lines.push('');
+  }
+
+  lines.push('🍳 炒菜步骤');
+  recipe.cookingSteps.forEach((step, index) => {
+    let line = `${index + 1}. ${step.instruction}`;
+    if (step.duration) {
+      line += ` 耗时：${step.duration}`;
+    }
+    if (step.tips) {
+      line += ` 💡 小贴士：${step.tips}`;
+    }
+    lines.push(line);
+  });
+  lines.push('');
+
+  if (recipe.tags.length > 0) {
+    lines.push('🏷️ 标签');
+    lines.push(recipe.tags.join('、'));
+  }
+
+  return lines.join('\n');
+};
+
+export { parseRecipeText, exportRecipeToText };
 export default parseRecipeText;

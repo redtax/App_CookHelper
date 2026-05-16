@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,11 +6,17 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  Modal,
+  TextInput,
+  Alert,
+  Clipboard,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation';
+import { exportRecipeToText, parseRecipeText } from '../parseRecipe';
+import { useApp } from '../context';
 
 type RecipeDetailRouteProp = RouteProp<RootStackParamList, 'RecipeDetail'>;
 type RecipeDetailNavigationProp = NativeStackNavigationProp<RootStackParamList, 'RecipeDetail'>;
@@ -19,8 +25,60 @@ const RecipeDetailScreen: React.FC = () => {
   const navigation = useNavigation<RecipeDetailNavigationProp>();
   const route = useRoute<RecipeDetailRouteProp>();
   const { recipe } = route.params;
+  const { updateRecipe } = useApp();
+  const [showModal, setShowModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [exportText, setExportText] = useState('');
+  const [importText, setImportText] = useState('');
 
   const totalSteps = recipe.preparationSteps.length + recipe.cookingSteps.length;
+
+  const handleEdit = () => {
+    setShowModal(false);
+    navigation.navigate('RecipeEdit', { recipe });
+  };
+
+  const handleExport = () => {
+    setShowModal(false);
+    const text = exportRecipeToText(recipe);
+    setExportText(text);
+    setShowExportModal(true);
+  };
+
+  const copyExportText = async () => {
+    await Clipboard.setString(exportText);
+    Alert.alert('成功', '已复制到剪贴板！');
+  };
+
+  const handleImport = () => {
+    setShowModal(false);
+    setImportText('');
+    setShowImportModal(true);
+  };
+
+  const confirmImport = () => {
+    if (!importText.trim()) {
+      Alert.alert('错误', '请粘贴菜谱文本！');
+      return;
+    }
+
+    try {
+      const parsedRecipe = parseRecipeText(importText);
+      const updatedRecipe = {
+        ...parsedRecipe,
+        id: recipe.id, // 保持原有的 id
+        imageUrl: recipe.imageUrl, // 保持原有的图片
+      };
+      updateRecipe(updatedRecipe);
+      setShowImportModal(false);
+      Alert.alert('成功', '菜谱已更新！', [
+        { text: '确定', onPress: () => navigation.navigate('RecipeDetail', { recipe: updatedRecipe }) }
+      ]);
+    } catch (error) {
+      Alert.alert('错误', '解析菜谱失败，请检查格式！');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -106,6 +164,12 @@ const RecipeDetailScreen: React.FC = () => {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity
+            style={[styles.button, styles.secondaryButton]}
+            onPress={() => setShowModal(true)}
+          >
+            <Text style={styles.secondaryButtonText}>✏️ 完善菜谱</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={[styles.button, styles.primaryButton]}
             onPress={() => navigation.navigate('Preparation', { recipe })}
           >
@@ -113,6 +177,105 @@ const RecipeDetailScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
+
+      <Modal
+        visible={showModal}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setShowModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>完善菜谱</Text>
+            <TouchableOpacity style={styles.modalOption} onPress={handleEdit}>
+              <Text style={styles.modalOptionText}>📝 在线编辑</Text>
+              <Text style={styles.modalOptionDesc}>直接在手机上编辑修改</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.modalOption} onPress={handleExport}>
+              <Text style={styles.modalOptionText}>📤 一键导出</Text>
+              <Text style={styles.modalOptionDesc}>导出为纯文本文件编辑</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.modalOption} onPress={handleImport}>
+              <Text style={styles.modalOptionText}>📥 一键导入</Text>
+              <Text style={styles.modalOptionDesc}>导入编辑好的纯文本文件</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.modalCloseButton}
+              onPress={() => setShowModal(false)}
+            >
+              <Text style={styles.modalCloseText}>取消</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* 导出模态框 */}
+      <Modal
+        visible={showExportModal}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setShowExportModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={[styles.modalContent, styles.largeModalContent]}>
+            <Text style={styles.modalTitle}>导出菜谱</Text>
+            <ScrollView style={styles.exportTextContainer}>
+              <Text style={styles.exportText} selectable={true}>{exportText}</Text>
+            </ScrollView>
+            <View style={styles.modalButtonRow}>
+              <TouchableOpacity
+                style={[styles.modalButton, styles.modalCancelButton]}
+                onPress={() => setShowExportModal(false)}
+              >
+                <Text style={styles.modalCancelButtonText}>关闭</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.modalButton, styles.modalSaveButton]}
+                onPress={copyExportText}
+              >
+                <Text style={styles.modalSaveButtonText}>复制文本</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* 导入模态框 */}
+      <Modal
+        visible={showImportModal}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setShowImportModal(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={[styles.modalContent, styles.largeModalContent]}>
+            <Text style={styles.modalTitle}>导入菜谱</Text>
+            <TextInput
+              style={styles.importTextInput}
+              value={importText}
+              onChangeText={setImportText}
+              placeholder="请粘贴菜谱文本..."
+              multiline
+              numberOfLines={10}
+              autoFocus
+            />
+            <View style={styles.modalButtonRow}>
+              <TouchableOpacity
+                style={[styles.modalButton, styles.modalCancelButton]}
+                onPress={() => setShowImportModal(false)}
+              >
+                <Text style={styles.modalCancelButtonText}>取消</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.modalButton, styles.modalSaveButton]}
+                onPress={confirmImport}
+              >
+                <Text style={styles.modalSaveButtonText}>导入</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -243,6 +406,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     padding: 16,
     paddingBottom: 32,
+    gap: 12,
   },
   button: {
     height: 50,
@@ -253,9 +417,113 @@ const styles = StyleSheet.create({
   primaryButton: {
     backgroundColor: '#f4511e',
   },
+  secondaryButton: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#f4511e',
+  },
   buttonText: {
     color: '#fff',
     fontSize: 18,
+    fontWeight: 'bold',
+  },
+  secondaryButtonText: {
+    color: '#f4511e',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    width: '85%',
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    padding: 24,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  modalOption: {
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f0',
+  },
+  modalOptionText: {
+    fontSize: 17,
+    fontWeight: '500',
+    color: '#333',
+    marginBottom: 4,
+  },
+  modalOptionDesc: {
+    fontSize: 13,
+    color: '#999',
+  },
+  modalCloseButton: {
+    marginTop: 16,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  modalCloseText: {
+    fontSize: 15,
+    color: '#999',
+  },
+  largeModalContent: {
+    maxHeight: '80%',
+  },
+  exportTextContainer: {
+    maxHeight: 300,
+    marginBottom: 16,
+    padding: 12,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+  },
+  exportText: {
+    fontSize: 13,
+    lineHeight: 20,
+    color: '#333',
+  },
+  importTextInput: {
+    minHeight: 200,
+    marginBottom: 16,
+    padding: 12,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    fontSize: 15,
+    color: '#333',
+    textAlignVertical: 'top',
+  },
+  modalButtonRow: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  modalButton: {
+    flex: 1,
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  modalCancelButton: {
+    backgroundColor: '#f5f5f5',
+  },
+  modalSaveButton: {
+    backgroundColor: '#f4511e',
+  },
+  modalCancelButtonText: {
+    color: '#666',
+    fontSize: 15,
+    fontWeight: '500',
+  },
+  modalSaveButtonText: {
+    color: '#fff',
+    fontSize: 15,
     fontWeight: 'bold',
   },
 });

@@ -5,6 +5,7 @@ import HomeScreen from './screens/HomeScreen';
 import RecipeDetailScreen from './screens/RecipeDetailScreen';
 import PreparationScreen from './screens/PreparationScreen';
 import CookingScreen from './screens/CookingScreen';
+import RecipeEditScreen from './screens/RecipeEditScreen';
 import { Recipe } from './types';
 
 export type RootStackParamList = {
@@ -12,6 +13,7 @@ export type RootStackParamList = {
   RecipeDetail: { recipe: Recipe };
   Preparation: { recipe: Recipe };
   Cooking: { recipe: Recipe };
+  RecipeEdit: { recipe: Recipe, isNew?: boolean };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -55,6 +57,11 @@ const AppNavigator: React.FC = () => {
               backgroundColor: '#f4511e',
             },
           }}
+        />
+        <Stack.Screen 
+          name="RecipeEdit" 
+          component={RecipeEditScreen}
+          options={{ title: '编辑菜谱' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
