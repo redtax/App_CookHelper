@@ -48,35 +48,39 @@ const parseRecipeText = (text: string) => {
 
     if (line.match(/^🏷️\s*标签/) || line.match(/^标签$/)) {
       currentSection = 'tags';
+      const inlineTags = line.replace(/^🏷️\s*标签[\s：:]*/, '').replace(/^标签[\s：:]*/, '').trim();
+      if (inlineTags) {
+        tags = inlineTags.split(/[,，、\s]+/).filter(t => t.length > 0);
+      }
       continue;
     }
 
     if (currentSection === 'basicInfo') {
       if (line.match(/^准备时间/)) {
-        const val = line.replace(/^准备时间\s*/, '').trim();
+        const val = line.replace(/^准备时间[\s：:]*/, '').trim();
         prepTime = val || prepTime;
         continue;
       }
       if (line.match(/^烹饪时间/)) {
-        const val = line.replace(/^烹饪时间\s*/, '').trim();
+        const val = line.replace(/^烹饪时间[\s：:]*/, '').trim();
         cookTime = val || cookTime;
         continue;
       }
       if (line.match(/^份[量数]/)) {
-        const val = line.replace(/^份[量数]\s*/, '').trim();
+        const val = line.replace(/^份[量数][\s：:]*/, '').trim();
         const numMatch = val.match(/(\d+)/);
         if (numMatch) servings = parseInt(numMatch[1]);
         continue;
       }
       if (line.match(/^难度/)) {
-        const val = line.replace(/^难度\s*/, '').trim();
+        const val = line.replace(/^难度[\s：:]*/, '').trim();
         if (val.match(/简单|容易|一星/)) difficulty = 'easy';
         else if (val.match(/困难|复杂|三星/)) difficulty = 'hard';
         else difficulty = 'medium';
         continue;
       }
       if (line.match(/^分类/)) {
-        category = line.replace(/^分类\s*/, '').trim() || category;
+        category = line.replace(/^分类[\s：:]*/, '').trim() || category;
         continue;
       }
       if (line.match(/^(项目|信息|食材|用量)\s*$/) || line.match(/项目\s+信息/) || line.match(/食材\s+用量/)) {
@@ -152,8 +156,32 @@ const parseRecipeText = (text: string) => {
             });
           }
         } else {
+        const delimParts = line.split(/[、，,]/);
+        if (delimParts.length > 1) {
+          delimParts.forEach(part => {
+            const trimmed = part.trim();
+            if (trimmed) {
+              const spaceMatch = trimmed.match(/^(.+?)\s+(\S+)$/);
+              if (spaceMatch) {
+                const amountStr = spaceMatch[2];
+                const notesMatch = amountStr.match(/[（(](.+)[）)]/);
+                const cleanAmount = amountStr.replace(/[（(].+[）)]/, '').trim();
+                const numMatch = cleanAmount.match(/^([\d.]+)\s*(.*)/);
+                ingredients.push({
+                  name: spaceMatch[1].trim(),
+                  amount: numMatch ? numMatch[1] : cleanAmount || '适量',
+                  unit: numMatch && numMatch[2] ? numMatch[2] : undefined,
+                  notes: notesMatch ? notesMatch[1] : undefined,
+                });
+              } else {
+                ingredients.push({ name: trimmed, amount: '适量' });
+              }
+            }
+          });
+        } else {
           ingredients.push({ name: line, amount: '适量' });
         }
+      }
       }
       continue;
     }
@@ -163,17 +191,22 @@ const parseRecipeText = (text: string) => {
       let desc = stepMatch ? stepMatch[1] : line;
       const tipsMatch = desc.match(/💡\s*小贴士[：:]?\s*(.*)/);
       if (tipsMatch) {
-        desc = desc.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
-        if (preparationSteps.length > 0) {
+        const cleanDesc = desc.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
+        if (cleanDesc) {
+          preparationSteps.push({
+            description: cleanDesc,
+            tips: tipsMatch[1].trim(),
+          });
+        } else if (preparationSteps.length > 0) {
           preparationSteps[preparationSteps.length - 1].tips = tipsMatch[1].trim();
         }
         continue;
       }
-      const inlineTips = desc.match(/（(.+)）|\((.+)\)/);
+      const inlineTips = desc.match(/[（(]([^）)]+)[）)]/);
       const cleanDesc = desc.replace(/[（(].+[）)]/, '').trim();
       preparationSteps.push({
         description: cleanDesc || desc,
-        tips: inlineTips ? (inlineTips[1] || inlineTips[2]) : undefined,
+        tips: inlineTips ? inlineTips[1] : undefined,
       });
       continue;
     }
@@ -183,8 +216,15 @@ const parseRecipeText = (text: string) => {
       let instruction = stepMatch ? stepMatch[1] : line;
       const tipsMatch = instruction.match(/💡\s*小贴士[：:]?\s*(.*)/);
       if (tipsMatch) {
-        instruction = instruction.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
-        if (cookingSteps.length > 0) {
+        const cleanInstruction = instruction.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
+        if (cleanInstruction) {
+          const durationMatch = cleanInstruction.match(/耗时[约大概]*\s*(\d+\s*[分秒分钟]+(?:左右)?)/);
+          cookingSteps.push({
+            instruction: cleanInstruction.replace(/耗时[约大概]*\s*\d+\s*[分秒分钟]+(?:左右)?[，,]?\s*/, '').trim() || cleanInstruction,
+            duration: durationMatch ? durationMatch[1] : undefined,
+            tips: tipsMatch[1].trim(),
+          });
+        } else if (cookingSteps.length > 0) {
           cookingSteps[cookingSteps.length - 1].tips = tipsMatch[1].trim();
         }
         continue;
@@ -208,7 +248,8 @@ const parseRecipeText = (text: string) => {
     }
 
     if (currentSection === 'tags') {
-      tags = line.split(/[,，、\s]+/).filter(t => t.length > 0);
+      const cleanedLine = line.replace(/^标签[\s：:]*/, '');
+      tags = cleanedLine.split(/[,，、\s]+/).filter(t => t.length > 0);
       continue;
     }
 
