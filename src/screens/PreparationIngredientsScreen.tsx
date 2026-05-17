@@ -33,14 +33,6 @@ const PreparationIngredientsScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.backButton}>←</Text>
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>备料：食材</Text>
-        <View style={styles.headerSpacer} />
-      </View>
-
       <View style={styles.progressContainer}>
         <Text style={styles.progressText}>
           进度：{checkedCount}/{totalIngredients}
@@ -102,28 +94,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-  backButton: {
-    fontSize: 24,
-    color: '#f4511e',
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  headerSpacer: {
-    width: 40,
   },
   progressContainer: {
     backgroundColor: '#fff',
