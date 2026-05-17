@@ -87,7 +87,10 @@ const PreparationScreen: React.FC = () => {
                 <View style={styles.stepContent}>
                   <Text style={styles.stepDescription}>{step.description}</Text>
                   {step.tips && (
-                    <Text style={styles.stepTips}>💡 {step.tips}</Text>
+                    <View style={styles.stepTipsContainer}>
+                      <Text style={styles.stepTipsTitle}>💡 小贴士</Text>
+                      <Text style={styles.stepTipsText}>{step.tips}</Text>
+                    </View>
                   )}
                 </View>
               </View>
@@ -245,11 +248,22 @@ const styles = StyleSheet.create({
     color: '#333',
     lineHeight: 22,
   },
-  stepTips: {
+  stepTipsContainer: {
+    backgroundColor: '#e3f2fd',
+    borderRadius: 8,
+    padding: 10,
+    marginTop: 8,
+  },
+  stepTipsTitle: {
+    fontSize: 14,
+    color: '#1976d2',
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  stepTipsText: {
     fontSize: 13,
-    color: '#666',
-    marginTop: 6,
-    fontStyle: 'italic',
+    color: '#0d47a1',
+    lineHeight: 18,
   },
   buttonContainer: {
     padding: 16,

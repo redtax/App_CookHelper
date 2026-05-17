@@ -547,20 +547,20 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   portraitTipsContainer: {
-    backgroundColor: '#1e3a5f',
+    backgroundColor: '#e3f2fd',
     borderRadius: 12,
     padding: 14,
     marginBottom: 10,
   },
   portraitTipsTitle: {
     fontSize: 15,
-    color: '#4fc3f7',
+    color: '#1976d2',
     marginBottom: 6,
     fontWeight: 'bold',
   },
   portraitTipsText: {
     fontSize: 14,
-    color: '#b3e5fc',
+    color: '#0d47a1',
     lineHeight: 20,
   },
   portraitIngredientsContainer: {
@@ -724,20 +724,20 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   landscapeTipsContainer: {
-    backgroundColor: '#1e3a5f',
+    backgroundColor: '#e3f2fd',
     borderRadius: 12,
     padding: 12,
     marginBottom: 10,
   },
   landscapeTipsTitle: {
     fontSize: 14,
-    color: '#4fc3f7',
+    color: '#1976d2',
     marginBottom: 5,
     fontWeight: 'bold',
   },
   landscapeTipsText: {
     fontSize: 13,
-    color: '#b3e5fc',
+    color: '#0d47a1',
     lineHeight: 18,
   },
   landscapeIngredientsContainer: {
