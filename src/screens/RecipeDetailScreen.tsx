@@ -171,7 +171,7 @@ const RecipeDetailScreen: React.FC = () => {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.primaryButton]}
-            onPress={() => navigation.navigate('Preparation', { recipe })}
+            onPress={() => navigation.navigate('PreparationIngredients', { recipe })}
           >
             <Text style={styles.buttonText}>开始备料 →</Text>
           </TouchableOpacity>

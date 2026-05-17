@@ -22,6 +22,7 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [preparationCheckedItems, setPreparationCheckedItems] = useState<string[]>([]);
+  const [preparationCheckedSteps, setPreparationCheckedSteps] = useState<string[]>([]);
 
   useEffect(() => {
     const initialize = async () => {
@@ -72,12 +73,25 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setPreparationCheckedItems([]);
   };
 
+  const togglePreparationStep = (stepId: string) => {
+    setPreparationCheckedSteps(prev => 
+      prev.includes(stepId) 
+        ? prev.filter(i => i !== stepId)
+        : [...prev, stepId]
+    );
+  };
+
+  const resetPreparationSteps = () => {
+    setPreparationCheckedSteps([]);
+  };
+
   const value: AppContextType = {
     recipes,
     selectedRecipe,
     searchQuery,
     selectedCategory,
     preparationCheckedItems,
+    preparationCheckedSteps,
     loadRecipes,
     addRecipe,
     updateRecipe,
@@ -88,6 +102,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     togglePreparationItem,
     clearPreparationChecklist,
     resetPreparationChecklist,
+    togglePreparationStep,
+    resetPreparationSteps,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

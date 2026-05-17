@@ -3,7 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import RecipeDetailScreen from './screens/RecipeDetailScreen';
-import PreparationScreen from './screens/PreparationScreen';
+import PreparationIngredientsScreen from './screens/PreparationIngredientsScreen';
+import PreparationStepsScreen from './screens/PreparationStepsScreen';
 import CookingScreen from './screens/CookingScreen';
 import RecipeEditScreen from './screens/RecipeEditScreen';
 import { Recipe } from './types';
@@ -11,7 +12,8 @@ import { Recipe } from './types';
 export type RootStackParamList = {
   Home: undefined;
   RecipeDetail: { recipe: Recipe };
-  Preparation: { recipe: Recipe };
+  PreparationIngredients: { recipe: Recipe };
+  PreparationSteps: { recipe: Recipe };
   Cooking: { recipe: Recipe };
   RecipeEdit: { recipe: Recipe, isNew?: boolean };
 };
@@ -47,9 +49,14 @@ const AppNavigator: React.FC = () => {
           options={({ route }) => ({ title: route.params.recipe.name })}
         />
         <Stack.Screen 
-          name="Preparation" 
-          component={PreparationScreen}
-          options={{ title: '备料检查' }}
+          name="PreparationIngredients" 
+          component={PreparationIngredientsScreen}
+          options={{ title: '备料食材' }}
+        />
+        <Stack.Screen 
+          name="PreparationSteps" 
+          component={PreparationStepsScreen}
+          options={{ title: '备料步骤' }}
         />
         <Stack.Screen 
           name="Cooking" 

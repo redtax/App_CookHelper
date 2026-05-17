@@ -42,6 +42,7 @@ export interface AppState {
   searchQuery: string;
   selectedCategory: string | null;
   preparationCheckedItems: string[];
+  preparationCheckedSteps: string[];
 }
 
 export interface AppContextType extends AppState {
@@ -55,4 +56,6 @@ export interface AppContextType extends AppState {
   togglePreparationItem: (item: string) => void;
   clearPreparationChecklist: () => void;
   resetPreparationChecklist: () => void;
+  togglePreparationStep: (stepId: string) => void;
+  resetPreparationSteps: () => void;
 }
