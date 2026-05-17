@@ -290,7 +290,9 @@ const RecipeEditScreen: React.FC = () => {
           </View>
           {preparationSteps.map((step, index) => (
             <View key={index} style={styles.stepEditItem}>
-              <View style={styles.stepNumber}>{index + 1}</View>
+              <View style={styles.stepNumber}>
+                <Text style={styles.stepNumberText}>{index + 1}</Text>
+              </View>
               <View style={styles.stepContent}>
                 <TextInput
                   style={[styles.input, styles.textArea]}
@@ -326,7 +328,9 @@ const RecipeEditScreen: React.FC = () => {
           </View>
           {cookingSteps.map((step, index) => (
             <View key={index} style={styles.stepEditItem}>
-              <View style={styles.stepNumber}>{index + 1}</View>
+              <View style={styles.stepNumber}>
+                <Text style={styles.stepNumberText}>{index + 1}</Text>
+              </View>
               <View style={styles.stepContent}>
                 <TextInput
                   style={[styles.input, styles.textArea]}
@@ -600,13 +604,16 @@ const styles = StyleSheet.create({
     height: 32,
     borderRadius: 16,
     backgroundColor: '#f4511e',
-    color: '#fff',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    fontSize: 16,
-    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginRight: 12,
     marginTop: 4,
+  },
+  stepNumberText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   stepContent: {
     flex: 1,
