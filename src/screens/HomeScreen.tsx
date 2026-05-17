@@ -117,11 +117,6 @@ const HomeScreen: React.FC = () => {
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <StatusBar barStyle="light-content" backgroundColor="#f4511e" />
       
-      {/* 顶部标题栏 */}
-      <View style={styles.headerContainer}>
-        <Text style={styles.appTitle}>炒菜助手</Text>
-      </View>
-      
       {/* 搜索栏 */}
       <View style={styles.searchContainer}>
         <TextInput
@@ -234,17 +229,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
-  },
-  headerContainer: {
-    backgroundColor: '#f4511e',
-    paddingVertical: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  appTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#fff',
   },
   searchContainer: {
     padding: 12,

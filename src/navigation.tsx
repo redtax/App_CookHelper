@@ -36,7 +36,10 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen 
           name="Home" 
           component={HomeScreen}
-          options={{ title: '炒菜助手' }}
+          options={{ 
+            title: '炒菜助手',
+            headerTitleAlign: 'center'
+          }}
         />
         <Stack.Screen 
           name="RecipeDetail" 
