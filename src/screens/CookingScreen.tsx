@@ -378,26 +378,33 @@ const CookingScreen: React.FC = () => {
             styles.portraitNavButton,
             (currentStepIndex === 0 && !isCompletionPage) && styles.portraitNavButtonDisabled,
           ]}
-          onPress={() => goToStep(isCompletionPage ? 0 : currentStepIndex - 1)}
+          onPress={() => isCompletionPage ? navigation.goBack() : goToStep(currentStepIndex - 1)}
           disabled={currentStepIndex === 0 && !isCompletionPage}
         >
           <Text style={[
             styles.portraitNavButtonText,
             (currentStepIndex === 0 && !isCompletionPage) && styles.portraitNavButtonTextDisabled,
           ]}>
-            {isCompletionPage ? '返回步骤' : '← 上一步'}
+            {isCompletionPage ? '← 返回首页' : '← 上一步'}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
             styles.portraitNavButton,
             styles.portraitNavButtonPrimary,
-            isCompletionPage && styles.portraitNavButtonFinish,
           ]}
-          onPress={isCompletionPage ? handleFinish : isLastStep ? () => goToStep(totalSteps) : () => goToStep(currentStepIndex + 1)}
+          onPress={() => {
+            if (isCompletionPage) {
+              goToStep(0);
+            } else if (isLastStep) {
+              goToStep(totalSteps);
+            } else {
+              goToStep(currentStepIndex + 1);
+            }
+          }}
         >
           <Text style={styles.portraitNavButtonText}>
-            {isCompletionPage ? '🎉 完成烹饪!' : isLastStep ? '🎉 完成!' : '下一步 →'}
+            {isCompletionPage ? '炒制步骤' : isLastStep ? '🎉 完成!' : '下一步 →'}
           </Text>
         </TouchableOpacity>
       </View>
