@@ -31,6 +31,8 @@ const CookingScreen: React.FC = () => {
   const landscapeProgressScrollRef = useRef<ScrollView>(null);
 
   const totalSteps = recipe.cookingSteps.length;
+  const isCompletionPage = currentStepIndex >= totalSteps;
+  const isLastStep = currentStepIndex === totalSteps - 1;
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const CookingScreen: React.FC = () => {
   }, []);
 
   const goToStep = (index: number) => {
-    if (index >= 0 && index < totalSteps) {
+    if (index >= 0 && index <= totalSteps) {
       setCurrentStepIndex(index);
       const delay = 50;
       if (scrollViewRef.current) {
@@ -67,7 +69,7 @@ const CookingScreen: React.FC = () => {
   const handlePortraitScroll = (event: any) => {
     const offsetX = event.nativeEvent.contentOffset.x;
     const newIndex = Math.round(offsetX / SCREEN_WIDTH);
-    if (newIndex >= 0 && newIndex < totalSteps) {
+    if (newIndex >= 0 && newIndex <= totalSteps) {
       setCurrentStepIndex(newIndex);
     }
   };
@@ -75,7 +77,7 @@ const CookingScreen: React.FC = () => {
   const handleLandscapeScroll = (event: any) => {
     const offsetX = event.nativeEvent.contentOffset.x;
     const newIndex = Math.round(offsetX / SCREEN_WIDTH);
-    if (newIndex >= 0 && newIndex < totalSteps) {
+    if (newIndex >= 0 && newIndex <= totalSteps) {
       setCurrentStepIndex(newIndex);
     }
   };
@@ -113,9 +115,6 @@ const CookingScreen: React.FC = () => {
     }, 100);
   };
 
-  const currentStep = recipe.cookingSteps[currentStepIndex];
-  const isLastStep = currentStepIndex === totalSteps - 1;
-
   if (isLandscapeMode) {
     return (
       <View style={styles.landscapeContainer}>
@@ -136,14 +135,14 @@ const CookingScreen: React.FC = () => {
                     key={index}
                     style={[
                       styles.landscapeProgressButton,
-                      index === currentStepIndex && styles.landscapeProgressButtonCurrent,
+                      (index === currentStepIndex || (isCompletionPage && index === totalSteps - 1)) && styles.landscapeProgressButtonCurrent,
                       index < currentStepIndex && styles.landscapeProgressButtonActive,
                     ]}
                     onPress={() => goToStep(index)}
                   >
                     <Text style={[
                       styles.landscapeProgressButtonText,
-                      index === currentStepIndex && styles.landscapeProgressButtonTextCurrent,
+                      (index === currentStepIndex || (isCompletionPage && index === totalSteps - 1)) && styles.landscapeProgressButtonTextCurrent,
                     ]}>
                       {index + 1}
                     </Text>
@@ -208,18 +207,20 @@ const CookingScreen: React.FC = () => {
               </View>
             </View>
           ))}
-        </ScrollView>
-
-        {isLastStep && (
-          <View style={styles.landscapeFinishButtonContainer}>
-            <TouchableOpacity
-              style={styles.landscapeFinishButton}
-              onPress={handleFinish}
-            >
-              <Text style={styles.landscapeFinishButtonText}>🎉 完成烹饪</Text>
-            </TouchableOpacity>
+          <View style={[styles.landscapeStepCard, { width: SCREEN_WIDTH }]}>
+            <View style={styles.landscapeCompletionContent}>
+              <Text style={styles.landscapeCompletionIcon}>🎉</Text>
+              <Text style={styles.landscapeCompletionTitle}>全部步骤已完成</Text>
+              <Text style={styles.landscapeCompletionSubtitle}>{recipe.name}</Text>
+              <TouchableOpacity
+                style={styles.landscapeCompletionButton}
+                onPress={handleFinish}
+              >
+                <Text style={styles.landscapeCompletionButtonText}>🎉 完成烹饪</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        )}
+        </ScrollView>
 
         <Modal
           visible={showCompletionModal}
@@ -268,7 +269,7 @@ const CookingScreen: React.FC = () => {
         <View style={styles.headerContent}>
           <Text style={styles.headerTitle}>{recipe.name}</Text>
           <Text style={styles.stepIndicator}>
-            第 {currentStepIndex + 1} / {totalSteps} 步
+            {isCompletionPage ? '🎉 完成' : `第 ${currentStepIndex + 1} / ${totalSteps} 步`}
           </Text>
         </View>
         <TouchableOpacity
@@ -291,14 +292,14 @@ const CookingScreen: React.FC = () => {
                 key={index}
                 style={[
                   styles.progressButton,
-                  index === currentStepIndex && styles.progressButtonCurrent,
+                  (index === currentStepIndex || (isCompletionPage && index === totalSteps - 1)) && styles.progressButtonCurrent,
                   index < currentStepIndex && styles.progressButtonActive,
                 ]}
                 onPress={() => goToStep(index)}
               >
                 <Text style={[
                   styles.progressButtonText,
-                  index === currentStepIndex && styles.progressButtonTextCurrent,
+                  (index === currentStepIndex || (isCompletionPage && index === totalSteps - 1)) && styles.progressButtonTextCurrent,
                 ]}>
                   {index + 1}
                 </Text>
@@ -356,34 +357,47 @@ const CookingScreen: React.FC = () => {
             </View>
           </View>
         ))}
+        <View style={[styles.portraitStepCard, { width: SCREEN_WIDTH }]}>
+          <View style={styles.portraitCompletionContent}>
+            <Text style={styles.portraitCompletionIcon}>🎉</Text>
+            <Text style={styles.portraitCompletionTitle}>全部步骤已完成</Text>
+            <Text style={styles.portraitCompletionSubtitle}>{recipe.name}</Text>
+            <TouchableOpacity
+              style={styles.portraitCompletionButton}
+              onPress={handleFinish}
+            >
+              <Text style={styles.portraitCompletionButtonText}>🎉 完成烹饪</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </ScrollView>
 
       <View style={styles.portraitNavigationContainer}>
         <TouchableOpacity
           style={[
             styles.portraitNavButton,
-            currentStepIndex === 0 && styles.portraitNavButtonDisabled,
+            (currentStepIndex === 0 || isCompletionPage) && styles.portraitNavButtonDisabled,
           ]}
-          onPress={() => goToStep(currentStepIndex - 1)}
-          disabled={currentStepIndex === 0}
+          onPress={() => goToStep(isCompletionPage ? totalSteps - 1 : currentStepIndex - 1)}
+          disabled={currentStepIndex === 0 || isCompletionPage}
         >
           <Text style={[
             styles.portraitNavButtonText,
-            currentStepIndex === 0 && styles.portraitNavButtonTextDisabled,
+            (currentStepIndex === 0 || isCompletionPage) && styles.portraitNavButtonTextDisabled,
           ]}>
-            ← 上一步
+            {isCompletionPage ? '返回步骤' : '← 上一步'}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
             styles.portraitNavButton,
             styles.portraitNavButtonPrimary,
-            isLastStep && styles.portraitNavButtonFinish,
+            isCompletionPage && styles.portraitNavButtonFinish,
           ]}
-          onPress={isLastStep ? handleFinish : () => goToStep(currentStepIndex + 1)}
+          onPress={isCompletionPage ? handleFinish : isLastStep ? () => goToStep(totalSteps) : () => goToStep(currentStepIndex + 1)}
         >
           <Text style={styles.portraitNavButtonText}>
-            {isLastStep ? '🎉 完成!' : '下一步 →'}
+            {isCompletionPage ? '🎉 完成烹饪!' : isLastStep ? '🎉 完成!' : '下一步 →'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -768,14 +782,68 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#2a2a2a',
   },
-  landscapeFinishButton: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 12,
-    borderRadius: 10,
+  landscapeCompletionContent: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
+    padding: 30,
   },
-  landscapeFinishButtonText: {
-    fontSize: 15,
+  landscapeCompletionIcon: {
+    fontSize: 60,
+    marginBottom: 16,
+  },
+  landscapeCompletionTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 8,
+  },
+  landscapeCompletionSubtitle: {
+    fontSize: 16,
+    color: '#aaa',
+    marginBottom: 30,
+  },
+  landscapeCompletionButton: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    borderRadius: 12,
+  },
+  landscapeCompletionButtonText: {
+    fontSize: 17,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+
+  portraitCompletionContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 30,
+  },
+  portraitCompletionIcon: {
+    fontSize: 64,
+    marginBottom: 16,
+  },
+  portraitCompletionTitle: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginBottom: 8,
+  },
+  portraitCompletionSubtitle: {
+    fontSize: 17,
+    color: '#aaa',
+    marginBottom: 36,
+  },
+  portraitCompletionButton: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 16,
+    paddingHorizontal: 50,
+    borderRadius: 14,
+  },
+  portraitCompletionButtonText: {
+    fontSize: 18,
     color: '#fff',
     fontWeight: 'bold',
   },

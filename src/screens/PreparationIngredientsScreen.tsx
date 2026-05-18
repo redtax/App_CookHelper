@@ -60,14 +60,16 @@ const PreparationIngredientsScreen: React.FC = () => {
                   <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
                     {ingredient.name}
                   </Text>
-                  <View style={styles.ingredientAmountRow}>
-                    <Text style={styles.ingredientAmount}>
-                      {ingredient.amount}{ingredient.unit || ''}
-                    </Text>
-                    {ingredient.notes && (
-                      <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
-                    )}
-                  </View>
+                  {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                    <View style={styles.ingredientAmountRow}>
+                      <Text style={styles.ingredientAmount}>
+                        {ingredient.amount}{ingredient.unit || ''}
+                      </Text>
+                      {ingredient.notes ? (
+                        <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
+                      ) : null}
+                    </View>
+                  ) : null}
                 </View>
               </TouchableOpacity>
             );

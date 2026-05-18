@@ -120,10 +120,12 @@ const RecipeDetailScreen: React.FC = () => {
           {recipe.ingredients.map((ingredient, index) => (
             <View key={index} style={styles.ingredientItem}>
               <Text style={styles.ingredientName}>{ingredient.name}</Text>
-              <Text style={styles.ingredientAmount}>
-                {ingredient.amount}{ingredient.unit || ''}
-                {ingredient.notes && <Text style={styles.ingredientNotes}> ({ingredient.notes})</Text>}
-              </Text>
+              {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                <Text style={styles.ingredientAmount}>
+                  {ingredient.amount}{ingredient.unit || ''}
+                  {ingredient.notes ? <Text style={styles.ingredientNotes}> ({ingredient.notes})</Text> : null}
+                </Text>
+              ) : null}
             </View>
           ))}
         </View>

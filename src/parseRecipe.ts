@@ -129,7 +129,7 @@ const parseRecipeText = (text: string) => {
         } else {
           ingredients.push({
             name: ingredientName,
-            amount: cleanAmount || '适量',
+            amount: cleanAmount || '',
             notes: notesMatch ? notesMatch[1] : undefined,
           });
         }
@@ -151,12 +151,12 @@ const parseRecipeText = (text: string) => {
           } else {
             ingredients.push({
               name: ingredientName,
-              amount: cleanAmount || '适量',
+              amount: cleanAmount || '',
               notes: notesMatch ? notesMatch[1] : undefined,
             });
           }
         } else {
-        const delimParts = line.split(/[、，,]/);
+        const delimParts = line.split(/[、，,。.;；\s]+/);
         if (delimParts.length > 1) {
           delimParts.forEach(part => {
             const trimmed = part.trim();
@@ -169,17 +169,17 @@ const parseRecipeText = (text: string) => {
                 const numMatch = cleanAmount.match(/^([\d.]+)\s*(.*)/);
                 ingredients.push({
                   name: spaceMatch[1].trim(),
-                  amount: numMatch ? numMatch[1] : cleanAmount || '适量',
+                  amount: numMatch ? numMatch[1] : cleanAmount || '',
                   unit: numMatch && numMatch[2] ? numMatch[2] : undefined,
                   notes: notesMatch ? notesMatch[1] : undefined,
                 });
               } else {
-                ingredients.push({ name: trimmed, amount: '适量' });
+                ingredients.push({ name: trimmed, amount: '' });
               }
             }
           });
         } else {
-          ingredients.push({ name: line, amount: '适量' });
+          ingredients.push({ name: line, amount: '' });
         }
       }
       }
@@ -213,15 +213,13 @@ const parseRecipeText = (text: string) => {
 
     if (currentSection === 'cooking') {
       const stepMatch = line.match(/^\d+[.、)\s]+(.*)/);
-      let instruction = stepMatch ? stepMatch[1] : line;
+      const instruction = stepMatch ? stepMatch[1] : line;
       const tipsMatch = instruction.match(/💡\s*小贴士[：:]?\s*(.*)/);
       if (tipsMatch) {
-        const cleanInstruction = instruction.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
-        if (cleanInstruction) {
-          const durationMatch = cleanInstruction.match(/耗时[约大概]*\s*(\d+\s*[分秒分钟]+(?:左右)?)/);
+        const instructionWithoutTips = instruction.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
+        if (instructionWithoutTips) {
           cookingSteps.push({
-            instruction: cleanInstruction.replace(/耗时[约大概]*\s*\d+\s*[分秒分钟]+(?:左右)?[，,]?\s*/, '').trim() || cleanInstruction,
-            duration: durationMatch ? durationMatch[1] : undefined,
+            instruction: instructionWithoutTips,
             tips: tipsMatch[1].trim(),
           });
         } else if (cookingSteps.length > 0) {
@@ -229,20 +227,8 @@ const parseRecipeText = (text: string) => {
         }
         continue;
       }
-      instruction = instruction.replace(/^操作[：:]\s*/, '');
-      const durationMatch = instruction.match(/耗时[约大概]*\s*(\d+\s*[分秒分钟]+(?:左右)?)/);
-      const inlineTipsMatch = instruction.match(/[（(](.*?)[）)]/);
-      let cleanInstruction = instruction
-        .replace(/耗时[约大概]*\s*\d+\s*[分秒分钟]+(?:左右)?[，,]?\s*/, '')
-        .replace(/[（(].*?[）)]/, '')
-        .trim();
-      if (cleanInstruction.endsWith('，') || cleanInstruction.endsWith(',')) {
-        cleanInstruction = cleanInstruction.slice(0, -1).trim();
-      }
       cookingSteps.push({
-        instruction: cleanInstruction || instruction,
-        duration: durationMatch ? durationMatch[1] : undefined,
-        tips: inlineTipsMatch ? inlineTipsMatch[1] : undefined,
+        instruction,
       });
       continue;
     }
@@ -295,7 +281,7 @@ const parseRecipeText = (text: string) => {
   }
 
   if (ingredients.length === 0) {
-    ingredients = [{ name: '请补充食材', amount: '适量' }];
+    ingredients = [{ name: '请补充食材', amount: '' }];
   }
 
   if (tags.length === 0) {
@@ -359,7 +345,11 @@ const exportRecipeToText = (recipe: Recipe): string => {
     if (ing.notes) {
       amountStr += `（${ing.notes}）`;
     }
-    lines.push(`${ing.name}\t${amountStr}`);
+    if (amountStr) {
+      lines.push(`${ing.name}\t${amountStr}`);
+    } else {
+      lines.push(ing.name);
+    }
   });
   lines.push('');
 
