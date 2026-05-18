@@ -30,7 +30,8 @@ const CookingScreen: React.FC = () => {
   const landscapeScrollRef = useRef<ScrollView>(null);
   const landscapeProgressScrollRef = useRef<ScrollView>(null);
 
-  const totalSteps = recipe.cookingSteps.length;
+  const cookingSteps = recipe.cookingSteps || [];
+  const totalSteps = cookingSteps.length;
   const isCompletionPage = currentStepIndex >= totalSteps;
   const isLastStep = currentStepIndex === totalSteps - 1;
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -130,7 +131,7 @@ const CookingScreen: React.FC = () => {
               contentContainerStyle={styles.landscapeProgressContent}
             >
               <View style={styles.landscapeProgressBar}>
-                {recipe.cookingSteps.map((_, index) => (
+                {cookingSteps.map((_, index) => (
                   <TouchableOpacity
                     key={index}
                     style={[
@@ -171,7 +172,7 @@ const CookingScreen: React.FC = () => {
           snapToInterval={SCREEN_WIDTH}
           decelerationRate="fast"
         >
-          {recipe.cookingSteps.map((step, index) => (
+          {cookingSteps.map((step, index) => (
             <View key={step.id} style={[styles.landscapeStepCard, { width: SCREEN_WIDTH }]}>
               <View style={styles.landscapeStepContent}>
                 <View style={styles.landscapeInstructionContainer}>
@@ -287,7 +288,7 @@ const CookingScreen: React.FC = () => {
           style={styles.progressScroll}
         >
           <View style={styles.progressBar}>
-            {recipe.cookingSteps.map((_, index) => (
+            {cookingSteps.map((_, index) => (
               <TouchableOpacity
                 key={index}
                 style={[
@@ -321,7 +322,7 @@ const CookingScreen: React.FC = () => {
         snapToInterval={SCREEN_WIDTH}
         decelerationRate="fast"
       >
-        {recipe.cookingSteps.map((step, index) => (
+        {cookingSteps.map((step, index) => (
           <View key={step.id} style={[styles.portraitStepCard, { width: SCREEN_WIDTH }]}>
             <View style={styles.portraitStepInner}>
               <View style={styles.portraitInstructionContainer}>

@@ -23,10 +23,14 @@ const PreparationIngredientsScreen: React.FC = () => {
   const { recipe } = route.params;
   const { preparationCheckedItems, togglePreparationItem } = useApp();
 
-  const hasCategories = recipe.mainIngredients.length > 0 || recipe.auxiliaryIngredients.length > 0 || recipe.seasonings.length > 0;
+  const mainIngredients = recipe.mainIngredients || [];
+  const auxiliaryIngredients = recipe.auxiliaryIngredients || [];
+  const seasonings = recipe.seasonings || [];
+  const ingredients = recipe.ingredients || [];
+  const hasCategories = mainIngredients.length > 0 || auxiliaryIngredients.length > 0 || seasonings.length > 0;
   const displayIngredients = hasCategories 
-    ? [...recipe.mainIngredients, ...recipe.auxiliaryIngredients, ...recipe.seasonings]
-    : recipe.ingredients;
+    ? [...mainIngredients, ...auxiliaryIngredients, ...seasonings]
+    : ingredients;
   
   const allIngredients = displayIngredients.map(i => i.name);
   const checkedCount = preparationCheckedItems.filter(item => allIngredients.includes(item)).length;
@@ -62,10 +66,10 @@ const PreparationIngredientsScreen: React.FC = () => {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {hasCategories ? (
           <>
-            {recipe.mainIngredients.length > 0 && (
+            {mainIngredients.length > 0 && (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>🥦 主料</Text>
-                {recipe.mainIngredients.map((ingredient, index) => {
+                {mainIngredients.map((ingredient, index) => {
                   const isChecked = preparationCheckedItems.includes(ingredient.name);
                   return (
                     <TouchableOpacity
@@ -96,10 +100,10 @@ const PreparationIngredientsScreen: React.FC = () => {
                 })}
               </View>
             )}
-            {recipe.auxiliaryIngredients.length > 0 && (
+            {auxiliaryIngredients.length > 0 && (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>🥕 辅料</Text>
-                {recipe.auxiliaryIngredients.map((ingredient, index) => {
+                {auxiliaryIngredients.map((ingredient, index) => {
                   const isChecked = preparationCheckedItems.includes(ingredient.name);
                   return (
                     <TouchableOpacity
@@ -130,10 +134,10 @@ const PreparationIngredientsScreen: React.FC = () => {
                 })}
               </View>
             )}
-            {recipe.seasonings.length > 0 && (
+            {seasonings.length > 0 && (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>🧂 调料</Text>
-                {recipe.seasonings.map((ingredient, index) => {
+                {seasonings.map((ingredient, index) => {
                   const isChecked = preparationCheckedItems.includes(ingredient.name);
                   return (
                     <TouchableOpacity
@@ -168,7 +172,7 @@ const PreparationIngredientsScreen: React.FC = () => {
         ) : (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>🥦 食材清单</Text>
-            {recipe.ingredients.map((ingredient, index) => {
+            {ingredients.map((ingredient, index) => {
               const isChecked = preparationCheckedItems.includes(ingredient.name);
               return (
                 <TouchableOpacity

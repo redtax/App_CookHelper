@@ -22,9 +22,10 @@ const PreparationStepsScreen: React.FC = () => {
   const { recipe } = route.params;
   const { preparationCheckedSteps, togglePreparationStep, resetPreparationChecklist, resetPreparationSteps } = useApp();
 
-  const totalSteps = recipe.preparationSteps.length;
+  const preparationSteps = recipe.preparationSteps || [];
+  const totalSteps = preparationSteps.length;
   const checkedCount = preparationCheckedSteps.filter(id => 
-    recipe.preparationSteps.some(step => step.id === id)
+    preparationSteps.some(step => step.id === id)
   ).length;
   const progress = totalSteps > 0 ? (checkedCount / totalSteps) * 100 : 0;
 
@@ -63,7 +64,7 @@ const PreparationStepsScreen: React.FC = () => {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>📝 备料步骤</Text>
-          {recipe.preparationSteps.map((step, index) => {
+          {preparationSteps.map((step, index) => {
             const isChecked = preparationCheckedSteps.includes(step.id);
             return (
               <View key={step.id} style={styles.stepItem}>

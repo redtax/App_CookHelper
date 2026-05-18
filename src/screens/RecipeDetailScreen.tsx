@@ -32,9 +32,14 @@ const RecipeDetailScreen: React.FC = () => {
   const [exportText, setExportText] = useState('');
   const [importText, setImportText] = useState('');
 
-  const totalSteps = recipe.preparationSteps.length + recipe.cookingSteps.length;
-  const hasIngredientCategories = recipe.mainIngredients.length > 0 || recipe.auxiliaryIngredients.length > 0 || recipe.seasonings.length > 0;
-  const totalIngredients = recipe.ingredients.length + recipe.mainIngredients.length + recipe.auxiliaryIngredients.length + recipe.seasonings.length;
+  const mainIngredients = recipe.mainIngredients || [];
+  const auxiliaryIngredients = recipe.auxiliaryIngredients || [];
+  const seasonings = recipe.seasonings || [];
+  const ingredients = recipe.ingredients || [];
+
+  const totalSteps = (recipe.preparationSteps?.length || 0) + (recipe.cookingSteps?.length || 0);
+  const hasIngredientCategories = mainIngredients.length > 0 || auxiliaryIngredients.length > 0 || seasonings.length > 0;
+  const totalIngredients = ingredients.length + mainIngredients.length + auxiliaryIngredients.length + seasonings.length;
 
   const handleEdit = () => {
     setShowModal(false);
@@ -127,10 +132,10 @@ const RecipeDetailScreen: React.FC = () => {
 
         {hasIngredientCategories ? (
           <>
-            {recipe.mainIngredients.length > 0 && (
+            {mainIngredients.length > 0 && (
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>🥗 主料 ({recipe.mainIngredients.length}项)</Text>
-                {recipe.mainIngredients.map((ingredient, index) => (
+                <Text style={styles.sectionTitle}>🥗 主料 ({mainIngredients.length}项)</Text>
+                {mainIngredients.map((ingredient, index) => (
                   <View key={index} style={styles.ingredientItem}>
                     <Text style={styles.ingredientName}>{ingredient.name}</Text>
                     {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
@@ -143,10 +148,10 @@ const RecipeDetailScreen: React.FC = () => {
                 ))}
               </View>
             )}
-            {recipe.auxiliaryIngredients.length > 0 && (
+            {auxiliaryIngredients.length > 0 && (
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>🥕 辅料 ({recipe.auxiliaryIngredients.length}项)</Text>
-                {recipe.auxiliaryIngredients.map((ingredient, index) => (
+                <Text style={styles.sectionTitle}>🥕 辅料 ({auxiliaryIngredients.length}项)</Text>
+                {auxiliaryIngredients.map((ingredient, index) => (
                   <View key={index} style={styles.ingredientItem}>
                     <Text style={styles.ingredientName}>{ingredient.name}</Text>
                     {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
@@ -159,10 +164,10 @@ const RecipeDetailScreen: React.FC = () => {
                 ))}
               </View>
             )}
-            {recipe.seasonings.length > 0 && (
+            {seasonings.length > 0 && (
               <View style={styles.section}>
-                <Text style={styles.sectionTitle}>🧂 调料 ({recipe.seasonings.length}项)</Text>
-                {recipe.seasonings.map((ingredient, index) => (
+                <Text style={styles.sectionTitle}>🧂 调料 ({seasonings.length}项)</Text>
+                {seasonings.map((ingredient, index) => (
                   <View key={index} style={styles.ingredientItem}>
                     <Text style={styles.ingredientName}>{ingredient.name}</Text>
                     {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
@@ -178,8 +183,8 @@ const RecipeDetailScreen: React.FC = () => {
           </>
         ) : (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>🥗 食材清单 ({recipe.ingredients.length}项)</Text>
-            {recipe.ingredients.map((ingredient, index) => (
+            <Text style={styles.sectionTitle}>🥗 食材清单 ({ingredients.length}项)</Text>
+            {ingredients.map((ingredient, index) => (
               <View key={index} style={styles.ingredientItem}>
                 <Text style={styles.ingredientName}>{ingredient.name}</Text>
                 {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
@@ -202,12 +207,12 @@ const RecipeDetailScreen: React.FC = () => {
             </View>
             <View style={styles.overviewDivider} />
             <View style={styles.overviewItem}>
-              <Text style={styles.overviewNumber}>{recipe.preparationSteps.length}</Text>
+              <Text style={styles.overviewNumber}>{recipe.preparationSteps?.length || 0}</Text>
               <Text style={styles.overviewLabel}>备料步骤</Text>
             </View>
             <View style={styles.overviewDivider} />
             <View style={styles.overviewItem}>
-              <Text style={styles.overviewNumber}>{recipe.cookingSteps.length}</Text>
+              <Text style={styles.overviewNumber}>{recipe.cookingSteps?.length || 0}</Text>
               <Text style={styles.overviewLabel}>炒制步骤</Text>
             </View>
           </View>
