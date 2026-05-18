@@ -194,8 +194,8 @@ const HomeScreen: React.FC = () => {
             <View style={styles.formatGuide}>
               <Text style={styles.formatGuideTitle}>📋 菜谱格式参考</Text>
               <Text style={styles.formatGuideText}>
-                {'番茄炒蛋\n\n📝 简介\n家常菜经典款，酸甜可口\n\n⏱️ 基本信息\n准备时间\t10分钟\n烹饪时间\t5分钟\n份量\t2人份\n难度\t简单\n分类\t家常菜\n\n🥦 食材清单\n鸡蛋\t3个\n番茄\t2个\n盐\t适量\n\n📋 备料步骤\n番茄洗净，在顶部划十字刀\n将番茄放入开水中烫30秒 💡 小贴士：更容易去皮\n\n🍳 炒制步骤\n热锅凉油，倒入蛋液 耗时：1分钟 💡 小贴士：油温七成热\n\n🏷️ 标签\n家常菜、快手菜、下饭菜'}
-              </Text>
+              {'番茄炒蛋\n\n📝 简介\n家常菜经典款，酸甜可口\n\n🗺️ 总体流程\n备料→炒蛋→炒番茄→混合调味\n\n⏱️ 基本信息\n准备时间\t10分钟\n烹饪时间\t5分钟\n份量\t2人份\n难度\t简单\n分类\t家常菜\n\n🥦 食材清单\n鸡蛋\t3个\n番茄\t2个\n盐\t适量\n\n📋 备料步骤\n番茄洗净，在顶部划十字刀\n将番茄放入开水中烫30秒 💡 小贴士：更容易去皮\n\n🍳 炒菜步骤\n热锅凉油，倒入蛋液 耗时：1分钟 💡 小贴士：油温七成热\n\n🏷️ 标签\n家常菜、快手菜、下饭菜'}
+            </Text>
             </View>
 
             <KeyboardAvoidingView

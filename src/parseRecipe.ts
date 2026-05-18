@@ -12,6 +12,7 @@ const parseRecipeText = (text: string) => {
   let cookTime = '20分钟';
   let tags: string[] = [];
   let imageUrl: string | undefined;
+  let overallFlow: string | undefined;
   let ingredients: { name: string; amount: string; unit?: string; notes?: string }[] = [];
   let preparationSteps: { description: string; tips?: string }[] = [];
   let cookingSteps: { instruction: string; duration?: string; tips?: string; ingredients?: string[] }[] = [];
@@ -23,6 +24,11 @@ const parseRecipeText = (text: string) => {
 
     if (line.match(/^📝\s*简介/) || line.match(/^简介/)) {
       currentSection = 'description';
+      continue;
+    }
+
+    if (line.match(/^🗺️?\s*总体流程/) || line.match(/^总体流程/)) {
+      currentSection = 'overallFlow';
       continue;
     }
 
@@ -246,6 +252,15 @@ const parseRecipeText = (text: string) => {
       continue;
     }
 
+    if (currentSection === 'overallFlow') {
+      if (!overallFlow) {
+        overallFlow = line;
+      } else {
+        overallFlow = overallFlow + '\n' + line;
+      }
+      continue;
+    }
+
     if (!name) {
       name = line;
       continue;
@@ -299,6 +314,7 @@ const parseRecipeText = (text: string) => {
     cookTime,
     difficulty,
     imageUrl,
+    overallFlow: overallFlow || undefined,
     ingredients,
     preparationSteps: preparationSteps.map((step, index) => ({
       id: `prep_${index + 1}`,
@@ -324,6 +340,13 @@ const exportRecipeToText = (recipe: Recipe): string => {
   if (recipe.description) {
     lines.push('📝 简介');
     lines.push(recipe.description);
+    lines.push('');
+  }
+
+  if (recipe.overallFlow) {
+    lines.push('🗺️ 总体流程');
+    const flowLines = recipe.overallFlow.split('\n');
+    flowLines.forEach(line => lines.push(line));
     lines.push('');
   }
 

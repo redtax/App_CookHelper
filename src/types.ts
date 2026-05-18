@@ -34,6 +34,7 @@ export interface Recipe {
   preparationSteps: PreparationStep[];
   cookingSteps: CookingStep[];
   imageUrl?: string;
+  overallFlow?: string;
 }
 
 export interface AppState {

@@ -27,6 +27,7 @@ const RecipeEditScreen: React.FC = () => {
 
   const [name, setName] = useState(initialRecipe.name);
   const [description, setDescription] = useState(initialRecipe.description || '');
+  const [overallFlow, setOverallFlow] = useState(initialRecipe.overallFlow || '');
   const [category, setCategory] = useState(initialRecipe.category);
   const [tags, setTags] = useState<string[]>(initialRecipe.tags);
   const [servings, setServings] = useState(initialRecipe.servings.toString());
@@ -53,6 +54,7 @@ const RecipeEditScreen: React.FC = () => {
       ...initialRecipe,
       name: name.trim(),
       description: description.trim(),
+      overallFlow: overallFlow.trim() || undefined,
       category: category.trim(),
       tags,
       servings: parseInt(servings) || 1,
@@ -149,6 +151,17 @@ const RecipeEditScreen: React.FC = () => {
               placeholder="请输入菜谱描述"
               multiline
               numberOfLines={3}
+            />
+          </View>
+          <View style={styles.inputGroup}>
+            <Text style={styles.inputLabel}>总体流程</Text>
+            <TextInput
+              style={[styles.input, styles.textArea]}
+              value={overallFlow}
+              onChangeText={setOverallFlow}
+              placeholder="请输入总体流程，例如：备料→炒蛋→炒番茄→混合"
+              multiline
+              numberOfLines={4}
             />
           </View>
           <View style={styles.row}>

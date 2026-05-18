@@ -150,6 +150,13 @@ const RecipeDetailScreen: React.FC = () => {
           </View>
         </View>
 
+        {recipe.overallFlow && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>🗺️ 总体流程</Text>
+            <Text style={styles.overallFlowText}>{recipe.overallFlow}</Text>
+          </View>
+        )}
+
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>🏷️ 标签</Text>
           <View style={styles.tagContainer}>
@@ -375,6 +382,11 @@ const styles = StyleSheet.create({
     width: 1,
     height: 40,
     backgroundColor: '#eee',
+  },
+  overallFlowText: {
+    fontSize: 15,
+    color: '#666',
+    lineHeight: 24,
   },
   tagContainer: {
     flexDirection: 'row',
