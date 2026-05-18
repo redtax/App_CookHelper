@@ -37,7 +37,7 @@ const PreparationIngredientsScreen: React.FC = () => {
     if (checkedCount < totalIngredients) {
       Alert.alert(
         '提示',
-        `还有 ${totalIngredients - checkedCount} 项食材未勾选，是否继续？`,
+        '还有 ' + (totalIngredients - checkedCount) + ' 项食材未勾选，是否继续？',
         [
           { text: '继续', style: 'default', onPress: () => navigation.navigate('PreparationSteps', { recipe }) },
           { text: '取消', style: 'cancel' }

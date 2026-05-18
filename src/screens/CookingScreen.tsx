@@ -378,7 +378,7 @@ const CookingScreen: React.FC = () => {
             styles.portraitNavButton,
             (currentStepIndex === 0 && !isCompletionPage) && styles.portraitNavButtonDisabled,
           ]}
-          onPress={() => isCompletionPage ? navigation.goBack() : goToStep(currentStepIndex - 1)}
+          onPress={() => isCompletionPage ? navigation.navigate('RecipeDetail', { recipe }) : goToStep(currentStepIndex - 1)}
           disabled={currentStepIndex === 0 && !isCompletionPage}
         >
           <Text style={[

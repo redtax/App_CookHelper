@@ -38,7 +38,7 @@ const PreparationStepsScreen: React.FC = () => {
     if (checkedCount < totalSteps) {
       Alert.alert(
         '提示',
-        `还有 ${totalSteps - checkedCount} 项备料步骤未完成，是否开始炒菜？',
+        '还有 ' + (totalSteps - checkedCount) + ' 项备料步骤未完成，是否开始炒菜？',
         [
           { text: '继续', style: 'default', onPress: proceed },
           { text: '取消', style: 'cancel' }
