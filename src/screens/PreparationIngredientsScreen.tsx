@@ -23,9 +23,14 @@ const PreparationIngredientsScreen: React.FC = () => {
   const { recipe } = route.params;
   const { preparationCheckedItems, togglePreparationItem } = useApp();
 
-  const allIngredients = recipe.ingredients.map(i => i.name);
+  const hasCategories = recipe.mainIngredients.length > 0 || recipe.auxiliaryIngredients.length > 0 || recipe.seasonings.length > 0;
+  const displayIngredients = hasCategories 
+    ? [...recipe.mainIngredients, ...recipe.auxiliaryIngredients, ...recipe.seasonings]
+    : recipe.ingredients;
+  
+  const allIngredients = displayIngredients.map(i => i.name);
   const checkedCount = preparationCheckedItems.filter(item => allIngredients.includes(item)).length;
-  const totalIngredients = recipe.ingredients.length;
+  const totalIngredients = displayIngredients.length;
   const progress = totalIngredients > 0 ? (checkedCount / totalIngredients) * 100 : 0;
 
   const handleNext = () => {
@@ -55,38 +60,145 @@ const PreparationIngredientsScreen: React.FC = () => {
       </View>
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>🥦 食材清单</Text>
-          {recipe.ingredients.map((ingredient, index) => {
-            const isChecked = preparationCheckedItems.includes(ingredient.name);
-            return (
-              <TouchableOpacity
-                key={index}
-                style={styles.ingredientItem}
-                onPress={() => togglePreparationItem(ingredient.name)}
-              >
-                <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
-                  {isChecked && <Text style={styles.checkmark}>✓</Text>}
-                </View>
-                <View style={styles.ingredientInfo}>
-                  <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
-                    {ingredient.name}
-                  </Text>
-                  {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
-                    <View style={styles.ingredientAmountRow}>
-                      <Text style={styles.ingredientAmount}>
-                        {ingredient.amount}{ingredient.unit || ''}
-                      </Text>
-                      {ingredient.notes ? (
-                        <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
-                      ) : null}
-                    </View>
-                  ) : null}
-                </View>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
+        {hasCategories ? (
+          <>
+            {recipe.mainIngredients.length > 0 && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>🥦 主料</Text>
+                {recipe.mainIngredients.map((ingredient, index) => {
+                  const isChecked = preparationCheckedItems.includes(ingredient.name);
+                  return (
+                    <TouchableOpacity
+                      key={`main-${index}`}
+                      style={styles.ingredientItem}
+                      onPress={() => togglePreparationItem(ingredient.name)}
+                    >
+                      <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
+                        {isChecked && <Text style={styles.checkmark}>✓</Text>}
+                      </View>
+                      <View style={styles.ingredientInfo}>
+                        <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
+                          {ingredient.name}
+                        </Text>
+                        {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                          <View style={styles.ingredientAmountRow}>
+                            <Text style={styles.ingredientAmount}>
+                              {ingredient.amount}{ingredient.unit || ''}
+                            </Text>
+                            {ingredient.notes ? (
+                              <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
+                            ) : null}
+                          </View>
+                        ) : null}
+                      </View>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            )}
+            {recipe.auxiliaryIngredients.length > 0 && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>🥕 辅料</Text>
+                {recipe.auxiliaryIngredients.map((ingredient, index) => {
+                  const isChecked = preparationCheckedItems.includes(ingredient.name);
+                  return (
+                    <TouchableOpacity
+                      key={`aux-${index}`}
+                      style={styles.ingredientItem}
+                      onPress={() => togglePreparationItem(ingredient.name)}
+                    >
+                      <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
+                        {isChecked && <Text style={styles.checkmark}>✓</Text>}
+                      </View>
+                      <View style={styles.ingredientInfo}>
+                        <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
+                          {ingredient.name}
+                        </Text>
+                        {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                          <View style={styles.ingredientAmountRow}>
+                            <Text style={styles.ingredientAmount}>
+                              {ingredient.amount}{ingredient.unit || ''}
+                            </Text>
+                            {ingredient.notes ? (
+                              <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
+                            ) : null}
+                          </View>
+                        ) : null}
+                      </View>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            )}
+            {recipe.seasonings.length > 0 && (
+              <View style={styles.section}>
+                <Text style={styles.sectionTitle}>🧂 调料</Text>
+                {recipe.seasonings.map((ingredient, index) => {
+                  const isChecked = preparationCheckedItems.includes(ingredient.name);
+                  return (
+                    <TouchableOpacity
+                      key={`seasoning-${index}`}
+                      style={styles.ingredientItem}
+                      onPress={() => togglePreparationItem(ingredient.name)}
+                    >
+                      <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
+                        {isChecked && <Text style={styles.checkmark}>✓</Text>}
+                      </View>
+                      <View style={styles.ingredientInfo}>
+                        <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
+                          {ingredient.name}
+                        </Text>
+                        {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                          <View style={styles.ingredientAmountRow}>
+                            <Text style={styles.ingredientAmount}>
+                              {ingredient.amount}{ingredient.unit || ''}
+                            </Text>
+                            {ingredient.notes ? (
+                              <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
+                            ) : null}
+                          </View>
+                        ) : null}
+                      </View>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            )}
+          </>
+        ) : (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>🥦 食材清单</Text>
+            {recipe.ingredients.map((ingredient, index) => {
+              const isChecked = preparationCheckedItems.includes(ingredient.name);
+              return (
+                <TouchableOpacity
+                  key={index}
+                  style={styles.ingredientItem}
+                  onPress={() => togglePreparationItem(ingredient.name)}
+                >
+                  <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
+                    {isChecked && <Text style={styles.checkmark}>✓</Text>}
+                  </View>
+                  <View style={styles.ingredientInfo}>
+                    <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
+                      {ingredient.name}
+                    </Text>
+                    {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                      <View style={styles.ingredientAmountRow}>
+                        <Text style={styles.ingredientAmount}>
+                          {ingredient.amount}{ingredient.unit || ''}
+                        </Text>
+                        {ingredient.notes ? (
+                          <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
+                        ) : null}
+                      </View>
+                    ) : null}
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        )}
       </ScrollView>
 
       <View style={styles.buttonContainer}>
