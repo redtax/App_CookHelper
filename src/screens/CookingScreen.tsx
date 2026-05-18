@@ -376,14 +376,14 @@ const CookingScreen: React.FC = () => {
         <TouchableOpacity
           style={[
             styles.portraitNavButton,
-            (currentStepIndex === 0 || isCompletionPage) && styles.portraitNavButtonDisabled,
+            (currentStepIndex === 0 && !isCompletionPage) && styles.portraitNavButtonDisabled,
           ]}
-          onPress={() => goToStep(isCompletionPage ? totalSteps - 1 : currentStepIndex - 1)}
-          disabled={currentStepIndex === 0 || isCompletionPage}
+          onPress={() => goToStep(isCompletionPage ? 0 : currentStepIndex - 1)}
+          disabled={currentStepIndex === 0 && !isCompletionPage}
         >
           <Text style={[
             styles.portraitNavButtonText,
-            (currentStepIndex === 0 || isCompletionPage) && styles.portraitNavButtonTextDisabled,
+            (currentStepIndex === 0 && !isCompletionPage) && styles.portraitNavButtonTextDisabled,
           ]}>
             {isCompletionPage ? '返回步骤' : '← 上一步'}
           </Text>
