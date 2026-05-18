@@ -34,7 +34,12 @@ const RecipeEditScreen: React.FC = () => {
   const [prepTime, setPrepTime] = useState(initialRecipe.prepTime);
   const [cookTime, setCookTime] = useState(initialRecipe.cookTime);
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>(initialRecipe.difficulty);
+  const [technique, setTechnique] = useState(initialRecipe.technique || '');
+  const [flavor, setFlavor] = useState(initialRecipe.flavor || '');
   const [ingredients, setIngredients] = useState<Ingredient[]>(initialRecipe.ingredients);
+  const [mainIngredients, setMainIngredients] = useState<Ingredient[]>(initialRecipe.mainIngredients || []);
+  const [auxiliaryIngredients, setAuxiliaryIngredients] = useState<Ingredient[]>(initialRecipe.auxiliaryIngredients || []);
+  const [seasonings, setSeasonings] = useState<Ingredient[]>(initialRecipe.seasonings || []);
   const [preparationSteps, setPreparationSteps] = useState<PreparationStep[]>(initialRecipe.preparationSteps);
   const [cookingSteps, setCookingSteps] = useState<CookingStep[]>(initialRecipe.cookingSteps);
 
@@ -61,7 +66,12 @@ const RecipeEditScreen: React.FC = () => {
       prepTime: prepTime.trim(),
       cookTime: cookTime.trim(),
       difficulty,
+      technique: technique.trim() || undefined,
+      flavor: flavor.trim() || undefined,
       ingredients,
+      mainIngredients,
+      auxiliaryIngredients,
+      seasonings,
       preparationSteps,
       cookingSteps,
     };
@@ -243,6 +253,26 @@ const RecipeEditScreen: React.FC = () => {
                 </TouchableOpacity>
               ))}
             </ScrollView>
+          </View>
+          <View style={styles.row}>
+            <View style={[styles.inputGroup, { flex: 1, marginRight: 8 }]}>
+              <Text style={styles.inputLabel}>技法</Text>
+              <TextInput
+                style={styles.input}
+                value={technique}
+                onChangeText={setTechnique}
+                placeholder="例如：煎、炒、炖"
+              />
+            </View>
+            <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
+              <Text style={styles.inputLabel}>味型</Text>
+              <TextInput
+                style={styles.input}
+                value={flavor}
+                onChangeText={setFlavor}
+                placeholder="例如：酸甜、香辣"
+              />
+            </View>
           </View>
         </View>
 

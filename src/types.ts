@@ -30,7 +30,12 @@ export interface Recipe {
   prepTime: string;
   cookTime: string;
   difficulty: 'easy' | 'medium' | 'hard';
+  technique?: string;
+  flavor?: string;
   ingredients: Ingredient[];
+  mainIngredients: Ingredient[];
+  auxiliaryIngredients: Ingredient[];
+  seasonings: Ingredient[];
   preparationSteps: PreparationStep[];
   cookingSteps: CookingStep[];
   imageUrl?: string;
