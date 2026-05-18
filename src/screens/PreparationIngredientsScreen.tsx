@@ -55,7 +55,7 @@ const PreparationIngredientsScreen: React.FC = () => {
           进度：{checkedCount}/{totalIngredients}
         </Text>
         <View style={styles.progressBar}>
-          <View style={[styles.progressFill, { width: `${progress}%` }]} />
+          <View style={[styles.progressFill, { width: progress + '%' }]} />
         </View>
       </View>
 

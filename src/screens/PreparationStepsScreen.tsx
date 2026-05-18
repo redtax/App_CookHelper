@@ -56,7 +56,7 @@ const PreparationStepsScreen: React.FC = () => {
           进度：{checkedCount}/{totalSteps}
         </Text>
         <View style={styles.progressBar}>
-          <View style={[styles.progressFill, { width: `${progress}%` }]} />
+          <View style={[styles.progressFill, { width: progress + '%' }]} />
         </View>
       </View>
 
