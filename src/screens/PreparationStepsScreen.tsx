@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
@@ -28,9 +29,24 @@ const PreparationStepsScreen: React.FC = () => {
   const progress = totalSteps > 0 ? (checkedCount / totalSteps) * 100 : 0;
 
   const handleStartCooking = () => {
-    resetPreparationChecklist();
-    resetPreparationSteps();
-    navigation.navigate('Cooking', { recipe });
+    const proceed = () => {
+      resetPreparationChecklist();
+      resetPreparationSteps();
+      navigation.navigate('Cooking', { recipe });
+    };
+
+    if (checkedCount < totalSteps) {
+      Alert.alert(
+        '提示',
+        `还有 ${totalSteps - checkedCount} 项备料步骤未完成，是否开始炒菜？',
+        [
+          { text: '继续', style: 'default', onPress: proceed },
+          { text: '取消', style: 'cancel' }
+        ]
+      );
+    } else {
+      proceed();
+    }
   };
 
   return (
