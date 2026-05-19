@@ -21,7 +21,7 @@ const PreparationIngredientsScreen: React.FC = () => {
   const navigation = useNavigation<PreparationIngredientsNavigationProp>();
   const route = useRoute<PreparationIngredientsRouteProp>();
   const { recipe } = route.params;
-  const { preparationCheckedItems, togglePreparationItem } = useApp();
+  const { preparationCheckedItems, togglePreparationItem, resetPreparationChecklist, resetPreparationSteps } = useApp();
 
   const mainIngredients = recipe.mainIngredients || [];
   const auxiliaryIngredients = recipe.auxiliaryIngredients || [];
@@ -38,17 +38,29 @@ const PreparationIngredientsScreen: React.FC = () => {
   const progress = totalIngredients > 0 ? (checkedCount / totalIngredients) * 100 : 0;
 
   const handleNext = () => {
+    const hasPreparationSteps = (recipe.preparationSteps || []).length > 0;
+
+    const proceed = () => {
+      if (hasPreparationSteps) {
+        navigation.navigate('PreparationSteps', { recipe });
+      } else {
+        resetPreparationChecklist();
+        resetPreparationSteps();
+        navigation.navigate('Cooking', { recipe });
+      }
+    };
+
     if (checkedCount < totalIngredients) {
       Alert.alert(
         '提示',
         '还有 ' + (totalIngredients - checkedCount) + ' 项食材未勾选，是否继续？',
         [
-          { text: '继续', style: 'default', onPress: () => navigation.navigate('PreparationSteps', { recipe }) },
+          { text: '继续', style: 'default', onPress: proceed },
           { text: '取消', style: 'cancel' }
         ]
       );
     } else {
-      navigation.navigate('PreparationSteps', { recipe });
+      proceed();
     }
   };
 
