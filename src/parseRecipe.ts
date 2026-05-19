@@ -171,13 +171,13 @@ const parseRecipeText = (text: string) => {
         if (categories.length === 0) categories = ['家常菜'];
         continue;
       }
-      if (line.match(/^技法/)) {
-        const val = line.replace(/^技法[\s：:]*/, '').trim();
+      if (line.match(/^(烹饪)?技法/)) {
+        const val = line.replace(/^(烹饪)?技法[\s：:]*/, '').trim();
         technique = val || undefined;
         continue;
       }
-      if (line.match(/^味型/)) {
-        const val = line.replace(/^味型[\s：:]*/, '').trim();
+      if (line.match(/^(菜肴)?味型/)) {
+        const val = line.replace(/^(菜肴)?味型[\s：:]*/, '').trim();
         flavor = val || undefined;
         continue;
       }
@@ -458,8 +458,8 @@ const exportRecipeToText = (recipe: Recipe): string => {
   const difficultyText = recipe.difficulty === 'easy' ? '简单' : recipe.difficulty === 'medium' ? '中等' : '困难';
   lines.push(`难度\t${difficultyText}`);
   lines.push(`分类\t${(recipe.categories || []).join('、')}`);
-  lines.push(`技法\t${recipe.technique || ''}`);
-  lines.push(`味型\t${recipe.flavor || ''}`);
+  lines.push(`烹饪技法\t${recipe.technique || ''}`);
+  lines.push(`菜肴味型\t${recipe.flavor || ''}`);
   lines.push('');
 
   lines.push('主料');

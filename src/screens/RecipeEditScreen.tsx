@@ -473,7 +473,7 @@ const RecipeEditScreen: React.FC = () => {
           <Text style={styles.sectionTitle}>⚙️ 烹饪信息</Text>
           <View style={styles.row}>
             <View style={[styles.inputGroup, { flex: 1, marginRight: 8 }]}>
-              <Text style={styles.inputLabel}>技法</Text>
+              <Text style={styles.inputLabel}>烹饪技法</Text>
               <TextInput
                 style={styles.input}
                 value={technique}
@@ -482,7 +482,7 @@ const RecipeEditScreen: React.FC = () => {
               />
             </View>
             <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
-              <Text style={styles.inputLabel}>味型</Text>
+              <Text style={styles.inputLabel}>菜肴味型</Text>
               <TextInput
                 style={styles.input}
                 value={flavor}

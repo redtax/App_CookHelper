@@ -120,11 +120,11 @@ const RecipeDetailScreen: React.FC = () => {
               </Text>
             </View>
             <View style={styles.infoItem}>
-              <Text style={styles.infoLabel}>技法</Text>
+              <Text style={styles.infoLabel}>烹饪技法</Text>
               <Text style={styles.infoValue}>{recipe.technique || '—'}</Text>
             </View>
             <View style={styles.infoItem}>
-              <Text style={styles.infoLabel}>味型</Text>
+              <Text style={styles.infoLabel}>菜肴味型</Text>
               <Text style={styles.infoValue}>{recipe.flavor || '—'}</Text>
             </View>
           </View>

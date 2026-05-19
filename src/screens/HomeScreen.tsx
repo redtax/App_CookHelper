@@ -26,7 +26,7 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'H
 
 const categories = ['全部', '家常菜', '川菜', '辣味菜', '海鲜', '汤羹', '面食', '清真菜', '凉菜', '粤菜', '硬菜', '湘菜', '烧烤', '京菜', '鲁菜', '苏菜', '浙菜', '徽菜'];
 
-const FORMAT_TEMPLATE = '番茄炒蛋\n\n📝 简介\n家常菜经典款，酸甜可口\n\n🗺️ 总体流程\n备料→炒蛋→炒番茄→混合调味\n\n⏱️ 基本信息\n准备时间\t10分钟\n烹饪时间\t5分钟\n份量\t2人份\n难度\t简单\n分类\t家常菜\n技法\t炒\n味型\t酸甜\n\n主料\n鸡蛋\t3个\n番茄\t2个\n\n辅料\n葱花\t适量\n\n调料\n盐\t适量\n糖\t1勺\n\n📋 备料步骤\n番茄洗净，在顶部划十字刀\n将番茄放入开水中烫30秒 💡 小贴士：更容易去皮\n\n🍳 炒菜步骤\n热锅凉油，倒入蛋液 耗时：1分钟 💡 小贴士：油温七成热\n\n🏷️ 标签\n家常菜、快手菜、下饭菜';
+const FORMAT_TEMPLATE = '番茄炒蛋\n\n📝 简介\n家常菜经典款，酸甜可口\n\n🗺️ 总体流程\n备料→炒蛋→炒番茄→混合调味\n\n⏱️ 基本信息\n准备时间\t10分钟\n烹饪时间\t5分钟\n份量\t2人份\n难度\t简单\n分类\t家常菜\n烹饪技法\t炒\n菜肴味型\t酸甜\n\n主料\n鸡蛋\t3个\n番茄\t2个\n\n辅料\n葱花\t适量\n\n调料\n盐\t适量\n糖\t1勺\n\n📋 备料步骤\n番茄洗净，在顶部划十字刀\n将番茄放入开水中烫30秒 💡 小贴士：更容易去皮\n\n🍳 炒菜步骤\n热锅凉油，倒入蛋液 耗时：1分钟 💡 小贴士：油温七成热\n\n🏷️ 标签\n家常菜、快手菜、下饭菜';
 
 const getDifficultyText = (difficulty: string) => {
   switch (difficulty) {
