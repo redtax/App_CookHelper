@@ -37,9 +37,7 @@ const RecipeDetailScreen: React.FC = () => {
   const seasonings = recipe.seasonings || [];
   const ingredients = recipe.ingredients || [];
 
-  const totalSteps = (recipe.preparationSteps?.length || 0) + (recipe.cookingSteps?.length || 0);
   const hasIngredientCategories = mainIngredients.length > 0 || auxiliaryIngredients.length > 0 || seasonings.length > 0;
-  const totalIngredients = ingredients.length + mainIngredients.length + auxiliaryIngredients.length + seasonings.length;
 
   const handleEdit = () => {
     setShowModal(false);
@@ -197,26 +195,6 @@ const RecipeDetailScreen: React.FC = () => {
             ))}
           </View>
         )}
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>📝 流程概览</Text>
-          <View style={styles.overviewContainer}>
-            <View style={styles.overviewItem}>
-              <Text style={styles.overviewNumber}>{totalIngredients}</Text>
-              <Text style={styles.overviewLabel}>食材数</Text>
-            </View>
-            <View style={styles.overviewDivider} />
-            <View style={styles.overviewItem}>
-              <Text style={styles.overviewNumber}>{recipe.preparationSteps?.length || 0}</Text>
-              <Text style={styles.overviewLabel}>备料步骤</Text>
-            </View>
-            <View style={styles.overviewDivider} />
-            <View style={styles.overviewItem}>
-              <Text style={styles.overviewNumber}>{recipe.cookingSteps?.length || 0}</Text>
-              <Text style={styles.overviewLabel}>炒制步骤</Text>
-            </View>
-          </View>
-        </View>
 
         {recipe.overallFlow && (
           <View style={styles.section}>
@@ -428,30 +406,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#999',
     fontWeight: 'normal',
-  },
-  overviewContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingVertical: 16,
-  },
-  overviewItem: {
-    alignItems: 'center',
-  },
-  overviewNumber: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#f4511e',
-  },
-  overviewLabel: {
-    fontSize: 13,
-    color: '#999',
-    marginTop: 4,
-  },
-  overviewDivider: {
-    width: 1,
-    height: 40,
-    backgroundColor: '#eee',
   },
   overallFlowText: {
     fontSize: 15,
