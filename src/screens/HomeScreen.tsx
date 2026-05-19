@@ -57,13 +57,9 @@ const HomeScreen: React.FC = () => {
       const matchesName = recipe.name.toLowerCase().includes(query);
       const matchesTag = recipe.tags.some(tag => tag.toLowerCase().includes(query));
 
-      const hasCategorized = (recipe.mainIngredients || []).length > 0
-        || (recipe.auxiliaryIngredients || []).length > 0
-        || (recipe.seasonings || []).length > 0;
-      const searchIngredients = hasCategorized
-        ? (recipe.mainIngredients || [])
-        : (recipe.ingredients || []);
-      const matchesIngredient = searchIngredients.some(ing =>
+      const matchesIngredient = (recipe.mainIngredients || []).some(ing =>
+        ing.name.toLowerCase().includes(query)
+      ) || (recipe.ingredients || []).some(ing =>
         ing.name.toLowerCase().includes(query)
       );
 
