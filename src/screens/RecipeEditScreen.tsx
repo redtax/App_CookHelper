@@ -52,10 +52,10 @@ const RecipeEditScreen: React.FC = () => {
   const [showNewTag, setShowNewTag] = useState(false);
   const [newTagName, setNewTagName] = useState('');
   const [hasChanges, setHasChanges] = useState(false);
+  const [savedIndicator, setSavedIndicator] = useState(false);
 
   const scrollViewRef = useRef<ScrollView>(null);
   const sectionLayouts = useRef<Record<string, number>>({});
-  const isSavingRef = useRef(false);
 
   const scrollToSection = (sectionKey: string, delay = 100) => {
     setTimeout(() => {
@@ -73,7 +73,7 @@ const RecipeEditScreen: React.FC = () => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('beforeRemove', (e: any) => {
-      if (!hasChanges || isSavingRef.current) return;
+      if (!hasChanges) return;
       e.preventDefault();
       Alert.alert(
         '未保存的修改',
@@ -141,9 +141,9 @@ const RecipeEditScreen: React.FC = () => {
     };
 
     await updateRecipe(updatedRecipe);
-    isSavingRef.current = true;
     setHasChanges(false);
-    navigation.goBack();
+    setSavedIndicator(true);
+    setTimeout(() => setSavedIndicator(false), 2000);
   };
 
   const addToCategory = (category: 'main' | 'auxiliary' | 'seasoning') => {
@@ -182,6 +182,16 @@ const RecipeEditScreen: React.FC = () => {
 
   const removeUncategorized = (index: number) => {
     setUncategorizedIngredients(uncategorizedIngredients.filter((_, i) => i !== index));
+    markChanged();
+  };
+
+  const moveAcrossCategory = (from: 'main' | 'auxiliary' | 'seasoning', index: number, to: 'main' | 'auxiliary' | 'seasoning') => {
+    const fromGetter = from === 'main' ? mainIngredients : from === 'auxiliary' ? auxiliaryIngredients : seasonings;
+    const fromSetter = from === 'main' ? setMainIngredients : from === 'auxiliary' ? setAuxiliaryIngredients : setSeasonings;
+    const toSetter = to === 'main' ? setMainIngredients : to === 'auxiliary' ? setAuxiliaryIngredients : setSeasonings;
+    const item = { ...fromGetter[index] };
+    fromSetter(fromGetter.filter((_, i) => i !== index));
+    toSetter(prev => [...prev, item]);
     markChanged();
   };
 
@@ -324,6 +334,33 @@ const RecipeEditScreen: React.FC = () => {
         >
           <Text style={styles.removeButtonText}>删除</Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.categorySwitchRow}>
+        <Text style={styles.categorySwitchLabel}>归类：</Text>
+        {category !== 'main' && (
+          <TouchableOpacity
+            style={[styles.categorySwitchBtn, { backgroundColor: '#f4511e' }]}
+            onPress={() => moveAcrossCategory(category, index, 'main')}
+          >
+            <Text style={styles.categorySwitchBtnText}>主料</Text>
+          </TouchableOpacity>
+        )}
+        {category !== 'auxiliary' && (
+          <TouchableOpacity
+            style={[styles.categorySwitchBtn, { backgroundColor: '#FF9800' }]}
+            onPress={() => moveAcrossCategory(category, index, 'auxiliary')}
+          >
+            <Text style={styles.categorySwitchBtnText}>辅料</Text>
+          </TouchableOpacity>
+        )}
+        {category !== 'seasoning' && (
+          <TouchableOpacity
+            style={[styles.categorySwitchBtn, { backgroundColor: '#8BC34A' }]}
+            onPress={() => moveAcrossCategory(category, index, 'seasoning')}
+          >
+            <Text style={styles.categorySwitchBtnText}>调料</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -783,12 +820,15 @@ const RecipeEditScreen: React.FC = () => {
             <Text style={styles.cancelButtonText}>取消</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.button, styles.saveButton]}
+            style={[styles.button, savedIndicator ? styles.savedButton : styles.saveButton]}
             onPress={handleSave}
           >
-            <Text style={styles.saveButtonText}>保存</Text>
+            <Text style={styles.saveButtonText}>{savedIndicator ? '✓ 已保存' : '保存'}</Text>
           </TouchableOpacity>
         </View>
+        {savedIndicator && (
+          <Text style={styles.savedHint}>菜谱已保存，可继续编辑或返回</Text>
+        )}
       </ScrollView>
 
       <Modal
@@ -1078,6 +1118,27 @@ const styles = StyleSheet.create({
     color: '#f4511e',
     fontWeight: 'bold',
   },
+  categorySwitchRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 4,
+    gap: 4,
+  },
+  categorySwitchLabel: {
+    fontSize: 11,
+    color: '#999',
+    marginRight: 2,
+  },
+  categorySwitchBtn: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 4,
+  },
+  categorySwitchBtnText: {
+    color: '#fff',
+    fontSize: 11,
+    fontWeight: 'bold',
+  },
   removeButtonText: {
     color: '#d32f2f',
     fontSize: 14,
@@ -1113,6 +1174,16 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  savedButton: {
+    backgroundColor: '#4CAF50',
+  },
+  savedHint: {
+    textAlign: 'center',
+    color: '#4CAF50',
+    fontSize: 13,
+    marginTop: 8,
+    marginBottom: 4,
   },
   modalOverlay: {
     flex: 1,
