@@ -24,8 +24,9 @@ type RecipeDetailNavigationProp = NativeStackNavigationProp<RootStackParamList, 
 const RecipeDetailScreen: React.FC = () => {
   const navigation = useNavigation<RecipeDetailNavigationProp>();
   const route = useRoute<RecipeDetailRouteProp>();
-  const { recipe } = route.params;
-  const { updateRecipe } = useApp();
+  const { recipe: routeRecipe } = route.params;
+  const { updateRecipe, recipes } = useApp();
+  const recipe = recipes.find(r => r.id === routeRecipe.id) || routeRecipe;
   const [showModal, setShowModal] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
