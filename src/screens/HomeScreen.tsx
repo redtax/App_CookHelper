@@ -53,7 +53,7 @@ const HomeScreen: React.FC = () => {
     return recipes.filter(recipe => {
       const matchesSearch = recipe.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         recipe.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-      const matchesCategory = !selectedCategory || selectedCategory === '全部' || recipe.category === selectedCategory;
+      const matchesCategory = !selectedCategory || selectedCategory === '全部' || (recipe.categories || []).includes(selectedCategory);
       return matchesSearch && matchesCategory;
     });
   }, [recipes, searchQuery, selectedCategory]);

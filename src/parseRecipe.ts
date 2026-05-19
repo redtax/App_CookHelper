@@ -58,7 +58,7 @@ const parseRecipeText = (text: string) => {
 
   let name = '';
   let description = '';
-  let category = '家常菜';
+  let categories: string[] = [];
   let difficulty = 'medium' as 'easy' | 'medium' | 'hard';
   let servings = 2;
   let prepTime = '15分钟';
@@ -164,7 +164,11 @@ const parseRecipeText = (text: string) => {
         continue;
       }
       if (line.match(/^分类/)) {
-        category = line.replace(/^分类[\s：:]*/, '').trim() || category;
+        const val = line.replace(/^分类[\s：:]*/, '').trim();
+        if (val) {
+          categories = val.split(/[、，,\s]+/).filter(c => c.length > 0);
+        }
+        if (categories.length === 0) categories = ['家常菜'];
         continue;
       }
       if (line.match(/^技法/)) {
@@ -196,7 +200,8 @@ const parseRecipeText = (text: string) => {
           else difficulty = 'medium';
         }
         else if (key.match(/分类/)) {
-          category = val || category;
+          const valParts = val.split(/[、，,\s]+/).filter((c: string) => c.length > 0);
+          if (valParts.length > 0) categories = valParts;
         }
         else if (key.match(/技法/)) {
           technique = val || undefined;
@@ -377,14 +382,18 @@ const parseRecipeText = (text: string) => {
   }
 
   if (tags.length === 0) {
-    tags = [category];
+    tags = categories.length > 0 ? [...categories] : ['家常菜'];
+  }
+
+  if (categories.length === 0) {
+    categories = ['家常菜'];
   }
 
   return {
     id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
     name: name || '未命名菜谱',
     description: description || undefined,
-    category,
+    categories,
     tags,
     servings,
     prepTime,
@@ -453,7 +462,7 @@ const exportRecipeToText = (recipe: Recipe): string => {
   lines.push(`份量\t${recipe.servings}人份`);
   const difficultyText = recipe.difficulty === 'easy' ? '简单' : recipe.difficulty === 'medium' ? '中等' : '困难';
   lines.push(`难度\t${difficultyText}`);
-  lines.push(`分类\t${recipe.category}`);
+  lines.push(`分类\t${(recipe.categories || []).join('、')}`);
   if (recipe.technique) {
     lines.push(`技法\t${recipe.technique}`);
   }
@@ -462,32 +471,32 @@ const exportRecipeToText = (recipe: Recipe): string => {
   }
   lines.push('');
 
-  const hasCategories = recipe.mainIngredients.length > 0 || recipe.auxiliaryIngredients.length > 0 || recipe.seasonings.length > 0;
+  const hasCategories = (recipe.mainIngredients || []).length > 0 || (recipe.auxiliaryIngredients || []).length > 0 || (recipe.seasonings || []).length > 0;
   if (hasCategories) {
-    if (recipe.mainIngredients.length > 0) {
+    if ((recipe.mainIngredients || []).length > 0) {
       lines.push('主料');
-      recipe.mainIngredients.forEach(ing => lines.push(exportIngredientLine(ing)));
+      (recipe.mainIngredients || []).forEach(ing => lines.push(exportIngredientLine(ing)));
       lines.push('');
     }
-    if (recipe.auxiliaryIngredients.length > 0) {
+    if ((recipe.auxiliaryIngredients || []).length > 0) {
       lines.push('辅料');
-      recipe.auxiliaryIngredients.forEach(ing => lines.push(exportIngredientLine(ing)));
+      (recipe.auxiliaryIngredients || []).forEach(ing => lines.push(exportIngredientLine(ing)));
       lines.push('');
     }
-    if (recipe.seasonings.length > 0) {
+    if ((recipe.seasonings || []).length > 0) {
       lines.push('调料');
-      recipe.seasonings.forEach(ing => lines.push(exportIngredientLine(ing)));
+      (recipe.seasonings || []).forEach(ing => lines.push(exportIngredientLine(ing)));
       lines.push('');
     }
   } else {
     lines.push('🥦 食材清单');
-    recipe.ingredients.forEach(ing => lines.push(exportIngredientLine(ing)));
+    (recipe.ingredients || []).forEach(ing => lines.push(exportIngredientLine(ing)));
     lines.push('');
   }
 
-  if (recipe.preparationSteps.length > 0) {
+  if ((recipe.preparationSteps || []).length > 0) {
     lines.push('📋 备料步骤');
-    recipe.preparationSteps.forEach((step, index) => {
+    (recipe.preparationSteps || []).forEach((step, index) => {
       let line = `${index + 1}. ${step.description}`;
       if (step.tips) {
         line += ` 💡 小贴士：${step.tips}`;
@@ -498,7 +507,7 @@ const exportRecipeToText = (recipe: Recipe): string => {
   }
 
   lines.push('🍳 炒菜步骤');
-  recipe.cookingSteps.forEach((step, index) => {
+  (recipe.cookingSteps || []).forEach((step, index) => {
     let line = `${index + 1}. ${step.instruction}`;
     if (step.duration) {
       line += ` 耗时：${step.duration}`;
@@ -510,9 +519,9 @@ const exportRecipeToText = (recipe: Recipe): string => {
   });
   lines.push('');
 
-  if (recipe.tags.length > 0) {
+  if ((recipe.tags || []).length > 0) {
     lines.push('🏷️ 标签');
-    lines.push(recipe.tags.join('、'));
+    lines.push((recipe.tags || []).join('、'));
   }
 
   return lines.join('\n');

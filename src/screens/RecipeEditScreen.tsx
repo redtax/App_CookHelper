@@ -28,26 +28,68 @@ const RecipeEditScreen: React.FC = () => {
   const [name, setName] = useState(initialRecipe.name);
   const [description, setDescription] = useState(initialRecipe.description || '');
   const [overallFlow, setOverallFlow] = useState(initialRecipe.overallFlow || '');
-  const [category, setCategory] = useState(initialRecipe.category);
-  const [tags, setTags] = useState<string[]>(initialRecipe.tags);
+  const [categories, setCategories] = useState<string[]>(initialRecipe.categories || []);
+  const [tags, setTags] = useState<string[]>(initialRecipe.tags || []);
   const [servings, setServings] = useState(initialRecipe.servings.toString());
   const [prepTime, setPrepTime] = useState(initialRecipe.prepTime);
   const [cookTime, setCookTime] = useState(initialRecipe.cookTime);
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>(initialRecipe.difficulty);
   const [technique, setTechnique] = useState(initialRecipe.technique || '');
   const [flavor, setFlavor] = useState(initialRecipe.flavor || '');
-  const [ingredients, setIngredients] = useState<Ingredient[]>(initialRecipe.ingredients);
   const [mainIngredients, setMainIngredients] = useState<Ingredient[]>(initialRecipe.mainIngredients || []);
   const [auxiliaryIngredients, setAuxiliaryIngredients] = useState<Ingredient[]>(initialRecipe.auxiliaryIngredients || []);
   const [seasonings, setSeasonings] = useState<Ingredient[]>(initialRecipe.seasonings || []);
-  const [preparationSteps, setPreparationSteps] = useState<PreparationStep[]>(initialRecipe.preparationSteps);
-  const [cookingSteps, setCookingSteps] = useState<CookingStep[]>(initialRecipe.cookingSteps);
+  const [uncategorizedIngredients, setUncategorizedIngredients] = useState<Ingredient[]>(
+    initialRecipe.ingredients && initialRecipe.ingredients.length > 0
+      && initialRecipe.mainIngredients?.length === 0
+      && initialRecipe.auxiliaryIngredients?.length === 0
+      && initialRecipe.seasonings?.length === 0
+      ? initialRecipe.ingredients : []
+  );
+  const [preparationSteps, setPreparationSteps] = useState<PreparationStep[]>(initialRecipe.preparationSteps || []);
+  const [cookingSteps, setCookingSteps] = useState<CookingStep[]>(initialRecipe.cookingSteps || []);
 
   const [showNewTag, setShowNewTag] = useState(false);
   const [newTagName, setNewTagName] = useState('');
+  const [hasChanges, setHasChanges] = useState(false);
 
-  const allCategories = Array.from(new Set(recipes.map(r => r.category)));
-  const allTags = Array.from(new Set(recipes.flatMap(r => r.tags)));
+  const allCategories = Array.from(new Set(recipes.flatMap(r => r.categories || [])));
+  const allTags = Array.from(new Set(recipes.flatMap(r => r.tags || [])));
+
+  const markChanged = () => { if (!hasChanges) setHasChanges(true); };
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', (e: any) => {
+      if (!hasChanges) return;
+      e.preventDefault();
+      Alert.alert(
+        '未保存的修改',
+        '你有未保存的修改，确定要退出吗？',
+        [
+          { text: '继续编辑', style: 'cancel' },
+          { text: '放弃修改', style: 'destructive', onPress: () => navigation.dispatch(e.data.action) },
+        ]
+      );
+    });
+    return unsubscribe;
+  }, [navigation, hasChanges]);
+
+  const handleCancel = () => {
+    if (hasChanges) {
+      Alert.alert(
+        '未保存的修改',
+        '你有未保存的修改，确定要退出吗？',
+        [
+          { text: '继续编辑', style: 'cancel' },
+          { text: '放弃修改', style: 'destructive', onPress: () => navigation.goBack() },
+        ]
+      );
+    } else {
+      navigation.goBack();
+    }
+  };
+
+  const hasUncategorized = uncategorizedIngredients.some(i => i.name.trim());
 
   const handleSave = async () => {
     if (!name.trim()) {
@@ -55,12 +97,21 @@ const RecipeEditScreen: React.FC = () => {
       return;
     }
 
+    if (hasUncategorized) {
+      Alert.alert(
+        '食材未分类',
+        '还有食材在"暂未分类"区域，请为它们选择分类后再保存。',
+        [{ text: '知道了' }]
+      );
+      return;
+    }
+
     const updatedRecipe: Recipe = {
       ...initialRecipe,
       name: name.trim(),
-      description: description.trim(),
+      description: description.trim() || undefined,
       overallFlow: overallFlow.trim() || undefined,
-      category: category.trim(),
+      categories,
       tags,
       servings: parseInt(servings) || 1,
       prepTime: prepTime.trim(),
@@ -68,7 +119,7 @@ const RecipeEditScreen: React.FC = () => {
       difficulty,
       technique: technique.trim() || undefined,
       flavor: flavor.trim() || undefined,
-      ingredients,
+      ingredients: [],
       mainIngredients,
       auxiliaryIngredients,
       seasonings,
@@ -77,49 +128,89 @@ const RecipeEditScreen: React.FC = () => {
     };
 
     await updateRecipe(updatedRecipe);
+    setHasChanges(false);
     navigation.goBack();
   };
 
-  const addIngredient = () => {
-    setIngredients([...ingredients, { name: '', amount: '', unit: '', notes: '' }]);
+  const addToCategory = (category: 'main' | 'auxiliary' | 'seasoning') => {
+    const newIngredient: Ingredient = { name: '', amount: '', unit: '', notes: '' };
+    if (category === 'main') setMainIngredients([...mainIngredients, newIngredient]);
+    else if (category === 'auxiliary') setAuxiliaryIngredients([...auxiliaryIngredients, newIngredient]);
+    else setSeasonings([...seasonings, newIngredient]);
+    markChanged();
   };
 
-  const removeIngredient = (index: number) => {
-    setIngredients(ingredients.filter((_, i) => i !== index));
+  const removeFromCategory = (category: 'main' | 'auxiliary' | 'seasoning', index: number) => {
+    if (category === 'main') setMainIngredients(mainIngredients.filter((_, i) => i !== index));
+    else if (category === 'auxiliary') setAuxiliaryIngredients(auxiliaryIngredients.filter((_, i) => i !== index));
+    else setSeasonings(seasonings.filter((_, i) => i !== index));
+    markChanged();
   };
 
-  const updateIngredient = (index: number, field: keyof Ingredient, value: string) => {
-    const newIngredients = [...ingredients];
-    newIngredients[index] = { ...newIngredients[index], [field]: value };
-    setIngredients(newIngredients);
+  const updateInCategory = (category: 'main' | 'auxiliary' | 'seasoning', index: number, field: keyof Ingredient, value: string) => {
+    const getter = category === 'main' ? mainIngredients : category === 'auxiliary' ? auxiliaryIngredients : seasonings;
+    const setter = category === 'main' ? setMainIngredients : category === 'auxiliary' ? setAuxiliaryIngredients : setSeasonings;
+    const newList = [...getter];
+    newList[index] = { ...newList[index], [field]: value };
+    setter(newList);
+    markChanged();
+  };
+
+  const moveUncategorized = (index: number, target: 'main' | 'auxiliary' | 'seasoning') => {
+    const item = { ...uncategorizedIngredients[index] };
+    if (target === 'main') setMainIngredients([...mainIngredients, item]);
+    else if (target === 'auxiliary') setAuxiliaryIngredients([...auxiliaryIngredients, item]);
+    else setSeasonings([...seasonings, item]);
+    setUncategorizedIngredients(uncategorizedIngredients.filter((_, i) => i !== index));
+    markChanged();
+  };
+
+  const removeUncategorized = (index: number) => {
+    setUncategorizedIngredients(uncategorizedIngredients.filter((_, i) => i !== index));
+    markChanged();
   };
 
   const addPreparationStep = () => {
     setPreparationSteps([...preparationSteps, { id: Date.now().toString(), description: '', tips: '' }]);
+    markChanged();
   };
 
   const removePreparationStep = (index: number) => {
     setPreparationSteps(preparationSteps.filter((_, i) => i !== index));
+    markChanged();
   };
 
   const updatePreparationStep = (index: number, field: keyof PreparationStep, value: string) => {
     const newSteps = [...preparationSteps];
     newSteps[index] = { ...newSteps[index], [field]: value };
     setPreparationSteps(newSteps);
+    markChanged();
   };
 
   const addCookingStep = () => {
     setCookingSteps([...cookingSteps, { id: Date.now().toString(), instruction: '', duration: '', tips: '' }]);
+    markChanged();
   };
 
   const removeCookingStep = (index: number) => {
     setCookingSteps(cookingSteps.filter((_, i) => i !== index));
+    markChanged();
   };
 
   const updateCookingStep = (index: number, field: keyof CookingStep, value: string) => {
     const newSteps = [...cookingSteps];
     newSteps[index] = { ...newSteps[index], [field]: value };
     setCookingSteps(newSteps);
+    markChanged();
+  };
+
+  const toggleCategory = (cat: string) => {
+    if (categories.includes(cat)) {
+      setCategories(categories.filter(c => c !== cat));
+    } else {
+      setCategories([...categories, cat]);
+    }
+    markChanged();
   };
 
   const toggleTag = (tag: string) => {
@@ -128,15 +219,137 @@ const RecipeEditScreen: React.FC = () => {
     } else {
       setTags([...tags, tag]);
     }
+    markChanged();
   };
 
   const addCustomTag = () => {
     if (newTagName.trim() && !tags.includes(newTagName.trim())) {
       setTags([...tags, newTagName.trim()]);
+      markChanged();
     }
     setShowNewTag(false);
     setNewTagName('');
   };
+
+  const renderIngredientRow = (ingredient: Ingredient, category: 'main' | 'auxiliary' | 'seasoning', index: number) => (
+    <View key={`${category}-${index}`} style={styles.ingredientEditItem}>
+      <View style={styles.ingredientEditRow}>
+        <TextInput
+          style={[styles.input, styles.ingredientInput, { flex: 2 }]}
+          value={ingredient.name}
+          onChangeText={(value) => updateInCategory(category, index, 'name', value)}
+          placeholder="食材名称"
+        />
+        <TextInput
+          style={[styles.input, styles.ingredientInput, { flex: 1 }]}
+          value={ingredient.amount}
+          onChangeText={(value) => updateInCategory(category, index, 'amount', value)}
+          placeholder="数量"
+          keyboardType="decimal-pad"
+        />
+        <TextInput
+          style={[styles.input, styles.ingredientInput, { flex: 1 }]}
+          value={ingredient.unit || ''}
+          onChangeText={(value) => updateInCategory(category, index, 'unit', value)}
+          placeholder="单位"
+        />
+      </View>
+      <View style={styles.ingredientEditRow}>
+        <TextInput
+          style={[styles.input, { flex: 1 }]}
+          value={ingredient.notes || ''}
+          onChangeText={(value) => updateInCategory(category, index, 'notes', value)}
+          placeholder="备注"
+        />
+        <TouchableOpacity
+          style={styles.removeButton}
+          onPress={() => removeFromCategory(category, index)}
+        >
+          <Text style={styles.removeButtonText}>删除</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+
+  const renderUncategorizedRow = (ingredient: Ingredient, index: number) => (
+    <View key={`uncat-${index}`} style={styles.ingredientEditItem}>
+      <View style={styles.ingredientEditRow}>
+        <TextInput
+          style={[styles.input, styles.ingredientInput, { flex: 2 }]}
+          value={ingredient.name}
+          onChangeText={(value) => {
+            const newList = [...uncategorizedIngredients];
+            newList[index] = { ...newList[index], name: value };
+            setUncategorizedIngredients(newList);
+            markChanged();
+          }}
+          placeholder="食材名称"
+        />
+        <TextInput
+          style={[styles.input, styles.ingredientInput, { flex: 1 }]}
+          value={ingredient.amount}
+          onChangeText={(value) => {
+            const newList = [...uncategorizedIngredients];
+            newList[index] = { ...newList[index], amount: value };
+            setUncategorizedIngredients(newList);
+            markChanged();
+          }}
+          placeholder="数量"
+          keyboardType="decimal-pad"
+        />
+        <TextInput
+          style={[styles.input, styles.ingredientInput, { flex: 1 }]}
+          value={ingredient.unit || ''}
+          onChangeText={(value) => {
+            const newList = [...uncategorizedIngredients];
+            newList[index] = { ...newList[index], unit: value };
+            setUncategorizedIngredients(newList);
+            markChanged();
+          }}
+          placeholder="单位"
+        />
+      </View>
+      <View style={styles.ingredientEditRow}>
+        <TextInput
+          style={[styles.input, { flex: 1 }]}
+          value={ingredient.notes || ''}
+          onChangeText={(value) => {
+            const newList = [...uncategorizedIngredients];
+            newList[index] = { ...newList[index], notes: value };
+            setUncategorizedIngredients(newList);
+            markChanged();
+          }}
+          placeholder="备注"
+        />
+        <View style={styles.categoryPickerRow}>
+          <TouchableOpacity
+            style={[styles.categoryPickerBtn, { backgroundColor: '#f4511e' }]}
+            onPress={() => moveUncategorized(index, 'main')}
+          >
+            <Text style={styles.categoryPickerBtnText}>主料</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.categoryPickerBtn, { backgroundColor: '#FF9800' }]}
+            onPress={() => moveUncategorized(index, 'auxiliary')}
+          >
+            <Text style={styles.categoryPickerBtnText}>辅料</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.categoryPickerBtn, { backgroundColor: '#8BC34A' }]}
+            onPress={() => moveUncategorized(index, 'seasoning')}
+          >
+            <Text style={styles.categoryPickerBtnText}>调料</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.removeButtonSmall}
+            onPress={() => removeUncategorized(index)}
+          >
+            <Text style={styles.removeButtonText}>删除</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -148,7 +361,7 @@ const RecipeEditScreen: React.FC = () => {
             <TextInput
               style={styles.input}
               value={name}
-              onChangeText={setName}
+              onChangeText={(v) => { setName(v); markChanged(); }}
               placeholder="请输入菜谱名称"
             />
           </View>
@@ -157,7 +370,7 @@ const RecipeEditScreen: React.FC = () => {
             <TextInput
               style={[styles.input, styles.textArea]}
               value={description}
-              onChangeText={setDescription}
+              onChangeText={(v) => { setDescription(v); markChanged(); }}
               placeholder="请输入菜谱描述"
               multiline
               numberOfLines={3}
@@ -168,8 +381,8 @@ const RecipeEditScreen: React.FC = () => {
             <TextInput
               style={[styles.input, styles.textArea]}
               value={overallFlow}
-              onChangeText={setOverallFlow}
-              placeholder="请输入总体流程，例如：备料→炒蛋→炒番茄→混合"
+              onChangeText={(v) => { setOverallFlow(v); markChanged(); }}
+              placeholder="例如：备料→炒蛋→炒番茄→混合"
               multiline
               numberOfLines={4}
             />
@@ -180,7 +393,7 @@ const RecipeEditScreen: React.FC = () => {
               <TextInput
                 style={styles.input}
                 value={prepTime}
-                onChangeText={setPrepTime}
+                onChangeText={(v) => { setPrepTime(v); markChanged(); }}
                 placeholder="10分钟"
               />
             </View>
@@ -189,7 +402,7 @@ const RecipeEditScreen: React.FC = () => {
               <TextInput
                 style={styles.input}
                 value={cookTime}
-                onChangeText={setCookTime}
+                onChangeText={(v) => { setCookTime(v); markChanged(); }}
                 placeholder="15分钟"
               />
             </View>
@@ -200,7 +413,7 @@ const RecipeEditScreen: React.FC = () => {
               <TextInput
                 style={styles.input}
                 value={servings}
-                onChangeText={setServings}
+                onChangeText={(v) => { setServings(v); markChanged(); }}
                 placeholder="2"
                 keyboardType="numeric"
               />
@@ -212,10 +425,10 @@ const RecipeEditScreen: React.FC = () => {
                   <TouchableOpacity
                     key={d}
                     style={[
-                    styles.difficultyOption,
-                    difficulty === d && styles.difficultyOptionSelected,
-                  ]}
-                    onPress={() => setDifficulty(d)}
+                      styles.difficultyOption,
+                      difficulty === d && styles.difficultyOptionSelected,
+                    ]}
+                    onPress={() => { setDifficulty(d); markChanged(); }}
                   >
                     <Text
                       style={[
@@ -231,21 +444,21 @@ const RecipeEditScreen: React.FC = () => {
             </View>
           </View>
           <View style={styles.inputGroup}>
-            <Text style={styles.inputLabel}>分类</Text>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tagContainer}>
+            <Text style={styles.inputLabel}>分类（可多选）</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipContainer}>
               {allCategories.map((cat) => (
                 <TouchableOpacity
                   key={cat}
                   style={[
-                    styles.categoryOption,
-                    category === cat && styles.categoryOptionSelected,
+                    styles.chipOption,
+                    categories.includes(cat) && styles.chipOptionSelected,
                   ]}
-                  onPress={() => setCategory(cat)}
+                  onPress={() => toggleCategory(cat)}
                 >
                   <Text
                     style={[
-                      styles.categoryOptionText,
-                      category === cat && styles.categoryOptionTextSelected,
+                      styles.chipOptionText,
+                      categories.includes(cat) && styles.chipOptionTextSelected,
                     ]}
                   >
                     {cat}
@@ -254,13 +467,17 @@ const RecipeEditScreen: React.FC = () => {
               ))}
             </ScrollView>
           </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>⚙️ 烹饪信息</Text>
           <View style={styles.row}>
             <View style={[styles.inputGroup, { flex: 1, marginRight: 8 }]}>
               <Text style={styles.inputLabel}>技法</Text>
               <TextInput
                 style={styles.input}
                 value={technique}
-                onChangeText={setTechnique}
+                onChangeText={(v) => { setTechnique(v); markChanged(); }}
                 placeholder="例如：煎、炒、炖"
               />
             </View>
@@ -269,7 +486,7 @@ const RecipeEditScreen: React.FC = () => {
               <TextInput
                 style={styles.input}
                 value={flavor}
-                onChangeText={setFlavor}
+                onChangeText={(v) => { setFlavor(v); markChanged(); }}
                 placeholder="例如：酸甜、香辣"
               />
             </View>
@@ -277,51 +494,49 @@ const RecipeEditScreen: React.FC = () => {
         </View>
 
         <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>🥗 食材清单</Text>
-            <TouchableOpacity style={styles.addButton} onPress={addIngredient}>
-              <Text style={styles.addButtonText}>+ 添加</Text>
-            </TouchableOpacity>
-          </View>
-          {ingredients.map((ingredient, index) => (
-            <View key={index} style={styles.ingredientEditItem}>
-              <View style={styles.ingredientEditRow}>
-                <TextInput
-                  style={[styles.input, styles.ingredientInput, { flex: 2 }]}
-                  value={ingredient.name}
-                  onChangeText={(value) => updateIngredient(index, 'name', value)}
-                  placeholder="食材名称"
-                />
-                <TextInput
-                  style={[styles.input, styles.ingredientInput, { flex: 1 }]}
-                  value={ingredient.amount}
-                  onChangeText={(value) => updateIngredient(index, 'amount', value)}
-                  placeholder="数量"
-                  keyboardType="decimal-pad"
-                />
-                <TextInput
-                  style={[styles.input, styles.ingredientInput, { flex: 1 }]}
-                  value={ingredient.unit || ''}
-                  onChangeText={(value) => updateIngredient(index, 'unit', value)}
-                  placeholder="单位"
-                />
-              </View>
-              <View style={styles.ingredientEditRow}>
-                <TextInput
-                  style={[styles.input, { flex: 1 }]}
-                  value={ingredient.notes || ''}
-                  onChangeText={(value) => updateIngredient(index, 'notes', value)}
-                  placeholder="备注"
-                />
-                <TouchableOpacity
-                  style={styles.removeButton}
-                  onPress={() => removeIngredient(index)}
-                >
-                  <Text style={styles.removeButtonText}>删除</Text>
-                </TouchableOpacity>
-              </View>
+          <Text style={styles.sectionTitle}>🥗 食材清单</Text>
+
+          <View style={styles.subSection}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.subSectionTitle}>🥗 主料 ({mainIngredients.length}项)</Text>
+              <TouchableOpacity style={styles.addButton} onPress={() => addToCategory('main')}>
+                <Text style={styles.addButtonText}>+ 添加</Text>
+              </TouchableOpacity>
             </View>
-          ))}
+            {mainIngredients.map((ing, i) => renderIngredientRow(ing, 'main', i))}
+          </View>
+
+          <View style={styles.subSection}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.subSectionTitle}>🥕 辅料 ({auxiliaryIngredients.length}项)</Text>
+              <TouchableOpacity style={styles.addButton} onPress={() => addToCategory('auxiliary')}>
+                <Text style={styles.addButtonText}>+ 添加</Text>
+              </TouchableOpacity>
+            </View>
+            {auxiliaryIngredients.map((ing, i) => renderIngredientRow(ing, 'auxiliary', i))}
+          </View>
+
+          <View style={styles.subSection}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.subSectionTitle}>🧂 调料 ({seasonings.length}项)</Text>
+              <TouchableOpacity style={styles.addButton} onPress={() => addToCategory('seasoning')}>
+                <Text style={styles.addButtonText}>+ 添加</Text>
+              </TouchableOpacity>
+            </View>
+            {seasonings.map((ing, i) => renderIngredientRow(ing, 'seasoning', i))}
+          </View>
+
+          {uncategorizedIngredients.length > 0 && (
+            <View style={styles.subSection}>
+              <View style={styles.sectionHeader}>
+                <Text style={[styles.subSectionTitle, styles.warningTitle]}>
+                  📦 暂未分类 ({uncategorizedIngredients.length}项)
+                </Text>
+              </View>
+              <Text style={styles.warningHint}>请为以下食材选择分类后保存</Text>
+              {uncategorizedIngredients.map((ing, i) => renderUncategorizedRow(ing, i))}
+            </View>
+          )}
         </View>
 
         <View style={styles.section}>
@@ -415,20 +630,20 @@ const RecipeEditScreen: React.FC = () => {
               <Text style={styles.addButtonText}>+ 新建标签</Text>
             </TouchableOpacity>
           </View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.tagContainer}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chipContainer}>
             {allTags.map((tag) => (
               <TouchableOpacity
                 key={tag}
                 style={[
-                styles.tagOption,
-                tags.includes(tag) && styles.tagOptionSelected,
-              ]}
+                  styles.chipOption,
+                  tags.includes(tag) && styles.chipOptionSelected,
+                ]}
                 onPress={() => toggleTag(tag)}
               >
                 <Text
                   style={[
-                    styles.tagOptionText,
-                    tags.includes(tag) && styles.tagOptionTextSelected,
+                    styles.chipOptionText,
+                    tags.includes(tag) && styles.chipOptionTextSelected,
                   ]}
                 >
                   {tag}
@@ -441,7 +656,7 @@ const RecipeEditScreen: React.FC = () => {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[styles.button, styles.cancelButton]}
-            onPress={() => navigation.goBack()}
+            onPress={handleCancel}
           >
             <Text style={styles.cancelButtonText}>取消</Text>
           </TouchableOpacity>
@@ -510,12 +725,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
+    marginBottom: 8,
+  },
+  subSection: {
+    marginTop: 12,
+    paddingTop: 8,
+    borderTopWidth: 1,
+    borderTopColor: '#f0f0f0',
+  },
+  subSectionTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  warningTitle: {
+    color: '#f4511e',
+  },
+  warningHint: {
+    fontSize: 12,
+    color: '#f4511e',
+    marginBottom: 8,
+    paddingLeft: 4,
   },
   inputGroup: {
     marginBottom: 16,
@@ -567,31 +803,10 @@ const styles = StyleSheet.create({
     color: '#f4511e',
     fontWeight: '500',
   },
-  categoryOption: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 16,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    marginRight: 8,
-    backgroundColor: '#fafafa',
-  },
-  categoryOptionSelected: {
-    borderColor: '#f4511e',
-    backgroundColor: '#fff3e0',
-  },
-  categoryOptionText: {
-    fontSize: 14,
-    color: '#666',
-  },
-  categoryOptionTextSelected: {
-    color: '#f4511e',
-    fontWeight: '500',
-  },
-  tagContainer: {
+  chipContainer: {
     flexDirection: 'row',
   },
-  tagOption: {
+  chipOption: {
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 16,
@@ -600,15 +815,15 @@ const styles = StyleSheet.create({
     marginRight: 8,
     backgroundColor: '#fafafa',
   },
-  tagOptionSelected: {
+  chipOptionSelected: {
     borderColor: '#f4511e',
     backgroundColor: '#fff3e0',
   },
-  tagOptionText: {
+  chipOptionText: {
     fontSize: 14,
     color: '#666',
   },
-  tagOptionTextSelected: {
+  chipOptionTextSelected: {
     color: '#f4511e',
     fontWeight: '500',
   },
@@ -634,6 +849,22 @@ const styles = StyleSheet.create({
   },
   ingredientInput: {
     flex: 1,
+  },
+  categoryPickerRow: {
+    flexDirection: 'row',
+    gap: 4,
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  categoryPickerBtn: {
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    borderRadius: 6,
+  },
+  categoryPickerBtnText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
   stepEditItem: {
     flexDirection: 'row',
@@ -674,7 +905,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: 6,
     alignSelf: 'flex-start',
-    marginTop: 8,
+    marginTop: 4,
   },
   removeButtonText: {
     color: '#d32f2f',

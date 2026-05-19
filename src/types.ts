@@ -24,7 +24,7 @@ export interface Recipe {
   id: string;
   name: string;
   description?: string;
-  category: string;
+  categories: string[];
   tags: string[];
   servings: number;
   prepTime: string;

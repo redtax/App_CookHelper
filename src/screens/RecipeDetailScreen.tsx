@@ -228,9 +228,11 @@ const RecipeDetailScreen: React.FC = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>🏷️ 标签</Text>
           <View style={styles.tagContainer}>
-            <View style={styles.categoryTag}>
-              <Text style={styles.categoryTagText}>{recipe.category}</Text>
-            </View>
+            {(recipe.categories || []).map((cat, index) => (
+              <View key={`cat-${index}`} style={styles.categoryTag}>
+                <Text style={styles.categoryTagText}>{cat}</Text>
+              </View>
+            ))}
             {recipe.tags.map((tag, index) => (
               <View key={index} style={styles.tag}>
                 <Text style={styles.tagText}>{tag}</Text>

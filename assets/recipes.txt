@@ -3,7 +3,6 @@
     "id": "肉丝涨蛋",
     "name": "肉丝涨蛋",
     "description": "口味咸鲜，采用煎的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -65,13 +64,18 @@
         "id": "cook_3",
         "instruction": "烹调起锅烧油 吧搅拌混合好的鸡蛋和肉片炒制饼形 捞出切分好装盘即可"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "剁椒鱼头",
     "name": "剁椒鱼头",
     "description": "口味泡椒香辣味，采用蒸 炒 炝的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "中等难度",
       "海鲜",
@@ -141,13 +145,18 @@
         "instruction": "炝油 放入葱花 辣椒面 芝麻枪油即可",
         "tips": "炝油时油温要够高，才能激发出香味"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "鸭血烧豆腐",
     "name": "鸭血烧豆腐",
     "description": "口味香辣。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "豆制品",
@@ -231,13 +240,18 @@
         "id": "cook_2",
         "instruction": "烹调 起锅烧油下入小米椒 青红杭椒炒香加辣妹子酱和葱姜蒜加水（看料加水）调味（基本味）蚝油 鸡粉汤烧开加主料 淋薄芡 撒葱花 吃锅装盘"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "萝_卜丝鲫鱼汤",
     "name": "萝 卜丝鲫鱼汤",
     "description": "属于豫菜，口味闲鲜白汤，采用煮的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "暖身汤",
       "汤品",
@@ -301,13 +315,18 @@
         "instruction": "鲫鱼煎制（滑油 煎制两面发黄 加葱片姜片加开水调味（基本味） 鸡粉 熬制白色再加焯好水的白萝 卜入味 捞出装盘撒葱花淋芝麻油即可 ，将鲫鱼改上十字花刀。 (2) 锅中烧水至开时下入萝 卜丝焯水，捞出沥水，再将鲫鱼下入焯水，捞出备用。 (3) 锅中加底油(葱油) 下入葱，姜煸上香味下入鲜汤，打去杂质，下入萝 卜丝和鲫鱼烧至汤色奶白时，出锅装碗，撒上香菜。 萝 卜记得先焯水再清炖。",
         "tips": "切丝时粗细要均匀，炒制时受热一致"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "凉拌牛肉",
     "name": "凉拌牛肉",
     "description": "属于川菜，口味麻辣，采用卤、拌的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "凉菜",
       "卤味",
@@ -404,13 +423,18 @@
         "instruction": "将料汁浇在牛肉片上，撒上香菜和花生碎即可",
         "tips": "芡汁要趁热浇上，才能保持菜品温度和光泽；牛肉要逆纹切片，口感更嫩；卤制时间不宜过短，否则肉质发硬"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸汤面",
     "name": "酸汤面",
     "description": "口味酸辣，采用煮、的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "暖身汤",
       "汤品",
@@ -492,13 +516,18 @@
         "instruction": "烹调（烧水-调味+原料+勾芡+蛋液） ③装碗",
         "tips": "水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "羊肉面片",
     "name": "羊肉面片",
     "description": "口味咸鲜辛香，采用煮的烹饪方式。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -566,13 +595,18 @@
         "id": "cook_3",
         "instruction": "绘制汤加面片加蒜装碗即可"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "辣炒五花",
     "name": "辣炒五花",
     "description": "口味香辣。",
-    "category": "辣味菜",
     "tags": [
       "快手菜",
       "简单易学",
@@ -648,13 +682,18 @@
         "instruction": "香辣定味要在战鲜味的基础上建立的",
         "tips": "过油时控制油温，炸至金黄酥脆捞出；①注意咸肉中盐味的减轻方法"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "京酱肉丝",
     "name": "京酱肉丝",
     "description": "属于北京菜，口味酱香，采用炒的烹饪方式。",
-    "category": "京菜",
     "tags": [
       "京菜",
       "简单易学",
@@ -738,13 +777,18 @@
         "instruction": "，锅留底油，倒入适量甜面酱，小火炒出香味，倒入调好的汁，烧开后调味， 加入香油和明油，放入肉丝迅速翻炒均匀浇在葱丝上即可",
         "tips": "滑油温度控制在四成热，快速捞出保持嫩滑；上浆时蛋清和淀粉比例适当，抓匀上劲；掌握油温，出锅要迅速。"
       }
-    ]
+    ],
+    "categories": [
+      "京菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黑椒牛仔骨",
     "name": "黑椒牛仔骨",
     "description": "口味煎味型黑椒味。",
-    "category": "家常菜",
     "tags": [
       "牛肉",
       "简单易学"
@@ -811,13 +855,18 @@
         "id": "cook_2",
         "instruction": "洋葱切滚刀片。西兰花改刀成小朵片 、锅留奶油下入葱姜蒜粒炒出香味加洋葱西兰花烧至成熟下入牛仔骨加黑胡椒汁，淋欠打明油出锅装盘"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "肉丝面",
     "name": "肉丝面",
     "description": "口味咸鲜，采用浇汁的烹饪方式。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -900,13 +949,18 @@
         "instruction": "将二细面条煮熟捞入碗中浇上肉丝即可。",
         "tips": "水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "啤酒鸭",
     "name": "啤酒鸭",
     "description": "口味泡椒酒香，采用烧的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "泡椒",
       "简单易学",
@@ -997,13 +1051,18 @@
         "id": "cook_4",
         "instruction": "烹调（泡椒泡姜，葱姜蒜，鸭，啤酒，调味， 辅料）"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "桂花糯米藕",
     "name": "桂花糯米藕",
     "description": "口味香甜，采用煮（蒸）的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "甜味",
@@ -1068,13 +1127,18 @@
         "instruction": "装杯（莲藕，头切；下一部分，牙签， （蒸）煮）",
         "tips": "浸泡时换水保持清洁，泡发后沥干；蒸制时保持大火，一次蒸熟避免回蒸；煮（蒸）"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干锅鱿鱼须",
     "name": "干锅鱿鱼须",
     "description": "口味香辣，采用炒的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "下饭菜",
       "干锅",
@@ -1183,13 +1247,18 @@
         "instruction": "装盘（芝麻）",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；滑油温度控制在四成热，快速捞出保持嫩滑；装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干锅土豆片",
     "name": "干锅土豆片",
     "description": "口味香辣，采用炸、炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "下饭菜",
       "土豆",
@@ -1300,13 +1369,18 @@
         "instruction": "调味、味精盐撒均匀，翻炒出锅 椒盐配料： 芝麻碎 250g 花椒面15g 孜然粉 100g 味粉 30g 辣椒面 50 g 鸡粉 50g 星火牌味椒盐 1.5 瓶",
         "tips": "切片厚薄要均匀，确保成熟度一致；拍粉要均匀薄透，炸出来才酥脆；过油时控制油温，炸至金黄酥脆捞出；装盘要整齐美观，趁热上桌；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干拉",
     "name": "干拉",
     "description": "口味香辣，采用拌的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "辣味"
@@ -1403,13 +1477,18 @@
         "instruction": "将二细面条煮制成熟过凉开水放入碗中待用",
         "tips": "水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "烩面",
     "name": "烩面",
     "description": "口味咸鲜，采用烩的烹饪方式。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -1527,13 +1606,18 @@
         "instruction": "将中宽面条煮制成熟，加入烧好的汤汁中加红油，出锅装入汤碗即可。",
         "tips": "水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "糖醋里脊",
     "name": "糖醋里脊",
     "description": "属于川菜，口味糖醋，采用炸、熘（浇汁）的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "炸菜",
@@ -1636,13 +1720,18 @@
         "instruction": "复炸时，必须在八成油温中复炸.",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；油温控制好，中火慢炸至金黄酥脆；油温控制好，中火慢炸至金黄酥脆；油温控制好，中火慢炸至金黄酥脆；1.里脊肉糊要调好."
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "糖醋小排",
     "name": "糖醋小排",
     "description": "口味糖醋，采用卤炸烧的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "卤味",
       "炸菜",
@@ -1729,13 +1818,18 @@
         "instruction": "将主辅料下入料汁拌匀装盘",
         "tips": "水开后下料，煮制过程中不要频繁搅动；油温控制好，中火慢炸至金黄酥脆；装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "四川泡菜",
     "name": "四川泡菜",
     "description": "口味酸辣，采用泡的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "开胃菜",
       "简单易学",
@@ -1846,13 +1940,18 @@
         "instruction": "浸泡 凤爪一定要熟处理！ 初加工----焯水----- 煮（加盐）------冲凉------泡制高压锅上汽以后要等三分钟！",
         "tips": "浸泡时换水保持清洁，泡发后沥干"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "泡椒凤爪",
     "name": "泡椒凤爪",
     "description": "属于川，口味酸辣，采用泡的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -1993,13 +2092,18 @@
         "instruction": "用凉开水加泡野山椒加葱姜蒜 盐 味精 鸡精 糖 白醋调成汁 放入煮好的凤爪泡制。48 小时可食用！特点：泡椒味浓 口味脆爽",
         "tips": "切片厚薄要均匀，确保成熟度一致；浸泡时换水保持清洁，泡发后沥干；水开后下料，煮制过程中不要频繁搅动；水开后下料，煮制过程中不要频繁搅动；水开后下料，煮制过程中不要频繁搅动；调汁时一定醋辣适中，不可辣味过重"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "卤五花",
     "name": "卤五花",
     "description": "口味五香辛香，采用卤的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "五香",
       "卤味",
@@ -2063,13 +2167,18 @@
         "id": "cook_1",
         "instruction": "五花肉烧去杂毛，洗净焯水备用 卤汤烧开补味，补盐，下入五花肉，放葱姜，放香辛料，大过烧开，小火慢煮，一小时左右关火泡四十分钟左右捞出即可"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "水晶皮冻",
     "name": "水晶皮冻",
     "description": "口味酸辣，采用煮的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "辣味"
@@ -2177,13 +2286,18 @@
         "instruction": "锅中加水 3:1 放入猪皮放葱姜盐 慢煮",
         "tips": "切丝时粗细要均匀，炒制时受热一致；切片厚薄要均匀，确保成熟度一致；水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸辣蕨根粉",
     "name": "酸辣蕨根粉",
     "description": "口味酸辣，采用拌的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "辣味",
@@ -2272,13 +2386,18 @@
         "instruction": "用调好的料汁把蕨根粉拌匀撒上花生碎香菜碎即可",
         "tips": "切丝时粗细要均匀，炒制时受热一致"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蒜泥白肉",
     "name": "蒜泥白肉",
     "description": "口味蒜泥红油，采用浇汁拌的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -2349,13 +2468,18 @@
         "instruction": "煮制的时候葱姜 料酒 盐 八角 醋 花椒 用筷子叉透即可",
         "tips": "芡汁要趁热浇上，才能保持菜品温度和光泽；切片厚薄要均匀，确保成熟度一致；水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "辣炒猪脸",
     "name": "辣炒猪脸",
     "description": "口味香辣，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "快手菜",
       "猪肉",
@@ -2431,13 +2555,18 @@
         "instruction": "拉油可以去除多余油脂",
         "tips": "切片厚薄要均匀，确保成熟度一致"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干烧鲈鱼",
     "name": "干烧鲈鱼",
     "description": "口味香辣，采用干烧的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "简单易学",
@@ -2520,13 +2649,18 @@
         "id": "cook_3",
         "instruction": "锅留底油 下入五花肉扁平加香辣酱辣妹子炒香加汤调味打去杂志下入香菇鲈鱼烧至入味汤汁收干出油时装盘即可"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "辣子鸡",
     "name": "辣子鸡",
     "description": "口味麻辣，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "辣味",
@@ -2618,13 +2752,18 @@
         "instruction": "锅留底油，下入干辣段，花椒粒，炒上色出味下入葱姜蒜，炒香再下入鸡块翻炒调味，撒芝麻香油，装盘。",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "萝_卜炖牛腩",
     "name": "萝 卜炖牛腩",
     "description": "口味咸鲜胡椒味，采用炖的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -2693,13 +2832,18 @@
         "instruction": "锅中烧水下入牛腩焯煮去除血污加大葱大姜调味放入 砂锅小火烧至烂再加上萝 卜炖至萝 卜熟烂撒葱花或者蒜苗香菜上桌 汤鲜肉烂 口味绝佳",
         "tips": "先大火烧开，再转小火慢炖更入味；水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "木须肉",
     "name": "木须肉",
     "description": "属于鲁菜，口味咸鲜微酸，采用炒的烹饪方式。",
-    "category": "鲁菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -2812,13 +2956,18 @@
         "instruction": "锅中加底油，下入葱、姜、蒜片煸炒出香，再下入木耳、 黄花菜翻炒成熟，再下入肉片.黄瓜片，调味，翻炒，淋薄芡，下入鸡蛋块，翻炒均匀，淋明油，出锅装盘。 鲜香，滑嫩，爽滑可口。 原料要分别添加，烹制时间不能过长。",
         "tips": "滑油温度控制在四成热，快速捞出保持嫩滑；原料要分别添加，烹制时间不能过长。"
       }
-    ]
+    ],
+    "categories": [
+      "鲁菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炒炮仗",
     "name": "炒炮仗",
     "description": "口味咸鲜辛香，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "快手菜",
@@ -2897,13 +3046,18 @@
         "id": "cook_1",
         "instruction": "（炒面片） 原料改刀 炒料 煮面 绘炒 加蒜沫红油 装碗 水粉切段 葱为葱沫 姜为沫 炒料 三合油 肉沫 葱姜蒜 菜瓜青椒 水粉 汤 调味 煮面 无加心（加水） 过凉开水"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干拌",
     "name": "干拌",
     "description": "口味咸鲜辛香，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学"
@@ -3009,13 +3163,18 @@
         "instruction": "锅中烧水，水开下入面条，煮到成熟无夹心时控水捞入盘中加蒜油拌匀加菠菜，胡萝 卜再浇适量干拌酱即可上桌",
         "tips": "水开后下料，煮制过程中不要频繁搅动；水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "油泼面",
     "name": "油泼面",
     "description": "口味香辣，采用炝的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "辣味",
@@ -3089,13 +3248,18 @@
         "instruction": "用热清油炝香 加芹菜小油菜即可",
         "tips": "水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "过桥豆腐",
     "name": "过桥豆腐",
     "description": "口味咸鲜豉油，采用蒸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -3168,13 +3332,18 @@
         "instruction": "烧臊子（肉沫，淋芡）",
         "tips": "装盘要整齐美观，趁热上桌；蒸制时保持大火，一次蒸熟避免回蒸"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蒜茸油麦菜",
     "name": "蒜茸油麦菜",
     "description": "口味蒜泥味，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "蔬菜类"
@@ -3232,13 +3401,18 @@
         "id": "cook_1",
         "instruction": "烹调（蒜沫，油麦菜；调味；翻炒）"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "豆角茄子",
     "name": "豆角茄子",
     "description": "口味咸鲜微辣，采用炸、炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "炸菜",
       "简单易学",
@@ -3328,13 +3502,18 @@
         "instruction": "锅中加少量水，加盐烧开放入豆角茄子焯水。 4，锅中加底油下入拍蒜，青红椒条煸炒出香，再下入焯过的豆角茄子一同煸炒，至水份干时加入东古酱油继续煸炒上色时加入十三香最后上薄芡，烹陈醋淋明油出锅装盘。",
         "tips": "油温控制好，中火慢炸至金黄酥脆；油温控制好，中火慢炸至金黄酥脆；拍粉要均匀薄透，炸出来才酥脆；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香辣虾",
     "name": "香辣虾",
     "description": "口味香辣，采用干炒的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "简单易学",
@@ -3426,13 +3605,18 @@
         "instruction": "装盘（撒芝麻） 拍粉加吉士粉可以色泽颜色，没有的话可以用淀粉 烹饪动作要专业！ 也可以加辣妹子，不加的原因是有干锅酱所以不用加 没有干锅油可以加香油！",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；过油时控制油温，炸至金黄酥脆捞出；拍粉要均匀薄透，炸出来才酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干煸豆角",
     "name": "干煸豆角",
     "description": "口味麻辣，采用干煸的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "干煸",
       "简单易学",
@@ -3518,13 +3702,18 @@
         "instruction": "出锅 2 装盘",
         "tips": "过油时控制油温，炸至金黄酥脆捞出；出锅前可勾薄芡，增加菜品光泽和口感"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炒面",
     "name": "炒面",
     "description": "口味咸鲜辛香，采用炒的烹饪方式。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "快手菜",
@@ -3613,13 +3802,18 @@
         "id": "cook_2",
         "instruction": "锅中烧水，水开下入面条煮熟成熟捞出加入炒好的菜肴中加蒜沫辣油翻炒使汤汁合适时出锅装入盘中即可。"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "长寿面",
     "name": "长寿面",
     "description": "口味咸鲜，采用煮的烹饪方式。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -3697,13 +3891,18 @@
         "instruction": "锅中烧水，水开完整打入一个鸡蛋，加盖静置片刻再加热使鸡蛋成熟形成完整的荷包蛋，加至面条上面即可上桌。",
         "tips": "水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干锅千叶豆腐",
     "name": "干锅千叶豆腐",
     "description": "口味香辣味，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "下饭菜",
       "干锅",
@@ -3820,13 +4019,18 @@
         "instruction": "烹调（小米椒、辣妹子、千叶豆腐；调味，生抽）",
         "tips": "过油时控制油温，炸至金黄酥脆捞出；装盘要整齐美观，趁热上桌；过油时控制油温，炸至金黄酥脆捞出"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干锅茶树菇",
     "name": "干锅茶树菇",
     "description": "口味香辣味，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "下饭菜",
       "干锅",
@@ -3911,13 +4115,18 @@
         "instruction": "烹调（小米椒、辣妹子、千叶豆腐；调味，生抽）",
         "tips": "过油时控制油温，炸至金黄酥脆捞出"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "过油肉拌面",
     "name": "过油肉拌面",
     "description": "口味咸鲜，采用炒拌的烹饪方式。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -4009,13 +4218,18 @@
         "instruction": "将面条煮熟捞入盘中拌蒜油和过油肉一同上桌即可 吗味上浆；是为了肉质更嫩产品一定要成熟",
         "tips": "上浆时蛋清和淀粉比例适当，抓匀上劲；过油时控制油温，炸至金黄酥脆捞出；滑油温度控制在四成热，快速捞出保持嫩滑；上浆时蛋清和淀粉比例适当，抓匀上劲"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炕锅羊排",
     "name": "炕锅羊排",
     "description": "口味麻辣孜然味，采用炕的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "羊肉",
@@ -4116,13 +4330,18 @@
         "instruction": "上桌（铝锅里面垫洋葱丝，再放到火上烧） 附属：羊肉品质；羊肉斤数 25 公斤左右最好！ 精羊 有些地方还加手擀面或者土豆代替玉米 基本味：盐，味精，鸡精，糖 基本味的味为咸鲜味！ 干辣段选择香辣并中的辣椒！ 花椒选择大红袍（进贡） 只选对的，不选贵的！追究高价，没有利润！ 循化辣面是黑红黑红的 牛羊肉菜品广泛使用十三香，猪肉使用五香粉 干锅类菜肴都加吉士粉！ 目的是炸起来颜色好看 熟的原材料再放到铝锅里再加热这道工艺叫炕! 羊肉泡水目的是里面的血污去除干净，使羊肉颜色更好，味道更佳 泡一晚上水 羊排冷水下锅！ 不能热水下锅 粗盐（北方用的泡菜盐） 精细盐里有碘，碘是苦的 加粗盐使味道咸香 做菜讲究味型！ 羊肉品质不好要加很多香料，盖膻味！ 肉煮烂了加水泡",
         "tips": "水开后下料，煮制过程中不要频繁搅动；油温控制好，中火慢炸至金黄酥脆；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "袈裟肉",
     "name": "袈裟肉",
     "description": "口味麻辣，采用炸、熘的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "炸菜",
       "简单易学",
@@ -4221,13 +4440,18 @@
         "id": "cook_6",
         "instruction": "锅留底油下入干辣段炒出味加葱姜蒜炒香加鲜汤调味成酸辣味放入炸好的夹板肉，翻均匀，装盘 附属：肉里加水加水淀粉搅拌均匀 这样 才能嫩，牛肉吃水厉害 热锅凉油：干净油炸出来味道好！"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "老醋花生",
     "name": "老醋花生",
     "description": "口味酸甜，采用炸、拌的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "炸菜",
       "甜味",
@@ -4314,13 +4538,18 @@
         "instruction": "将主辅料下入料汁拌匀装盘",
         "tips": "切丁大小要适中，约1.5厘米见方为宜；装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干炸带鱼",
     "name": "干炸带鱼",
     "description": "属于川，口味咸鲜，椒盐，采用炸的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "咸鲜",
       "川菜",
@@ -4395,13 +4624,18 @@
         "instruction": "撒上椒盐，拌匀即可装盘。",
         "tips": "油温控制好，中火慢炸至金黄酥脆；码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；装盘要整齐美观，趁热上桌；1. 码味要码至入味2. 炸制时一定要高油温"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "柠檬鸡爪",
     "name": "柠檬鸡爪",
     "description": "口味酸甜，采用炸、烧的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "炸菜",
       "甜味",
@@ -4536,13 +4770,18 @@
         "id": "cook_1",
         "instruction": "（一斤份）主料:鸡爪"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸辣里脊",
     "name": "酸辣里脊",
     "description": "属于川菜，口味酸辣，采用炸、溜的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "炸菜",
@@ -4653,13 +4892,18 @@
         "instruction": "用鸡蛋生粉泡打粉色拉油调制成全蛋糊待用。 炒锅烧干净的色拉油烧至五六成热时，将肉挂上全蛋糊分别下入锅中炸至定型时捞出，将粘连的用手撕成小块。 另起炒锅加底油下干辣段葱姜蒜煸炒上色出香时加鲜汤调味加辅料，调制成酸辣汁。 将油锅继续加热至七八成热时下入炸至表面酥脆色泽金黄时捞入酸辣汁中熘制加明油出锅装盘。 适用范围：宴席大菜 大众便餐",
         "tips": "切丁大小要适中，约1.5厘米见方为宜；油温控制好，中火慢炸至金黄酥脆；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "烧椒皮蛋",
     "name": "烧椒皮蛋",
     "description": "口味麻辣，采用烧、拌的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "凉菜",
       "开胃菜",
@@ -4739,13 +4983,18 @@
         "id": "cook_2",
         "instruction": "线椒切段，小米椒、蒜 在锅中炒制焦香，捞出剁碎，放入盆里，菜籽油烧热，将剁好的烧椒碎，调味"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "白斩鸡",
     "name": "白斩鸡",
     "description": "口味咸 鲜，采用浸 泡的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "鲜香",
@@ -4823,13 +5072,18 @@
         "instruction": "调碗汁（盐 糖 鸡粉 味精 姜末 葱花） 炝油最好是花生油",
         "tips": "炝油时油温要够高，才能激发出香味"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "夫妻肺片",
     "name": "夫妻肺片",
     "description": "口味卤香，采用卤的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "卤味",
       "简单易学"
@@ -4917,13 +5171,18 @@
         "instruction": "调汁，将料汁浇上即可",
         "tips": "切片厚薄要均匀，确保成熟度一致；芡汁要趁热浇上，才能保持菜品温度和光泽"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "椒盐平菇",
     "name": "椒盐平菇",
     "description": "口味椒盐，采用炸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "炸菜",
       "简单易学"
@@ -4976,13 +5235,18 @@
         "instruction": "调糊，起锅烧油，油温五成，下入裹好糊的平菇炸散捞出，升油温至七成下入平菇炸金黄捞出挖油，撒上椒盐粉",
         "tips": "油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "玉米烧猪蹄",
     "name": "玉米烧猪蹄",
     "description": "口味咸鲜，采用烧的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "猪肉",
@@ -5044,13 +5308,18 @@
         "instruction": "起锅烧油，小料炒香，辣妹子炒香，加卤汤，加水，调味，下入主辅料，烧至汤汁浓（勾芡淋明油出锅） 焯水：荤食：葱姜不要放盐，冷水下锅； 青菜类：放盐，热水下锅 尽量配水果玉米；糯玉米尽量不放，影响口感 加卤汤，加少量水，不能只加卤汤！勾芡火小点，大火明油 热菜出锅前必须明油",
         "tips": "水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "霸王全肘",
     "name": "霸王全肘",
     "description": "口味卤香，采用卤的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "卤味",
       "简单易学"
@@ -5112,13 +5381,18 @@
         "instruction": "锅中加入适量原汤，青红椒，勾芡明油，淋在肘子上即可",
         "tips": "芡汁要均匀淋入，边淋边轻轻搅动"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸辣白菜",
     "name": "酸辣白菜",
     "description": "属于川，口味酸辣，采用炒的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -5196,13 +5470,18 @@
         "instruction": "锅中加底油下入干辣椒煸炒出香再下入白菜翻炒",
         "tips": "黄瓜片勿放入汤汁中烧煮，芡汁薄才好"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "橙汁木瓜",
     "name": "橙汁木瓜",
     "description": "口味橙汁味，采用浇汁的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -5258,13 +5537,18 @@
         "id": "cook_2",
         "instruction": "将调好的橙汁淋在木瓜上，撒上朱古力即可"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "红烧排骨",
     "name": "红烧排骨",
     "description": "口味咸鲜回甜，采用红烧的烹饪方式。",
-    "category": "硬菜",
     "tags": [
       "猪肉",
       "甜味",
@@ -5347,13 +5631,18 @@
         "id": "cook_3",
         "instruction": "将排骨转入高压锅上汽 20—30 分钟捞去料渣，小火收汁，淋明油即可"
       }
-    ]
+    ],
+    "categories": [
+      "硬菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香辣鸡爪",
     "name": "香辣鸡爪",
     "description": "口味香辣，采用炸、炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "炸菜",
       "简单易学",
@@ -5454,13 +5743,18 @@
         "instruction": "起锅烧油，鸡爪过油，倒出挖油 净锅适量油，小料炒香，下入辣妹子，豆瓣酱，小米椒，干辣椒、炒香下入鸡爪翻炒均匀，调味，翻炒均匀，淋红油出锅 炸的话轻轻过油五成油温 七到八成迅速捞出 香辣酱有的话不加辣妹子和豆瓣酱 有辣鲜露，少加点东古酱油 加一味减一味 不用什么都加！",
         "tips": "切片厚薄要均匀，确保成熟度一致"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸辣土豆丝",
     "name": "酸辣土豆丝",
     "description": "口味酸辣，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "土豆",
       "简单易学",
@@ -5538,13 +5832,18 @@
         "instruction": "锅中烧水下入土豆丝烧开焯水待用、 3 锅中加底油、下入干辣段、煸炒出味、变紫色时下入葱蒜片炒出味、然后加入焯好的土豆丝、翻炒后加味再翻炒加青红椒丝、翻炒均匀、加明油、出锅装盘。",
         "tips": "切丝时粗细要均匀，炒制时受热一致"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "红油鸡丝",
     "name": "红油鸡丝",
     "description": "口味红油味，采用拌的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "鸡类"
@@ -5624,13 +5923,18 @@
         "instruction": "装盘 红油口味的都按这个调！ 每一个菜肴当中都有辅料 有配色，配口感，配口味的作用！ 没要上述配菜时可以自行考虑配菜添加红油味是基本味加上红油！ 葱油味是基本味加葱油形成的！按此推理 基本味是咸鲜味！香油=香油味 基本味+红油=红油味葱油=葱油味 蒜沫是补充 麻辣口味里加醋是为了中和口味的! 解冻食材做好温水加盐 解冻速度变快！原料要清水没过肉！ 去腥三件套：大葱，大姜，盐，料酒 检验肉类食材是否煮熟方法是在最厚的部位戳穿了代表肉熟了！ 自己开饭店 早晨开店一定要提前加工好！ 没经验的厨师 前期一定要尝！做菜不要太咸但可以淡一点 盐是母亲 只有盐的基础上才",
         "tips": "水开后下料，煮制过程中不要频繁搅动；水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "肉末茄子",
     "name": "肉末茄子",
     "description": "口味五香味，采用红烧的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "五香",
       "简单易学",
@@ -5716,13 +6020,18 @@
         "instruction": "装盘（淋芡打明油） 十三香广泛使用在清真菜肴中使用在牛羊肉！五香广泛使用中汉餐 使用在猪肉里！ 五香味=基本味+香料 五香类的可以用十三香和五香粉！ 刀工是需要长期日积月累练的 因为它是门功夫! 面粉里面提炼出的淀粉是等粉！ 炸东西的时候有电的时候表示没熟!炸花生米等的时候炸好了不易在 炒肉沫油温低一点，油温高会连在一块豆瓣酱要剁碎! 十三香要加到炒菜时和出锅时 黄焖菜肴里可以加十三香 任何菜肴里二次加蒜沫和十三香 味道更佳！",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；过油时控制油温，炸至金黄酥脆捞出"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "小炒牛肉",
     "name": "小炒牛肉",
     "description": "口味香辣，采用小炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "快手菜",
       "牛肉",
@@ -5823,13 +6132,18 @@
         "instruction": "装盘（出锅前放香菜） 牛腩不适合炒！ 改刀时一定要顶丝切不然咬不动！ 鱼肉丝，鸡肉丝要顺着丝切断不然炒的时候容易乱！ 香辣中 葱姜蒜是香 辣妹子中也有香！做葱油 底油温里放葱然后慢慢加火再炒干去葱！ 传统的肉片是 2x3 公分的 马耳是斜着切斜度大 马蹄是斜度小 吗味时加水淀粉叫上浆，饭做好后加上加勾芡！ 打水：肉类食物要打足水 肉类吸水多",
         "tips": "上浆时蛋清和淀粉比例适当，抓匀上劲；滑油温度控制在四成热，快速捞出保持嫩滑"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "小葱炒鸡蛋",
     "name": "小葱炒鸡蛋",
     "description": "口味咸鲜味，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "快手菜",
@@ -5887,13 +6201,18 @@
         "id": "cook_4",
         "instruction": "装盘 加胡椒粉使鸡蛋腥味减少，更香 加水淀粉 不会有油 吗味使加盐 炒鸡蛋油温一定要底慢慢把鸡蛋炒熟！"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "清炒荷兰豆",
     "name": "清炒荷兰豆",
     "description": "属于粤，口味咸鲜（蒜茸），采用清炒（蒜茸）的烹饪方式。",
-    "category": "粤菜",
     "tags": [
       "咸鲜",
       "快手菜",
@@ -5953,13 +6272,18 @@
         "instruction": "装盘 饭店里是把基本味加到水里面加热后放到罐里备用 方便快捷 。2 锅中烧水加明油至开时下入荷兰豆焯水， 到出沥水。3 锅中加底油，下入荷兰豆。调味，淋少许 芡翻炒加明油出锅装盘。",
         "tips": "勾芡时芡计要稀 为明友。"
       }
-    ]
+    ],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄金蝴蝶虾",
     "name": "黄金蝴蝶虾",
     "description": "属于粤菜，口味咸鲜，采用炸的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "咸鲜",
       "海鲜",
@@ -6035,13 +6359,18 @@
         "instruction": "控油装盘，搭配甜辣酱或番茄酱上桌",
         "tips": "油温控制好，中火慢炸至金黄酥脆；装盘要整齐美观，趁热上桌；虾背剖开时不要切断，保持蝴蝶造型；炸制时油温不宜过高，以免外焦内生"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄金蝴蝶虾_2",
     "name": "黄金蝴蝶虾",
     "description": "口味沙司，采用炸的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "炸菜",
@@ -6118,13 +6447,18 @@
         "instruction": "炸制（四五成油温）",
         "tips": "油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酱爆土鸡",
     "name": "酱爆土鸡",
     "description": "口味酱香，采用爆的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "酱香",
@@ -6220,13 +6554,18 @@
         "instruction": "烹调（酱；葱姜蒜，主辅料）",
         "tips": "水开后下料，煮制过程中不要频繁搅动；过油时控制油温，炸至金黄酥脆捞出"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "爽口小肥羊",
     "name": "爽口小肥羊",
     "description": "口味泡椒味\\酸辣，采用煮的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "羊肉",
@@ -6308,13 +6647,18 @@
         "instruction": "炝油 泡椒味就是黄灯笼酱加野山椒加基本味！泡椒里有酸味但不够就要加白醋！ 加水适量 以菜为准！ 油量也以菜为 咸鲜味，咸味合适，鲜味出众！ 初学菜肴要多尝！ 尝也是一种学习！",
         "tips": "炝油时油温要够高，才能激发出香味"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸汤肥牛",
     "name": "酸汤肥牛",
     "description": "属于湘菜，口味酸辣，采用煮的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "暖身汤",
       "汤品",
@@ -6454,13 +6798,18 @@
         "instruction": "装盘（炝油） 花椒水调出来 草果水调出来 川菜必须有麻味！ 上浆就是水淀粉！ 加水淀粉的目的是使肉片纤维物质不跑出来！ 不加水淀粉就会老 不好吃！ 高档菜肴里加蛋清 起到水淀粉的作用！ 蛋清和水淀粉可以一起加进去！ 做川菜使一定要把豆瓣酱要炒出来 豆瓣酱炒到香味出来，油里面有红色为准！ 肉片的从红色煮到白色为准！ 菜和汤的比例要看好！ 用干净的油来炝！ 客人使用的时候搅拌！最好加刀口椒（干炒的辣椒），味道更佳！",
         "tips": "水开后下料，煮制过程中不要频繁搅动；水开后下料，煮制过程中不要频繁搅动；上浆时蛋清和淀粉比例适当，抓匀上劲；上浆时蛋清和淀粉比例适当，抓匀上劲；酸辣味是由小米椒，灯笼椒酱，"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "水煮肉片",
     "name": "水煮肉片",
     "description": "属于川菜，口味麻辣鲜香，采用煮的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "下饭菜",
       "川菜",
@@ -6559,13 +6908,18 @@
         "instruction": "最后撒上干辣椒段和花椒，浇上热油炝香即可",
         "tips": "水开后下料，煮制过程中不要频繁搅动；芡汁要趁热浇上，才能保持菜品温度和光泽；肉片要切薄，腌制后口感更滑嫩；最后浇热油时油温要够高，才能激发出麻辣香味"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蚂蚁上树",
     "name": "蚂蚁上树",
     "description": "属于清真菜，口味五香味，采用烧的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "五香",
       "清真菜",
@@ -6690,13 +7044,18 @@
         "instruction": "炒锅上火放入宽油，烧至四成热，下入粉条滑油，等粉条发白时捞出沥油。 炒锅留底油烧热，下入豆瓣酱炒香放入葱姜蒜炒香，下入肉末煸炒至酥香时下入香汤依次放入盐，味精， 白糖，料酒，醋，酱油，再下入粉条，青红椒烧至入味时，淋上香油，红油即可装盘。",
         "tips": "切片厚薄要均匀，确保成熟度一致；装盘要整齐美观，趁热上桌；出锅前可勾薄芡，增加菜品光泽和口感；炒制需鲜汤或肉汤.烧制才够味。"
       }
-    ]
+    ],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "天麻乌鸡汤",
     "name": "天麻乌鸡汤",
     "description": "口味咸鲜药香，采用煲的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "咸鲜",
       "暖身汤",
@@ -6766,13 +7125,18 @@
         "id": "cook_3",
         "instruction": "装碗 (红枣枸杞)"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "大盘鸡",
     "name": "大盘鸡",
     "description": "口味五香味，采用烧的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "五香",
       "简单易学",
@@ -6878,13 +7242,18 @@
         "id": "cook_4",
         "instruction": "烹调（炒糖色，加汤，加主料，加土豆，手擀面，其他辅料，收汁）"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "青海三烧",
     "name": "青海三烧",
     "description": "属于清真菜，口味五香味，采用烧的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "五香",
       "清真菜",
@@ -6996,13 +7365,18 @@
         "instruction": "锅留底油放入豆瓣酱炒出红油，放入葱姜蒜片炒出香，加入适量鲜汤调入盐，胡椒粉然后放入土豆、肉丸、羊筋中火烧至入味放入青红椒块，等汤汁剩一半时加水淀粉勾薄芡淋红油即可。",
         "tips": "切片厚薄要均匀，确保成熟度一致；过油时控制油温，炸至金黄酥脆捞出；芡汁要均匀淋入，边淋边轻轻搅动；装盘要整齐美观，趁热上桌；油温控制好，中火慢炸至金黄酥脆；过油时控制油温，炸至金黄酥脆捞出；土豆滚刀块滚好，炸时掌握好油温。"
       }
-    ]
+    ],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "回锅肉",
     "name": "回锅肉",
     "description": "口味家常味（酱加多了变酱味），采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "下饭菜",
       "简单易学"
@@ -7083,13 +7457,18 @@
         "instruction": "装盘 烹调方式：炸、炒味型：香辣 制作步骤：猪肉冷水下锅焯水，焯好水的猪肉切薄片，豆腐干切块（斜切）， 姜蒜切片备用。油温 4－5 成下肉片，豆腐干炸熟后捞出备用。锅中底油下姜蒜、豆瓣酱、豆豉炒香，放炸好的肉片和豆腐干，蒜苗，调味（鸡精、味精、糖、 生抽、红油）爆火翻炒装盘即可。",
         "tips": "水开后下料，煮制过程中不要频繁搅动；过油时控制油温，炸至金黄酥脆捞出；切片厚薄要均匀，确保成熟度一致"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酱爆鸡丁",
     "name": "酱爆鸡丁",
     "description": "口味酱香，采用爆炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "酱香",
@@ -7167,13 +7546,18 @@
         "instruction": "锅留底油下入干辣段炒至紫红下入甜面酱炒香加葱姜蒜炒香下入鸡丁调味翻炒均匀出锅装盘",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "牙签牛肉",
     "name": "牙签牛肉",
     "description": "口味麻辣，采用炸煸的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "炸菜",
       "牛肉",
@@ -7246,13 +7630,18 @@
         "id": "cook_3",
         "instruction": "锅中烧油待油温四五成熟时下入牛肉串炸至成熟出锅沥油 锅留底油下入葱姜蒜炒香下入牛肉串用基本味，花椒、辣椒粉、芝麻、翻炒均匀出锅装"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "西湖牛肉羹",
     "name": "西湖牛肉羹",
     "description": "属于浙菜，口味咸鲜，采用煮的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "咸鲜",
       "暖身汤",
@@ -7342,13 +7731,18 @@
         "instruction": "出锅前淋香油，撒胡椒粉即可",
         "tips": "切丁大小要适中，约1.5厘米见方为宜；水开后下料，煮制过程中不要频繁搅动；出锅前可勾薄芡，增加菜品光泽和口感；牛肉末要冷水下锅，更容易煮散；蛋液要慢慢倒入并轻轻搅动，形成漂亮的蛋花"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "爽口香藕",
     "name": "爽口香藕",
     "description": "口味咸鲜，香辣，采用浇汁、凉拌的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "莲藕",
@@ -7448,13 +7842,18 @@
         "instruction": "装盘 藕切片，泡水，放盐， 白醋辅料的形状要小于主料！ 清洗的时候要用加点白醋！浸泡一会儿！ 拍粉的时候有吉士粉最好！出油不见汤！",
         "tips": "切片厚薄要均匀，确保成熟度一致；芡汁要趁热浇上，才能保持菜品温度和光泽；拍粉要均匀薄透，炸出来才酥脆；油温控制好，中火慢炸至金黄酥脆；切片厚薄要均匀，确保成熟度一致"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "板栗烧土鸡",
     "name": "板栗烧土鸡",
     "description": "口味咸鲜香辣，采用烧的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "辣味",
@@ -7579,13 +7978,18 @@
         "instruction": "烹调（豆瓣酱，葱姜蒜，汤，去杂质，调味，烧）",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感；过油时控制油温，炸至金黄酥脆捞出"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "西红柿炒鸡蛋",
     "name": "西红柿炒鸡蛋",
     "description": "属于家常，口味咸鲜酸甜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "家常菜",
       "快手菜",
@@ -7670,13 +8074,18 @@
         "instruction": "装盘 表示鸡蛋炒老的特点：（色泽金黄） 一份西红柿炒鸡蛋的加入鸡蛋的数目时3—4 个 ,将西红柿洗干净，用开水烫去皮，改成,菱形刀块，鸡蛋打入碗中，加少许盐，水淀粉。 二，锅中烧水制开时，下入西红柿焯水，捞出沥水。 三，锅中烧干净油烧至六七成熟时，倒入打好的蛋液，待捎定型，再用手勺推动炒制成熟，到出沥油。 四，原料中加葱段，煸炒出香下入西红柿，炒制调味，加上许芡粉，加入鸡蛋烦翻勺装盘。",
         "tips": "少油，炒至蛋液时，不要太碎"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "咸蛋黄焗白玉菇",
     "name": "咸蛋黄焗白玉菇",
     "description": "口味咸鲜（色泽金黄，咸鲜味美），采用焗的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -7737,13 +8146,18 @@
         "instruction": "锅留少许底油下入咸蛋黄小火翻炒至起泡下入白玉菇翻炒均匀出锅装盘",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸；拍粉要均匀薄透，炸出来才酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "霸王别姬",
     "name": "霸王别姬",
     "description": "口味咸鲜（色泽金黄，咸鲜味美），采用煮的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学"
@@ -7795,13 +8209,18 @@
         "id": "cook_2",
         "instruction": "乌龟初加工，再将其剁成小块备用 锅中烧水下入乌鸡、乌龟焯水撇去浮沫，调味加大慈，大姜，加盖焖至酥烂入味，盛入煲中即可 肉质酥烂，汤鲜味美 大补汤！ 滋阴补阳佳品！ 有时候加药材！ 甲鱼宰杀后，用开水烫，然后放凉水里去皮！ 冷水下锅 为了加强滋补效果，加当归、黄芪、枸杞、党参、红枣、桂圆 出锅时加味精和鸡精 高温使味精和鸡精味道变淡！ 熬汤时熬好后加味鸡精！"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "红烧肉",
     "name": "红烧肉",
     "description": "口味五香味，采用烧的烹饪方式。",
-    "category": "硬菜",
     "tags": [
       "五香",
       "简单易学",
@@ -7907,13 +8326,18 @@
         "instruction": "装盘 红曲米是着色的 焯水再改刀 自然调色 糖色+栀子=金黄 糖色+红曲=枣黄糖色+紫草=深红 糖色+姜黄=橙黄 焯水后肉会缩的，煮熟后改刀会大小一致的 生肉改刀 后煮会体积会变化的，大小不均匀！ 初学者炒糖色；低温，长时间炒会容易掌握糖色！ 香料泡水会去除 里面的灰尘，香料保存好可以再次利用，等味道没有再仍！ 红烧肉等高压锅上汽 15min 即可",
         "tips": "水开后下料，煮制过程中不要频繁搅动；过油时控制油温，炸至金黄酥脆捞出"
       }
-    ]
+    ],
+    "categories": [
+      "硬菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "高香汤",
     "name": "高香汤",
     "description": "属于清真菜，口味香甜，采用煮的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "暖身汤",
       "汤品",
@@ -7995,13 +8419,18 @@
         "instruction": "盛入汤碗，加入枸杞，葡萄干，红绿樱桃 意防止窜色！高香汤 1:先将红绿樱桃枸杞分别泡水 2:锅中烧水加入穋糟，用盐，糖调味至开时上芡最后加杂果，葡萄，荔枝，烧开盛入汤碗中。 3:最后在汤上面撒上枸杞红绿樱桃即可。",
         "tips": "芡汁要均匀淋入，边淋边轻轻搅动；一定要注；必须是保证有色原料不窜色。"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "梅菜扣肉",
     "name": "梅菜扣肉",
     "description": "口味咸鲜干菜味，采用蒸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -8143,13 +8572,18 @@
         "instruction": "锅加底油下入干辣段，花椒粒炒香，加干菜加适量鲜汤调味待用 五花肉皮朝下均匀整齐码放至扣碗中再加梅干菜，醪糟汁放大葱大姜，封膜上笼蒸制 2--3 小时即可 猪皮烧焦以后才没有毛跟残留 梅干菜涨发泡水以后要清洗，因为有泥沙！！！ 扣肉一点要蒸烂！",
         "tips": "五花肉初加工要到位 2.注意蒸制时间 2--3 小时即可"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "铁板日本豆腐",
     "name": "铁板日本豆腐",
     "description": "口味咸鲜豉油，采用炸浇汁的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "炸菜",
@@ -8231,13 +8665,18 @@
         "instruction": "装盘浇汁（垫洋葱） 任何干锅类菜系盘子下面一定要加洋葱！ 通用化",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；油温控制好，中火慢炸至金黄酥脆；装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "开屏武昌鱼",
     "name": "开屏武昌鱼",
     "description": "口味豉油，采用蒸的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "中等难度",
       "海鲜",
@@ -8310,13 +8749,18 @@
         "instruction": "浇汁炝油（三丝豉油）",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸；炝油时油温要够高，才能激发出香味"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻婆豆腐烧海参",
     "name": "麻婆豆腐烧海参",
     "description": "口味麻辣，采用烧的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "豆制品",
@@ -8428,13 +8872,18 @@
         "instruction": "装盘（明油） 上述调味品是麻婆豆腐的调味品！焯水时豆腐和海参都要焯水！ 豆瓣酱一定要剁碎 着色要注意，勾芡要两到三次! 水淀粉浓度一定要稀，第二次浓度更稀",
         "tips": "芡汁要均匀淋入，边淋边轻轻搅动"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "水煮蝴蝶虾",
     "name": "水煮蝴蝶虾",
     "description": "口味麻辣，采用水煮的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "下饭菜",
       "水煮系列",
@@ -8532,13 +8981,18 @@
         "instruction": "炝油 不要把菜品做的太高档！因为消费客户是工薪阶段！ 还可以加点青笋之类的有营养的菜！",
         "tips": "水开后下料，煮制过程中不要频繁搅动；上浆时蛋清和淀粉比例适当，抓匀上劲；装盘要整齐美观，趁热上桌；炝油时油温要够高，才能激发出香味"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "川式腊味合蒸",
     "name": "川式腊味合蒸",
     "description": "口味咸鲜烟熏味，采用蒸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -8593,13 +9047,18 @@
         "instruction": "（雷）主料: 腊肉、腊肠",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "鱼香肉丝",
     "name": "鱼香肉丝",
     "description": "属于川菜，口味鱼香，采用炒的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -8735,13 +9194,18 @@
         "instruction": "最后加入肉丝上明芡，淋红油，加葱花，蒜姜沫，翻匀出锅即可。 扩展:鱼香茄子，鱼香丸子等",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；过油时控制油温，炸至金黄酥脆捞出；装盘要整齐美观，趁热上桌；码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；上浆时蛋清和淀粉比例适当，抓匀上劲；出锅前可勾薄芡，增加菜品光泽和口感；鱼香味型的掌握刀功成型划一，滑油时掌握好油温。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香煎玉米烙",
     "name": "香煎玉米烙",
     "description": "属于粤，口味香甜，采用煎的烹饪方式。",
-    "category": "粤菜",
     "tags": [
       "甜味",
       "简单易学",
@@ -8835,13 +9299,18 @@
         "instruction": "将拌好的玉米粒干铺在锅底，并用码斗，压实成一个圆饼。 舀热油慢慢的浇到饼上面,使热油全部淹没玉米饼，待饼浮起油面时，上火炸制，发干定型即可出锅，改刀装盘。 色泽金黄， 口味香甜。 1:拌粉均匀. 2:热锅冷油锅滑好. 3:油温是高油温. 4:干铺一定压实 5:浇油一定慢慢浇入。",
         "tips": "1:拌粉均匀."
       }
-    ]
+    ],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻辣牛肉干",
     "name": "麻辣牛肉干",
     "description": "口味麻辣，采用煮炸炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "炸菜",
       "牛肉",
@@ -8950,13 +9419,18 @@
         "instruction": "锅中烧油待用油温五六成时，拍吉士粉下入牛肉条炸制平香酥脆捞出控油 锅留底油下入蒜沫炒香加入牛肉干撒辣面花椒面芝麻基本味，翻炒均匀出锅装盘! 干香酥脆 有些辣椒有苦味！ 尽量不要图便宜！花椒选用大红袍 提前选好 辣椒、花椒 十三香没有的前提下用香料和五香粉！",
         "tips": "1.焯煮再改刀 2.麻辣味选择多种，调味品也可！"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "小花卷过油肉",
     "name": "小花卷过油肉",
     "description": "口味咸鲜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学"
@@ -9042,13 +9516,18 @@
         "instruction": "注意花卷最后加入羊肉盖被加的是狗浇尿饼",
         "tips": "过油时控制油温，炸至金黄酥脆捞出；滑油温度控制在四成热，快速捞出保持嫩滑；芡汁要趁热浇上，才能保持菜品温度和光泽；1.过油肉为山西特色菜肴"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "孜然牛肉",
     "name": "孜然牛肉",
     "description": "口味麻辣孜然味，采用炸炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "炸菜",
       "牛肉",
@@ -9132,13 +9611,18 @@
         "instruction": "吗味不上浆，炸至稍干，增加口感！",
         "tips": "上浆时蛋清和淀粉比例适当，抓匀上劲；1. 吗味不上浆，炸至稍干，增加口感！"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "手抓羊肉",
     "name": "手抓羊肉",
     "description": "口味咸鲜，采用煮的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -9205,13 +9689,18 @@
         "instruction": "成菜 草骠羊里不需要加草果和桂皮 ！ 肉质不好的要加草果和桂皮！ 羊肉排水的目的就是肉白，干净！ 香是蛋白质香！ 纯的盐味是香的 盐味百味之母！ 泡菜盐里没有碘！ 煮的火候为泡和煮的状态！ 水一定要泡过水！ 藏式羊排要把各个部位切下来！ 再放到木盘中，摆起来！ 浮沫要打干净！ 一定要注意这点！泡水加固很重要！ 黑线是铁钳",
         "tips": "水开后下料，煮制过程中不要频繁搅动；水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "葱爆羊肉",
     "name": "葱爆羊肉",
     "description": "口味五香味，采用爆炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "五香",
       "简单易学",
@@ -9285,13 +9774,18 @@
         "instruction": "油爆（底油烧热，肉片炒开，加葱姜，大蒜，调味）",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "松鼠鱼",
     "name": "松鼠鱼",
     "description": "属于苏菜，口味酸甜，采用炸、熘的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "炸菜",
@@ -9382,13 +9876,18 @@
         "instruction": "将芡汁浇在炸好的鱼上，撒上青豆和松子即可",
         "tips": "油温控制好，中火慢炸至金黄酥脆；油温控制好，中火慢炸至金黄酥脆；切花刀时刀刃要贴着鱼骨斜切，深至鱼皮但不切断；炸鱼时先用手提着鱼尾定型几秒再松手入锅"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "农家锅巴",
     "name": "农家锅巴",
     "description": "口味咸鲜微辣，采用炸 炒 淋的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "炸菜",
       "简单易学",
@@ -9465,13 +9964,18 @@
         "id": "cook_3",
         "instruction": "锅烧油 油温 3 成 将锅巴放入炸至金黄 捞出将炒好的料淋在锅巴上即可"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "青椒肉丝",
     "name": "青椒肉丝",
     "description": "口味咸鲜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学"
@@ -9518,13 +10022,18 @@
         "instruction": "炒制（葱姜蒜 主辅料 淋芡打明油） ⑤装盘",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；滑油温度控制在四成热，快速捞出保持嫩滑"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蒜泥排骨",
     "name": "蒜泥排骨",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "猪肉",
       "简单易学"
@@ -9581,13 +10090,18 @@
         "id": "cook_2",
         "instruction": "将蒜水中的蒜沫炸成金蒜待用 锅留底油下入干辣段炒香加蒜沫姜沫豆豉炒香加排骨撒青红椒粒金蒜味精等翻炒出锅。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "金汤肥牛",
     "name": "金汤肥牛",
     "description": "口味泡椒水（酸辣），采用煮的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "暖身汤",
       "汤品",
@@ -9686,13 +10200,18 @@
         "instruction": "装盘 （辅料垫底 肥牛放上面 小米椒 圈炝油）",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸；水开后下料，煮制过程中不要频繁搅动；装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "皮蛋豆腐",
     "name": "皮蛋豆腐",
     "description": "口味烧椒味，采用浇汁的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "凉菜",
       "开胃菜",
@@ -9757,13 +10276,18 @@
         "id": "cook_3",
         "instruction": "调汁（煸鲜椒小米椒，加汤调味）"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄山臭鳜鱼",
     "name": "黄山臭鳜鱼",
     "description": "口味咸鲜味，采用烧的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "咸鲜",
       "海鲜",
@@ -9851,13 +10375,18 @@
         "id": "cook_3",
         "instruction": "烧制（葱节姜蒜粒，鱼，加汤调味）"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "西湖醋鱼",
     "name": "西湖醋鱼",
     "description": "口味糖醋味，采用煮的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "简单易学",
@@ -9930,13 +10459,18 @@
         "instruction": "取一部分鱼汤加糖醋生抽少许老抽等调味淋芡浇至鱼身即可",
         "tips": "初加工彻底，码味一定要入味，糖醋味要甜酸适口"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "龙井虾仁",
     "name": "龙井虾仁",
     "description": "口味咸鲜茶香，采用清炒的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "咸鲜",
       "海鲜",
@@ -10007,13 +10541,18 @@
         "instruction": "色泽一定要清新 西湖龙井是要进贡给皇上的！ 没有思路就没有出路！ 只有清淡才能把鱼的鲜美尝出来！温度低一点才能不会把茶叶炸糊！",
         "tips": "浸泡时换水保持清洁，泡发后沥干；滑油温度控制在四成热，快速捞出保持嫩滑；油温控制好，中火慢炸至金黄酥脆；1.将茶香和虾仁的鲜嫩完美结合"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "锅巴肉片",
     "name": "锅巴肉片",
     "description": "属于川，口味咸鲜、小酸甜，采用炸、炒的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "炸菜",
@@ -10099,13 +10638,18 @@
         "instruction": "锅中加底油,放入葱、姜、 蒜片，煸炒出香，下人玉兰片、 西红柿、 青红 椒块、 炒制再调味(荔枝味型, 咸、 酸、 甜、 香，注意味觉层次) 最后加肉片，上芡淋明油出锅装碗中。 、锅中加适量干净油，烧至中高油温，将锅巴下锅炸至香脆上色，捞出装盘，同炒好的肉片一同上桌，使用时倒入锅巴上面。 锅巴炸干，一同上卓，立刻使用锅巴回软， 口感变差。",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；油温控制好，中火慢炸至金黄酥脆；锅巴炸干，一同上卓，立刻使用锅巴回软， 口感变差。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "虎皮青椒",
     "name": "虎皮青椒",
     "description": "属于川菜，口味微辣，采用煎的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -10178,13 +10722,18 @@
         "instruction": "翻炒均匀至青椒变软，淋香油出锅",
         "tips": "干煸青椒时不要加油，小火慢煎才能出虎皮；选用皮薄肉厚的青椒，口感更好"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "家常豆腐",
     "name": "家常豆腐",
     "description": "口味家常味（咸鲜微辣香甜），采用烧的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "豆制品",
@@ -10284,13 +10833,18 @@
         "instruction": "将炸好的豆腐下入炒好的汁中烧制，再加芡汁加明油最后出锅装盘。",
         "tips": "过油时控制油温，炸至金黄酥脆捞出；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "毛血旺",
     "name": "毛血旺",
     "description": "口味麻辣，采用煮的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "简单易学",
@@ -10398,13 +10952,18 @@
         "instruction": "炮油 （干辣段 花椒粒）",
         "tips": "水开后下料，煮制过程中不要频繁搅动；色泽油润红亮 食材原料丰富"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "大煮干丝",
     "name": "大煮干丝",
     "description": "口味咸鲜，采用煮的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学"
@@ -10482,13 +11041,18 @@
         "instruction": "净锅少许油 姜丝炝香 加高汤（） 下入辅料 小火煮制入味出锅即可",
         "tips": "切丝时粗细要均匀，炒制时受热一致；水开后下料，煮制过程中不要频繁搅动；水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "将军过桥",
     "name": "将军过桥",
     "description": "口味咸鲜，采用滑煮的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "咸鲜",
       "海鲜",
@@ -10556,13 +11120,18 @@
         "instruction": "起锅烧油油温三成 将鱼片滑熟 （或在汤中煨熟）油菜焯水垫底 将滑好的鱼片加入鱼汤中调味 出锅 装盘撒少许葱花即可",
         "tips": "切片厚薄要均匀，确保成熟度一致；水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香辣虾尾",
     "name": "香辣虾尾",
     "description": "口味香辣，采用炸炒的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "炸菜",
@@ -10657,13 +11226,18 @@
         "id": "cook_2",
         "instruction": "虾尾解冻焯水，过油备用，西芹切马蹄段，大蒜拍破（切沫），姜葱丁 起锅适量油，干花椒，辣椒，姜，蒜，炒香，下入火锅底料，炒香加水，调味下入虾尾烧至入味，下入西芹拍蒜，葱丁，烧至断生，淋香油，出锅"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "肉沫蒸蛋",
     "name": "肉沫蒸蛋",
     "description": "口味咸鲜，采用煎的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -10729,13 +11303,18 @@
         "instruction": "改刀装盘（切小块）",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸；码味时轻轻拌匀，不要过度搅拌以免破坏食材结构"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "农家一碗香",
     "name": "农家一碗香",
     "description": "属于湘菜，口味香辣，采用炒的烹饪方式。",
-    "category": "湘菜",
     "tags": [
       "湘菜",
       "简单易学",
@@ -10818,13 +11397,18 @@
         "instruction": "倒入炒好的鸡蛋，加生抽、老抽调味，大火翻炒均匀出锅",
         "tips": "五花肉要煸出多余油脂，口感才香而不腻；鸡蛋先炒定型盛出，最后回锅避免过老"
       }
-    ]
+    ],
+    "categories": [
+      "湘菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "椒麻鸡",
     "name": "椒麻鸡",
     "description": "口味椒麻味，采用煮 拌的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "椒麻",
       "简单易学",
@@ -10926,13 +11510,18 @@
         "id": "cook_3",
         "instruction": "捞出压好的仔鸡冲凉 冲凉后进行手撕放入一点汤调味 放入一些洋葱片 香菜鲜花椒 干拉断 花椒粒 毛芹搅拌入味即可"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干锅花菜",
     "name": "干锅花菜",
     "description": "属于湘菜，口味香辣，采用炸 炒的烹饪方式。",
-    "category": "湘菜",
     "tags": [
       "下饭菜",
       "干锅",
@@ -11054,13 +11643,18 @@
         "instruction": "锅中加底油,下入肉片，煸炒上色，下入小米椒，辣妹子炒至在下入菜花，加盐，味精，东古酱油， 辣鲜露等调料翻炒下一下入韭菜段，翻炒成熟加干锅油翻炒出锅装盘。 色泽诱人， 口味香辣。 炒制时注意不炸制过火。",
         "tips": "切片厚薄要均匀，确保成熟度一致；过油时控制油温，炸至金黄酥脆捞出；炒制时注意不炸制过火。"
       }
-    ]
+    ],
+    "categories": [
+      "湘菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "盐煎肉",
     "name": "盐煎肉",
     "description": "口味咸鲜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学"
@@ -11134,13 +11728,18 @@
         "instruction": "起锅适量油 下肉片 煸炒出油 下入豆瓣酱 豆豉 炒香 下入红椒蒜苗",
         "tips": "切片厚薄要均匀，确保成熟度一致"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄焖鸡",
     "name": "黄焖鸡",
     "description": "口味咸鲜微辣，采用烧的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "辣味",
@@ -11234,13 +11833,18 @@
         "id": "cook_1",
         "instruction": "鸡肉焯水备用，起锅适量油下入鸡块，姜蒜，小米椒煸炒至出油出香，放入八角， 白芷，黄豆酱，炒出香味，下入土豆、香菇、加水小火慢炖入味，土豆软烂，放青红椒，勾芡出锅"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "椒麻仔鸡",
     "name": "椒麻仔鸡",
     "description": "口味麻辣，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "辣味",
@@ -11323,13 +11927,18 @@
         "instruction": "锅中放菜籽油，辅料炒香下入过好油的仔鸡调味调味翻均匀，淋花椒油出锅",
         "tips": "切丁大小要适中，约1.5厘米见方为宜"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸辣腰花",
     "name": "酸辣腰花",
     "description": "口味泡椒，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "泡椒",
       "简单易学"
@@ -11421,13 +12030,18 @@
         "instruction": "烹调（泡椒+小米辣+葱姜蒜） ⑤装盘",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；滑油温度控制在四成热，快速捞出保持嫩滑；装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "宫保鸡丁",
     "name": "宫保鸡丁",
     "description": "采用胡辣、荔枝味的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "鸡类"
@@ -11529,13 +12143,18 @@
         "instruction": "将花生米炸好备用 锅中加适量油、烧热后下入码味的鸡脯肉划油、八成熟捞出备用、同时胡萝卜过油断生。 锅中加红油烧热加蒜姜片、花椒粒、豆瓣酱、煸炒出香后下入鸡脯肉、胡萝卜、葱节、再加味翻炒、勾明芡、加花生米、点明油、翻匀出锅装盘。",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；油温控制好，中火慢炸至金黄酥脆；码味时轻轻拌匀，不要过度搅拌以免破坏食材结构"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炒炮仗_2",
     "name": "炒炮仗",
     "description": "口味咸鲜辛香，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "快手菜",
@@ -11637,13 +12256,18 @@
         "instruction": "装盘（蒜沫，红油）",
         "tips": "水开后下料，煮制过程中不要频繁搅动；装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "莲藕排骨汤",
     "name": "莲藕排骨汤",
     "description": "口味咸鲜，采用焯、压的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "咸鲜",
       "暖身汤",
@@ -11714,13 +12338,18 @@
         "id": "cook_3",
         "instruction": "调汤，锅烧水，加基本味，胡椒粉，料酒，葱，姜 加少许猪油，倒入主辅料 ，上汽压 15 分钟后取出装入汤碗中，撒上葱花即可"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "虎皮肘子",
     "name": "虎皮肘子",
     "description": "口味咸鲜、酱香，采用卤的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "卤味",
       "咸鲜",
@@ -11851,13 +12480,18 @@
         "instruction": "调制酸辣汁即可",
         "tips": "浸泡时换水保持清洁，泡发后沥干"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸辣汤",
     "name": "酸辣汤",
     "description": "口味酸辣味，采用煮的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "暖身汤",
       "汤品",
@@ -11935,13 +12569,18 @@
         "id": "cook_1",
         "instruction": "烹调（烧水，调味，加原料，勾芡，加蛋液）"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "鱼头豆腐汤",
     "name": "鱼头豆腐汤",
     "description": "口味咸鲜，采用煮的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "咸鲜",
       "暖身汤",
@@ -12023,13 +12662,18 @@
         "instruction": "装盘（香油，小葱花） 加开水蛋白质不硬化，溶于汤，冷水蛋白质硬化，不溶于汤",
         "tips": "装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干锅排骨",
     "name": "干锅排骨",
     "description": "口味香辣，采用压、炸、炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "下饭菜",
       "干锅",
@@ -12087,13 +12731,18 @@
         "instruction": "将剁好的排骨入高压锅压 10~15 分钟后取出 姜，蒜切片，青红椒切菱形片备用，锅留油将压好的排骨入油锅中炸至金黄后捞出 锅留底油，下入姜蒜炒香，加入少许的干锅酱，辣妹子酱，炒香倒入主辅料调味，翻炒均匀后淋红油，起锅装盘",
         "tips": "切片厚薄要均匀，确保成熟度一致"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干锅鱿鱼虾",
     "name": "干锅鱿鱼虾",
     "description": "口味香辣，采用炸、炒的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "下饭菜",
       "干锅",
@@ -12198,13 +12847,18 @@
         "id": "cook_5",
         "instruction": "大火翻炒均匀，淋干锅油，香油，撒芝麻，出锅装盘"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干锅牛杂",
     "name": "干锅牛杂",
     "description": "口味香辣，采用炸、炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "下饭菜",
       "干锅",
@@ -12299,13 +12953,18 @@
         "instruction": "放入小葱段，淋入红油，大火翻炒出锅",
         "tips": "切片厚薄要均匀，确保成熟度一致"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "水煮鱼片",
     "name": "水煮鱼片",
     "description": "口味麻辣，采用煮的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "下饭菜",
       "水煮系列",
@@ -12415,13 +13074,18 @@
         "instruction": "炝油（干辣段，花椒）",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；水开后下料，煮制过程中不要频繁搅动；炝油时油温要够高，才能激发出香味"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蒜蓉粉丝扇贝",
     "name": "蒜蓉粉丝扇贝",
     "description": "口味咸鲜，采用蒸的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -12485,13 +13149,18 @@
         "instruction": "摆盘，撒上少许葱花炝油即可",
         "tips": "油温控制好，中火慢炸至金黄酥脆；蒸制时保持大火，一次蒸熟避免回蒸；炝油时油温要够高，才能激发出香味"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "鱼香藕夹",
     "name": "鱼香藕夹",
     "description": "口味鱼香味（微甜，微酸），采用炸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "炸菜",
       "甜味",
@@ -12574,13 +13243,18 @@
         "id": "cook_4",
         "instruction": "炸制（五六成，分两次） 炒汁 鱼香味（葱姜蒜，鱼泡椒，陈醋， 豆瓣酱，糖水，）糖：醋 4 ：2"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "椒盐带鱼",
     "name": "椒盐带鱼",
     "description": "口味椒盐味，采用炸的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "炸菜",
@@ -12673,13 +13347,18 @@
         "instruction": "撒椒盐（在钢漏中撒）",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "芝麻焗大虾",
     "name": "芝麻焗大虾",
     "description": "口味咸鲜，采用焗的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "咸鲜",
       "海鲜",
@@ -12734,13 +13413,18 @@
         "instruction": "烹调（摆盘，撒芝士，烤制（上下火200 C 20 分钟））",
         "tips": "1.初加工彻底 2.焗制时间把控好"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "绍子蒸蛋",
     "name": "绍子蒸蛋",
     "description": "口味咸鲜，采用蒸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -12824,13 +13508,18 @@
         "instruction": "倒入盘中封保鲜膜，入蒸箱蒸 8~10 分钟，撒葱花炝油淋豉油即可",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻辣烤鱼",
     "name": "麻辣烤鱼",
     "description": "口味麻辣，采用烤箱炸的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "炸菜",
@@ -12945,13 +13634,18 @@
         "instruction": "花椒，干辣段 葱蒜，炒制料香，浇在鱼上，撒小葱，芝麻即可 成时炸花椒，干辣椒等后炸土豆，油温升高后炸鱼！炸鱼时不要搅拌~",
         "tips": "油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "农家小炒肉",
     "name": "农家小炒肉",
     "description": "口味香辣，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "快手菜",
       "简单易学",
@@ -13049,13 +13743,18 @@
         "instruction": "淋入少许蒸鱼豉油，大火翻炒出锅",
         "tips": "切片厚薄要均匀，确保成熟度一致"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "毛氏红烧肉",
     "name": "毛氏红烧肉",
     "description": "口味咸甜，采用红烧的烹饪方式。",
-    "category": "硬菜",
     "tags": [
       "甜味",
       "简单易学",
@@ -13167,13 +13866,18 @@
         "instruction": "收汁装盘，撒小葱花即可",
         "tips": "先大火烧开，再转小火慢炖更入味；装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "硬菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "外婆菜窝窝头",
     "name": "外婆菜窝窝头",
     "description": "口味咸鲜、微辣，采用蒸、炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "中等难度",
       "蒸菜",
@@ -13280,13 +13984,18 @@
         "id": "cook_4",
         "instruction": "窝窝头摆盘，即可"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蒜苔炒肉",
     "name": "蒜苔炒肉",
     "description": "口味咸鲜、微辣，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "快手菜",
       "简单易学",
@@ -13380,13 +14089,18 @@
         "instruction": "锅中留底油，下入葱姜蒜片呛锅下入蒜苔肉片调味淋欠，加明油翻均匀出锅装盘 色泽鲜艳，蒜苔碧绿，肉片嫩白，原汁原。 焯水过油必须到位，炒制时间必须短快。",
         "tips": "切丝时粗细要均匀，炒制时受热一致；码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；滑油温度控制在四成热，快速捞出保持嫩滑；焯水过油必须到位，炒制时间必须短快。"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蒜苗炒腊肉",
     "name": "蒜苗炒腊肉",
     "description": "口味咸鲜、香辣，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "快手菜",
       "简单易学",
@@ -13463,13 +14177,18 @@
         "instruction": "调味，下入蒜苗叶，大火翻炒出锅即可",
         "tips": "切片厚薄要均匀，确保成熟度一致"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "玉米烙",
     "name": "玉米烙",
     "description": "口味香甜，采用煎的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "甜味",
       "简单易学"
@@ -13523,13 +14242,18 @@
         "instruction": "主辅料拍粉，起锅烧油，油温七、八成出锅备用，下入主辅料在锅底铺平， 撒入少许水加热油至玉米烙飘起升油温，炸至酥脆捞出改刀装盘，撒朱古力即可",
         "tips": "切丁大小要适中，约1.5厘米见方为宜"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "松仁玉米",
     "name": "松仁玉米",
     "description": "口味香甜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "甜味",
       "简单易学"
@@ -13623,13 +14347,18 @@
         "instruction": "锅中加底油，烧热下入糖炒制再加入玉米粒腰豆一同翻炒。 加入少许盐，翻炒最后加黄瓜丁，勾芡淋明油出锅装盘，上面撒上炸好的松仁即可。",
         "tips": "油温控制好，中火慢炸至金黄酥脆；装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻辣鱼",
     "name": "麻辣鱼",
     "description": "口味麻辣，采用炸、炒的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "炸菜",
@@ -13744,13 +14473,18 @@
         "instruction": "炸制（六~七成，金黄酥脆） 烹调（红油，干辣段、花椒，葱姜蒜、火锅料、加主辅料，调味，装盘，撒芝麻",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香辣螺丝",
     "name": "香辣螺丝",
     "description": "口味香辣，采用烧的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "辣味"
@@ -13841,13 +14575,18 @@
         "id": "cook_3",
         "instruction": "烹调（干辣段，小米椒，葱姜蒜，火锅料，加汤汁）"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "羊杂面",
     "name": "羊杂面",
     "description": "口味咸鲜，辛香，采用烩的烹饪方式。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -13944,13 +14683,18 @@
         "instruction": "浇汁（撒蒜苗，香菜，打红油）",
         "tips": "水开后下料，煮制过程中不要频繁搅动；水开后下料，煮制过程中不要频繁搅动；芡汁要趁热浇上，才能保持菜品温度和光泽"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "牛肉面",
     "name": "牛肉面",
     "description": "经典面食，口感丰富，制作简便。",
-    "category": "面食",
     "tags": [
       "牛肉",
       "简单易学",
@@ -14032,13 +14776,18 @@
         "instruction": "g 肉蔻 60g 草寇 30g 干姜粉60g",
         "tips": "水开后下料，煮制过程中不要频繁搅动"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "菊花茄合",
     "name": "菊花茄合",
     "description": "属于青海地方菜，口味鱼香味。",
-    "category": "家常菜",
     "tags": [
       "地方菜",
       "简单易学",
@@ -14136,13 +14885,18 @@
         "instruction": "再将肉馅装入茄合中，用生粉吉士粉拍粉待用 起锅烧适量干净油，烧至四五成热下人拍粉的茄合，炸至定型，另起一锅加低油(红油）下葱姜蒜煸炒出味再加泡椒 沫豆瓣酱继续煸炒至上色出香时加鲜汤调味待用。 将油锅中的油温烧至八成热时复炸茄合至成熟定型后捞出装盘，将青红椒过油断生时摆到摆好的茄合中间做修饰，再浇上炒好的鱼香汁即可上桌。 操作关键：花刀娴熟，炸制时注意油温的掌握。鱼香味的味型掌握 适应范围：中高档宴席的大菜。可做餐厅的主打菜和特色菜。",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；拍粉要均匀薄透，炸出来才酥脆；花刀娴熟，炸制时注意油温的掌握。鱼香味的味型掌握"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "韭香黄金卷",
     "name": "韭香黄金卷",
     "description": "属于青海地方菜，口味咸鲜。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "地方菜",
@@ -14227,13 +14981,18 @@
         "id": "cook_1",
         "instruction": "，香菇青红椒改刀成二粗丝。肉丝用料酒或葱姜蒜水盐酱油码味。 锅中加底油烧至三四成热下入肉丝滑锅沥油再下入韭菜香菇青红椒丝烹制调味出锅待用。 将蛋皮外皮朝上平铺在案板上，上面均匀洒上水淀粉，将炒好的韭菜香菇肉丝等按Π 一Π 字舀到蛋皮的一边，再将其朝 一个方向卷起成蛋卷。再将蛋卷上洒上水淀粉均匀的沾上面包糠。 锅中烧干净的色拉油烧至六七成热时下入做好的蛋卷炸至表皮金黄时捞出改刀装盘即可 适用范围：中高档宴席的工艺菜"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "毛芹炒肉",
     "name": "毛芹炒肉",
     "description": "属于家常菜，口味咸鲜。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -14299,13 +15058,18 @@
         "instruction": "把肉片放上葱姜蒜（料酒），酱油，盐，水淀粉码味上浆。 锅中加适量水烧开后下入毛芹焯水，锅内放适量油，烧至三四成时下入肉片滑至断生沥油，放入葱，蒜，姜，干辣段爆出香，放入毛芹，炒制调味淋欠打明油出锅装盘。 适用范围：家常便餐 大众菜肴",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "奶脆炸鲜",
     "name": "奶脆炸鲜",
     "description": "属于融合菜，口味香甜味。",
-    "category": "家常菜",
     "tags": [
       "炸菜",
       "甜味",
@@ -14380,13 +15144,18 @@
         "instruction": "然后上面浇上蓝莓酱撒上朱古力即可。特点：色泽金黄，外脆里嫩 奶香味浓 香甜可口 适应范围：中高档菜肴",
         "tips": "油温控制好，中火慢炸至金黄酥脆；芡汁要趁热浇上，才能保持菜品温度和光泽"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香烤土豆片",
     "name": "香烤土豆片",
     "description": "属于青海地方菜味型：香辣味，口味香辣味。",
-    "category": "烧烤",
     "tags": [
       "土豆",
       "地方菜",
@@ -14477,13 +15246,18 @@
         "id": "cook_1",
         "instruction": ".5 厘米厚的片，然后清洗去除淀粉用干净的毛巾擦去水分。再均匀的拍上吉士粉待用。 锅中烧干净的色拉油加热至五六成热时下入土豆片炸制，清炸至土豆完全成熟并且色泽金黄时捞出漏油。 锅中加适量葱油做底油，加入香辣酱蒜蓉煸炒出香时加入盐味精胡椒辣面花椒面孜然粉再加入炸好的土豆片翻炒均匀后撒上芝麻出锅装盘。 适应范围：宴会菜肴 大众便餐皆可"
       }
-    ]
+    ],
+    "categories": [
+      "烧烤"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "石锅沙窝老豆腐",
     "name": "石锅沙窝老豆腐",
     "description": "属于湘菜，口味鲜辣。",
-    "category": "湘菜",
     "tags": [
       "湘菜",
       "简单易学",
@@ -14573,13 +15347,18 @@
         "id": "cook_2",
         "instruction": "先将豆腐改刀成 2 厘米厚的大片，再加卤汤放入高压锅加盖压制二十分钟冲水取出，然后用手拜成小块备用。石锅提前在煤气上烧热待用。 锅中加老油，下料头煸炒出味时加辣妹子酱炒至出色时加汤打去杂质，然后加小米辣调味加豆腐炖制片刻。 石锅低加葱油加洋葱丝，将炖好的豆腐舀入石锅中上面撒上香菜即可上桌。特点：豆腐鲜嫩 辣鲜味厚 色泽诱人适应范围：中高档菜肴 适应大众便餐可做家宴私房菜"
       }
-    ]
+    ],
+    "categories": [
+      "湘菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蚝油西兰花",
     "name": "蚝油西兰花",
     "description": "属于粤菜，口味咸鲜。",
-    "category": "粤菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -14644,13 +15423,18 @@
         "id": "cook_1",
         "instruction": "，料头花切好备用。 锅中烧水加少许盐少许明油，等水开后下入西兰花焯水断生时捞出摆入碗中再扣入平盘中。上面摆上料头花。 锅中加油加适量蚝油炒制后加鲜汤调味，调制成蚝油汁加明欠加明油浇入西兰花上面即可。"
       }
-    ]
+    ],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "胡萝_卜炒粉条",
     "name": "胡萝 卜炒粉条",
     "description": "属于家常菜，口味咸鲜味。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -14700,13 +15484,18 @@
         "id": "cook_3",
         "instruction": "锅中加底油加葱煸炒至出香时加入胡萝 卜丝翻炒加味加粉条加青红椒丝翻炒均匀后加明油出锅装盘。 适应范围：大众便餐"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "红烧羊筋",
     "name": "红烧羊筋",
     "description": "属于清真菜，口味家常味，采用烧的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "清真菜",
       "简单易学",
@@ -14791,13 +15580,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香菇扒菜心",
     "name": "香菇扒菜心",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "菌菇类"
@@ -14882,13 +15676,18 @@
         "instruction": "将蚝油汁（鲍鱼汁）浇于扒好的菜心上即可。",
         "tips": "芡汁要趁热浇上，才能保持菜品温度和光泽"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "风情烤鱼",
     "name": "风情烤鱼",
     "description": "口味麻辣味。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "烧烤",
@@ -14982,13 +15781,18 @@
         "instruction": "等汤烧开后，取除杂质，然后加辣鲜露、鲜露、干锅油、蚝油等调味，最后下入辅料，加玄麻子、香油烧开、加灯笼椒浇于备好的烤鱼、一面撒上芝麻即可。",
         "tips": "油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "羊肉糊茄",
     "name": "羊肉糊茄",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "羊肉",
@@ -15072,13 +15876,18 @@
         "id": "cook_1",
         "instruction": "参照原始制作流程进行炒制"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "柴米扣金瓜",
     "name": "柴米扣金瓜",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -15149,13 +15958,18 @@
         "instruction": "最后将碗中的黑米扣到园盘、将金瓜摆在黑米上面。 锅中适量水再加橙汁烧开勾芡、加明油浇于摆好的金瓜上面、然后摆上红绿车里子即可。",
         "tips": "芡汁要均匀淋入，边淋边轻轻搅动"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炸荔枝",
     "name": "炸荔枝",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "炸菜",
       "简单易学"
@@ -15199,13 +16013,18 @@
         "instruction": "锅中加适量干净色拉油烧至中油温时、下入拍粉的荔枝炸制、炸至外皮干脆时",
         "tips": "拍粉要均匀薄透，炸出来才酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "土豆烤丸子",
     "name": "土豆烤丸子",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "烧烤",
     "tags": [
       "土豆",
       "烧烤",
@@ -15293,13 +16112,18 @@
         "id": "cook_2",
         "instruction": "先将土豆打皮、然后放入搅拌机绞成沫、再将土豆沫放入沥干水份、再加盐、"
       }
-    ]
+    ],
+    "categories": [
+      "烧烤"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "化隆老酸汤",
     "name": "化隆老酸汤",
     "description": "经典汤品，鲜香可口，营养丰富。",
-    "category": "汤羹",
     "tags": [
       "暖身汤",
       "汤品",
@@ -15374,13 +16198,18 @@
         "id": "cook_1",
         "instruction": "参照原始制作流程进行炒制"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "缠丝大虾",
     "name": "缠丝大虾",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "简单易学",
@@ -15414,13 +16243,18 @@
         "id": "cook_1",
         "instruction": "用拍上吉士粉的粉纏裹在大虾的身体上面。"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "火爆肝尖",
     "name": "火爆肝尖",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -15502,13 +16336,18 @@
         "instruction": "锅中加适量油，烧热再下入上浆的肝尖滑油断生在加辅料一同滑油沥油备用 锅加底油，在加泡红椒，野山椒煸炒出香时，再加入葱姜蒜片，同炒出香，再加入主副料迅速翻炒两下在家味，加辣鲜露，酱油，胡椒粉，翻炒勾芡，加明油出锅装盘",
         "tips": "上浆时蛋清和淀粉比例适当，抓匀上劲"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "白灼莲花白",
     "name": "白灼莲花白",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -15591,13 +16430,18 @@
         "instruction": "锅中加适量油，烧热炝于三丝上面即可",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄瓜炒鸡蛋",
     "name": "黄瓜炒鸡蛋",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "快手菜",
       "简单易学",
@@ -15649,13 +16493,18 @@
         "id": "cook_4",
         "instruction": "锅中加葱蒜片煸炒至香 再下入黄瓜迅速翻炒再加入鸡蛋 加味 加水淀粉"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "葱扒海参",
     "name": "葱扒海参",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -15734,13 +16583,18 @@
         "id": "cook_4",
         "instruction": "晃勺，用水淀粉芡，大翻勺，整齐留入平盘内即成。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干煸土豆条",
     "name": "干煸土豆条",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "土豆",
       "干煸",
@@ -15820,13 +16674,18 @@
         "instruction": "锅中烧干净的色拉油，烧至中油温时下入土豆条炸至成熟金黄时捞出备用。",
         "tips": "油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "泡椒娃娃菜",
     "name": "泡椒娃娃菜",
     "description": "属于川菜，口味泡椒味。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "泡椒",
@@ -15905,13 +16764,18 @@
         "instruction": "将改好刀的娃娃菜，码到容器中，在把调好的汁浇到上面，汁水必须淹没， 娃娃菜。",
         "tips": "芡汁要趁热浇上，才能保持菜品温度和光泽；调汁时掌握好调料的用料，不能过辣，过酸。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "雲耳炒牛柳",
     "name": "雲耳炒牛柳",
     "description": "属于粤菜，口味咸鲜。",
-    "category": "粤菜",
     "tags": [
       "咸鲜",
       "快手菜",
@@ -16000,13 +16864,18 @@
         "instruction": "锅中加底油，放入蚝油少许炒制出香时下入雲耳，翻炒几下再放入牛柳后调味，调色，淋明芡，淋明油，出锅装盘。特点:牛柳鲜嫩， 口味咸鲜。",
         "tips": "滑油温度控制在四成热，快速捞出保持嫩滑；牛柳从选料到改刀再到码味，滑油，必须考究"
       }
-    ]
+    ],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "榨菜炒肉丝",
     "name": "榨菜炒肉丝",
     "description": "属于川菜，口味咸鲜。",
-    "category": "川菜",
     "tags": [
       "咸鲜",
       "川菜",
@@ -16081,13 +16950,18 @@
         "instruction": "锅中加适量油烧至五六成热时下入肉丝，煸炒散开，沥去部分的油，加葱，姜，蒜煸炒，再加青红椒丝翻炒，调味 再下入肉丝，淋明芡，淋明油，出锅装盘。",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；掌握一锅速成的小炒方法。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "五彩土豆泥",
     "name": "五彩土豆泥",
     "description": "属于融合菜，口味蒜香、咖喱味等。",
-    "category": "家常菜",
     "tags": [
       "土豆",
       "简单易学",
@@ -16172,13 +17046,18 @@
         "instruction": "锅中加葱油烧热，再加入辅料炒制成熟再加蒜茸炒出香味，在将土豆泥加入后调味，炒均匀后装入一定形状的容器中，扣入盘中即可。",
         "tips": "蒸制时间稍长一点。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "太爷鸡",
     "name": "太爷鸡",
     "description": "属于粤菜，口味五香，采用熏的烹饪方式。",
-    "category": "粤菜",
     "tags": [
       "五香",
       "简单易学",
@@ -16267,13 +17146,18 @@
         "instruction": "加盖大火熏至冒黄烟，取出刷香油，斩件装盘",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸；装盘要整齐美观，趁热上桌；腌制时间要够长，确保入味；熏制时注意火候，冒黄烟即可，避免熏焦"
       }
-    ]
+    ],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "夜香冬瓜盅",
     "name": "夜香冬瓜盅",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -16312,13 +17196,18 @@
         "instruction": "取出冬瓜盅内鸡骨、田鸡骨、猪骨留汤不用，花生油抹匀瓜盅外表，炒锅中火放鸡汤、味精、精盐 烧开，将上述所有生熟原料放入烧开撇去浮沫一起倒入冬瓜盅内，把夜来香花围插在盘口上即可。",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸；瓜皮雕刻图案要清晰、美观，所用原料刀工要精细，所用食材无皮、无骨纯用鸡汤调制。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炝锅鱼",
     "name": "炝锅鱼",
     "description": "口味香辣，采用炝的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "简单易学",
@@ -16353,13 +17242,18 @@
         "instruction": "锅烧油至七成热时呛锅即可。",
         "tips": "刀工均匀。"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻婆豆腐",
     "name": "麻婆豆腐",
     "description": "属于川菜，口味麻辣，采用烧的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -16458,13 +17352,18 @@
         "instruction": "烧至豆腐入味汤汁适度时勾芡（三道芡）每次勾芡（粉少水多）勾三次后， 使汁水适量均匀包裹在豆腐上 加入蒜苗翻动 使蒜苗成熟后加明油（红油）出锅装盘 最后撒少量花椒粉即可。",
         "tips": "芡汁要均匀淋入，边淋边轻轻搅动"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "清炒油麦菜",
     "name": "清炒油麦菜",
     "description": "属于家常，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "家常菜",
       "快手菜",
@@ -16523,13 +17422,18 @@
         "instruction": "将油麦菜整齐摆放在卧盘上面撒三丝，浇上汁（东古 生抽",
         "tips": "芡汁要趁热浇上，才能保持菜品温度和光泽"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "葱爆牛肉",
     "name": "葱爆牛肉",
     "description": "属于地方菜，口味葱香味，采用爆炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "牛肉",
       "简单易学",
@@ -16592,13 +17496,18 @@
         "instruction": "锅中加适量油，加入姜蒜片煸香，再加入牛肉葱节，加味 加胡椒粉 少量酱油 翻匀出锅装盘。",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "锅塌豆腐鲁菜",
     "name": "锅塌豆腐鲁菜",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "豆制品"
@@ -16689,13 +17598,18 @@
         "id": "cook_4",
         "instruction": "将豆腐用清炒的方法烹出围边上面撒点葱花，(枸杞)"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "山药木耳",
     "name": "山药木耳",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -16729,13 +17643,18 @@
         "id": "cook_4",
         "instruction": "锅中加葱油再下入焯好水的主副料翻炒，调味最后勾明芡淋明油装盘即可。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "辣子鸡丁",
     "name": "辣子鸡丁",
     "description": "属于川菜，口味麻辣味。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -16824,13 +17743,18 @@
         "instruction": "编炒至干香入味时滴几滴醋烹制出锅装盘。",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "葱油佛手丝",
     "name": "葱油佛手丝",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -16904,13 +17828,18 @@
         "id": "cook_4",
         "instruction": "注意佛手丝不能久放，拌好马上上桌"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "发菜三丝羹",
     "name": "发菜三丝羹",
     "description": "经典汤品，鲜香可口，营养丰富。",
-    "category": "汤羹",
     "tags": [
       "暖身汤",
       "汤品",
@@ -16982,13 +17911,18 @@
         "id": "cook_3",
         "instruction": "最后在汤上面撒上泡好的发菜丝，淋上香油即成。"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "家常土豆片",
     "name": "家常土豆片",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "土豆",
       "简单易学"
@@ -17065,13 +17999,18 @@
         "id": "cook_2",
         "instruction": "锅中加底油，下入葱蒜片炒出香味，再加入焯好的土豆片翻炒再加入少许酱油，继续翻炒下入少许汤加味加辅料烧至成熟，烧制后收汁装盘"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "姜汁菠菜",
     "name": "姜汁菠菜",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "蔬菜类"
@@ -17117,13 +18056,18 @@
         "instruction": "用姜汁将菠菜装在汤盆中浇汁拌匀即 可，撒上青红椒粒",
         "tips": "芡汁要趁热浇上，才能保持菜品温度和光泽"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻花鸡胗",
     "name": "麻花鸡胗",
     "description": "属于川菜，口味香辣味。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -17222,13 +18166,18 @@
         "instruction": "将主辅料拌在一起 加入调好的汁拌匀装盘，上面撒些小葱花，芝麻。",
         "tips": "装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "柠檬藕片",
     "name": "柠檬藕片",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "莲藕"
@@ -17295,13 +18244,18 @@
         "instruction": "小时即可食用[酸中带甜。",
         "tips": "浸泡时换水保持清洁，泡发后沥干"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄豆菜心",
     "name": "黄豆菜心",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -17370,13 +18324,18 @@
         "id": "cook_4",
         "instruction": "将茄汁黄豆沥去汁水，装到菜心的上面即可。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄焖甲鱼",
     "name": "黄焖甲鱼",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "宴席菜",
       "简单易学",
@@ -17404,13 +18363,18 @@
         "id": "cook_1",
         "instruction": "1：将甲鱼鸡分别在宰杀洗净，一起放入锅内，加水 250 克加葱姜八角旺火烧沸后用小火煨熟捞出拆肉剔骨将肉切成两厘米宽五厘米长的条。 2：炒锅烧热下花椒油葱姜丝炒肉炒至金黄色，放入酱油盐糖少许味精，然后把甲鱼和鸡肉一起放入锅内焖烧六七分钟，淋上麻油少许即成。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "德州扒鸡",
     "name": "德州扒鸡",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -17438,13 +18402,18 @@
         "instruction": "，饴糖加清水 50 克调均匀，均匀地抹在鸡身上，炒锅中加油烧至八成热时将鸡放入。炸至呈金黄色时捞出沥油。 3，锅上旺火加清水放入炸好的鸡和五香料包生姜盐口蘑酱油烧沸后撇去浮沫， 移微火上，焖制半小时至鸡酥烂即可，捞鸡时保证其完整不破。 克的鸡过大的不适宜烹制，时油炸不要过老，加调味入锅闷烧时旺火烧沸后即用微火焖酥，这样可使鸡更加入味，忌用旺火急煮",
         "tips": "选料时选 1000 到 1250"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "红烧牛肉",
     "name": "红烧牛肉",
     "description": "属于清真菜，口味酱香味。",
-    "category": "清真菜",
     "tags": [
       "清真菜",
       "牛肉",
@@ -17485,13 +18454,18 @@
         "id": "cook_1",
         "instruction": "参照原始制作流程进行炒制"
       }
-    ]
+    ],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炸丸子",
     "name": "炸丸子",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "炸菜",
       "简单易学"
@@ -17549,13 +18523,18 @@
         "instruction": "先将肉沫加一定水份，并不断朝一个方向搅动，使其吃水一般要打三次水份。",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "豆腐结烧大土鸡",
     "name": "豆腐结烧大土鸡",
     "description": "属于地方菜，口味咸鲜。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -17631,13 +18610,18 @@
         "instruction": "加盖放入小火焖制鸡肉酥烂再收汁装盘即可。",
         "tips": "装盘要整齐美观，趁热上桌"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "糖醋鱼",
     "name": "糖醋鱼",
     "description": "属于鲁菜，口味酸甜，采用炸、熘的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "炸菜",
@@ -17719,13 +18703,18 @@
         "instruction": "勾薄芡浇在鱼身上，撒上葱花即可",
         "tips": "油温控制好，中火慢炸至金黄酥脆；芡汁要趁热浇上，才能保持菜品温度和光泽；鱼身划刀便于入味和炸透；糖醋汁中糖和醋的比例约为1:1，可根据口味调整"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炸茄盒",
     "name": "炸茄盒",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "炸菜",
       "简单易学",
@@ -17788,13 +18777,18 @@
         "instruction": "：将肉沫装入连刀片的中间，装适量，装均匀",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；油温控制好，中火慢炸至金黄酥脆；油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸菜鱼头汤",
     "name": "酸菜鱼头汤",
     "description": "属于川菜。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "暖身汤",
@@ -17905,13 +18899,18 @@
         "id": "cook_4",
         "instruction": "调味后加入鱼头，辅料，炖至入味后，出过装汤碗中。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "金陵盐水鸭",
     "name": "金陵盐水鸭",
     "description": "属于苏菜，口味咸鲜。",
-    "category": "苏菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -17981,13 +18980,18 @@
         "instruction": "炒锅加清水 200 克，旺火烧开放入葱 姜蒜各十克，八角5 只，香醋，将鸭放 入焖制 20 分钟，待四周起小泡时揭开盖，提起鸭，将鸭腹中的汤汁沥出，接着再 加鸭子放入（汤中）使腹中灌满汤汁， 如反复三四次，再将鸭子放入锅中盖上锅盖，焖制 20 分钟取出，冷却既成。",
         "tips": "选料到位，腌制到位， 口味到位。"
       }
-    ]
+    ],
+    "categories": [
+      "苏菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "三套鸭",
     "name": "三套鸭",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "鸭类"
@@ -18010,13 +19014,18 @@
         "instruction": "：砂锅中放入锅垫 再放入鸭子 野鸭『鸽子』，香料包 葱段 精盐 酱油 绍酒",
         "tips": "鸭子 鸽子必须清洗干净不然有异味，炸时小火煨酥，卤汁要浓而宽"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "神仙鸭",
     "name": "神仙鸭",
     "description": "属于孔府菜。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "鸭类"
@@ -18033,13 +19042,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "小葱煎土鸡蛋",
     "name": "小葱煎土鸡蛋",
     "description": "属于地方菜，口味咸鲜味。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -18100,13 +19114,18 @@
         "instruction": "：将鸡蛋打入碗中加盐 糖 小葱水淀粉打匀， 3：锅中加适量油 ，将打好的鸡蛋倒入锅中煎制，煎至成熟即可出锅！",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "虎皮辣子",
     "name": "虎皮辣子",
     "description": "属于地方菜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -18178,13 +19197,18 @@
         "id": "cook_1",
         "instruction": "，小的一刀为二，大的改成三段， 2/锅中加适量油 烧制中油温时 下人改刀的辣椒炸制 至辣椒外皮出现虎皮纹时捞出沥油 3/把沥干油的辣椒倒入锅中煸炒至虎皮纹明显时加入蒜沫 老干妈 继续煸炒出"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炝炒豆芽",
     "name": "炝炒豆芽",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "快手菜",
       "简单易学",
@@ -18253,13 +19277,18 @@
         "id": "cook_1",
         "instruction": "豆芽 1/锅中烧水，烧开加明油，放入豆芽焯水 2/锅中加底油放干辣段 花椒 炝锅在下入青红椒丝 焯好的豆芽翻炒再加味，可以适量加明芡 淋明油出锅装盘。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "杂粮焖土鸡",
     "name": "杂粮焖土鸡",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "鸡类"
@@ -18355,13 +19384,18 @@
         "instruction": "将焯好的土鸡玉米下入汤汁中慢焖制一小时最后倒入炒锅中收汁上明芡淋红油出锅装盘即可。",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "红烧茄子",
     "name": "红烧茄子",
     "description": "属于家常，口味咸鲜微辣。",
-    "category": "硬菜",
     "tags": [
       "家常菜",
       "简单易学",
@@ -18438,13 +19472,18 @@
         "instruction": "，取一个碗加酱油，盐，味精调成汁。 4，锅中烧油至七成热放入茄子炸城金黄色捞出。 ，锅留底油，放入肉末，豆瓣酱炒出红油，然后放入蒜泥炒香，倒入炸好的茄子翻炒，加入调好的汁，加入青红椒块，葱，中火翻炒至入味，出锅时淋入明油即可。",
         "tips": "烹调时间不宜过长。"
       }
-    ]
+    ],
+    "categories": [
+      "硬菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "韭菜炒凉粉",
     "name": "韭菜炒凉粉",
     "description": "属于地方菜，口味咸鲜味(香鲜味)，采用炒.煎的烹饪方式。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "快手菜",
@@ -18493,13 +19532,18 @@
         "instruction": "加入凉粉调味翻锅，最后烹少许香醋，出锅装盘。 色泽酱亿.软嫩鲜香。 煎制时注意火候，不能煎焦，炒制时不加汤，小火炒制入味。",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感；煎制时注意火候，不能煎焦，炒制时不加汤，小火炒制入味。"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻辣鱼丁",
     "name": "麻辣鱼丁",
     "description": "属于川味型:麻辣，口味麻辣。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "海鲜",
@@ -18596,13 +19640,18 @@
         "instruction": "一:先将草鱼片出鱼肉改刀成丁，再码味上浆，玉米粒拍生粉，吉士粉 二:锅中烧干净油烧至六七成时，分别下入鱼丁，玉米粒，馒头丁，炸制外脆里嫩时捞出沥油， 三:锅中加底油下干辣段，花椒粒，姜，葱，蒜煸炒出香，加下入主副料调味翻炒出锅。",
         "tips": "炒制迅速快接。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "泡椒鱿鱼卷",
     "name": "泡椒鱿鱼卷",
     "description": "属于川，口味泡椒。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "泡椒",
@@ -18678,13 +19727,18 @@
         "instruction": "参照原始制作流程进行炒制",
         "tips": "一:改花刀时掌握刀痕的深度。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "菊花鱼",
     "name": "菊花鱼",
     "description": "属于川，口味糖醋。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "海鲜",
@@ -18769,13 +19823,18 @@
         "id": "cook_1",
         "instruction": "，片去鱼骨，将鱼肉上剞上菊花花刀，再用盐，味精，葱，姜， 蒜水腌制片刻。 二:将鱼片去出沥干水分，用生粉，吉士粉拌匀拍上干粉。 三:锅中烧干净色拉油，烧至六七成时抖去多余的粉面，下锅炸制，离火清炸。 四:锅中加适量的油下入葱，姜，蒜炒香下入番茄炒上色加水烧开，打去杂质， 用盐，糖，醋调味上芡淋明油待用。 五:捞出鱼片，将油至七八成复炸鱼片至酥脆，捞出摆盘，成菊花形。 六:浇上糖醋汁即可上菜。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "糖醋脆皮鱼",
     "name": "糖醋脆皮鱼",
     "description": "属于鲁味型:糖醋，口味糖醋，采用炸主料:鲤鱼的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "炸菜",
@@ -18837,13 +19896,18 @@
         "instruction": "锅中加底油，下适量白糖炒成糖汁，在在用糖，醋调成糖醋汁，烧至收浓交到炸好的鱼身上即可。",
         "tips": "油温控制好，中火慢炸至金黄酥脆；炸制一定要炸干调汁收汁要浓。"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "牡丹虾仁",
     "name": "牡丹虾仁",
     "description": "属于泸，口味咸鲜，采用蒸的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -18949,13 +20013,18 @@
         "instruction": "虾仁上浆前必须吸干水份，才能挂的上浆，否则滑油时虾仁与浆粉便会分开影响虾仁嫩度及色泽美观。",
         "tips": "上浆时蛋清和淀粉比例适当，抓匀上劲；1.必须用鲜活大河虾。"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "水晶明虾片",
     "name": "水晶明虾片",
     "description": "属于粤菜，口味清鲜，采用汆的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "简单易学",
@@ -19030,13 +20099,18 @@
         "instruction": "锅中加清汤烧开，调味后勾薄芡，浇在虾片上，点缀枸杞",
         "tips": "虾片要薄且均匀，汆烫时间不宜过长；水微开时下虾片，保持虾片完整不碎"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香辣鱿鱼须",
     "name": "香辣鱿鱼须",
     "description": "属于川，口味香辣，采用干炒的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "海鲜",
@@ -19093,13 +20167,18 @@
         "instruction": "，姜，蒜水码味再沥干水份，用生粉，吉士粉拍粉。 (2) 锅中烧油至七八成热时,下入鱿鱼须炸制定型成熟，捞出沥油。 (3) 锅中加底油(红油) 下入香辣酱，蚝油炒香，加干辣段，灯笼椒，花椒粒，葱，姜,蒜煸炒出味，再加辅料，炒制成熟下入鱿鱼须，调味炒制最后加干锅油，辣鲜露，香油，芝麻等翻炒均匀出锅装盘。 色泽红亮 香辣鲜香鱿鱼酥嫩关健: 炸制定型上色，炒制迅调味及时。",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "金汤滑鱼片",
     "name": "金汤滑鱼片",
     "description": "属于川菜，口味酸辣烹法:煮，滑，采用煮、滑的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "暖身汤",
@@ -19208,13 +20287,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香辣麻花虾",
     "name": "香辣麻花虾",
     "description": "属于川菜，口味香辣，采用爆炒的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "海鲜",
@@ -19315,13 +20399,18 @@
         "id": "cook_1",
         "instruction": "，去除虾线，然后拍吉士粉待用。 锅中烧适量油烧至七八成热时下入拍了吉士粉的虾炸至上色定型，再将辅料放入滑油沥去油份。 (3) 锅中加红油下入柿子椒，花椒粒，煸炒出味，再加葱，姜，蒜煸炒，再加香 辣酱,辣妹子，炒香,下入主辅料翻炒调味。 (4) 最后撒上芝麻翻匀出锅装盘。特点:色泽红润油亮 口感麻辣鲜香。 炒至时爆炒调味出锅宜迅速手法要快。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "鸡豆花",
     "name": "鸡豆花",
     "description": "属于川菜，口味咸鲜，采用煮的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "咸鲜",
       "川菜",
@@ -19396,13 +20485,18 @@
         "id": "cook_1",
         "instruction": "，鸡脯肉用刀背剁成茸泥，加盐等调料，加少许水淀粉调成糊状。 (2) 锅中烧开水到入鸡茸糊，用手勺推动，使之成熟上浮，到出装入汤碗中。 锅中加鲜汤调味，下入菜心烧熟后冲入汤碗中的鸡豆花上面，形似豆花，上面再洒上火腿沫既可。 鸡茸用刀背砸制，去筋皮，先焯后冲，做成豆花。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "糖醋鸡块",
     "name": "糖醋鸡块",
     "description": "属于川菜，口味糖醋。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -19457,13 +20551,18 @@
         "instruction": "糖醋汁调制到位。",
         "tips": "油温控制好，中火慢炸至金黄酥脆；1.腌制必须入味。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香酥鸡",
     "name": "香酥鸡",
     "description": "属于地方菜，口味卤味(五香味)，采用卤、炸的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "五香",
       "卤味",
@@ -19520,13 +20619,18 @@
         "instruction": ", 先将鲜鸡清洗干净，再用冷水焯制备用。 二,用鲜汤加香料，加酱油，糖色，橙黄适量调制,或卤汤。 在调味放入鸡卤制烂时捞出。 三，锅中烧油至高油温时，下入卤好的鸡，炸制上色，外脆里嫩时,捞出改刀，摆上盘，撒椒盐上桌。 色泽诱人，外脆里嫩， 口味鲜香。 卤制时一定要烂才行，否则肉质太老，达不到外酥里嫩的效果。",
         "tips": "卤制时一定要烂才行，否则肉质太老，达不到外酥里嫩的效果。"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "鸡柳",
     "name": "鸡柳",
     "description": "属于川菜，口味咸鲜，采用炒的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "咸鲜",
       "川菜",
@@ -19602,13 +20706,18 @@
         "instruction": "参照原始制作流程进行炒制",
         "tips": "肉片必须泡水，码味上浆必须到位。烹调时间要短， 以防肉质变老。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "椒麻鸡丝",
     "name": "椒麻鸡丝",
     "description": "属于川菜，口味椒麻味主料，鸡脯肉。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "椒麻",
@@ -19683,13 +20792,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "山药芹兰",
     "name": "山药芹兰",
     "description": "属于味型:烹法:，口味烹法:，采用主料: 山药的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -19741,13 +20855,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "油淋洋白菜",
     "name": "油淋洋白菜",
     "description": "属于川菜，口味豉油味，采用煮的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学"
@@ -19810,13 +20929,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "水晶白菜卷",
     "name": "水晶白菜卷",
     "description": "属于浙，口味咸鲜，采用蒸的烹饪方式。",
-    "category": "浙菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -19917,13 +21041,18 @@
         "instruction": "白菜洗尽选用叶子完整切下备用根部留作它用。 2:胡萝 卜切成粒，放入肉馅中加葱姜蒜水加味调成肉馅 3:锅中烧水到开时，下白菜焯水捞出沥水。 4:将焯好的白菜铺到案子装上肉馅卷起 5:把白菜卷放到盘中蒸制 15 至20 分钟拿出放上蒸鱼豉油撒上青红椒丝呛葱油既成。 色泽鲜明， 口味纯正。 卷制必须严实，掌握蒸制时间。",
         "tips": "卷制必须严实，掌握蒸制时间。"
       }
-    ]
+    ],
+    "categories": [
+      "浙菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "鸡汁草原肚",
     "name": "鸡汁草原肚",
     "description": "口味椒麻味，采用煮的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "椒麻",
       "简单易学",
@@ -20039,13 +21168,18 @@
         "id": "cook_5",
         "instruction": "锅中烧适量油至中油温，呛到椒麻汁上面即成。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "西芹炝炒腐竹",
     "name": "西芹炝炒腐竹",
     "description": "属于川，口味咸鲜。",
-    "category": "川菜",
     "tags": [
       "咸鲜",
       "川菜",
@@ -20104,13 +21238,18 @@
         "instruction": "西芹焯至七八成即可。",
         "tips": "1.腐竹必须泡发到位。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干煸苦瓜",
     "name": "干煸苦瓜",
     "description": "属于川，口味麻辣。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "干煸",
@@ -20149,13 +21288,18 @@
         "instruction": "锅中加底油，下入干辣段，花椒粒，豆豉煸至出味，下入苦瓜调味，再翻锅均匀后, 出锅装盘即可。 麻辣浓郁,味苦咸鲜。 烹制时间不宜过长。",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；烹制时间不宜过长。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "怪味花生米",
     "name": "怪味花生米",
     "description": "属于川菜，口味怪味（甜咸麻辣），采用炸的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "炸菜",
@@ -20244,13 +21388,18 @@
         "instruction": "将怪味汁浇在花生米上，撒上白芝麻和干辣椒段拌匀即可",
         "tips": "浸泡时换水保持清洁，泡发后沥干；油温控制好，中火慢炸至金黄酥脆；芡汁要趁热浇上，才能保持菜品温度和光泽；花生米要冷油下锅，小火慢炸才能均匀酥脆；怪味汁要充分搅匀，确保各种味道融合"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "毛芹炒香干",
     "name": "毛芹炒香干",
     "description": "口味咸鲜。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "快手菜",
@@ -20303,13 +21452,18 @@
         "instruction": "锅中加底油，下入干辣段，煸炒出香时下入主辅料一同翻炒调味，淋少许芡粉，加加明油出锅装盘。 色泽鲜艳， 口味咸鲜， 口感嫩脆，黄绿相间。 焯水分主次，烹制需迅速。",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感；焯水分主次，烹制需迅速。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "宫保杏鲍菇",
     "name": "宫保杏鲍菇",
     "description": "属于川，口味糊辣。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -20348,13 +21502,18 @@
         "instruction": "锅中加底油，下入干辣段，花椒粒煸炒至上色出味时，下入葱姜蒜炒至出味下入杏鲍菇，调味上芡淋明油，加花生米出锅装盘。 色泽红润, 口味糊辣，是上好的下酒菜。关键: 糊辣味要确定。",
         "tips": "油温控制好，中火慢炸至金黄酥脆；糊辣味要确定。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炸藕饼",
     "name": "炸藕饼",
     "description": "属于家常菜，口味椒盐，采用炸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "家常菜",
       "炸菜",
@@ -20410,13 +21569,18 @@
         "instruction": ".先将莲藕打皮洗净，在改刀成夹刀片，肉沫调味活成肉馅待用。 二.将肉馅装入藕夹中，再用鸡蛋.生粉.吉士粉等调成全蛋糊待用。 三.锅中烧干净油至中油温时，将藕夹参上全蛋糊，下入油锅中炸制，至表面酥脆色泽金黄时，捞出摆盘即可。 色泽金黄，诱人食欲， 口感外脆里嫩。关键: 炸制时注意，油温的控制。",
         "tips": "炸制时注意，油温的控制。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "奶汤如意卷",
     "name": "奶汤如意卷",
     "description": "属于川菜，口味咸鲜。",
-    "category": "川菜",
     "tags": [
       "咸鲜",
       "川菜",
@@ -20467,13 +21631,18 @@
         "instruction": "锅中加汤调味上薄欠加三花淡奶淋明油浇到摆好的蛋卷上面。 色泽亮丽口味咸鲜形状美观。 三花淡奶出锅时在放 不能放入过早。",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；三花淡奶出锅时在放 不能放入过早。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "糟香牛肉",
     "name": "糟香牛肉",
     "description": "属于川，口味香糟，采用烧的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "牛肉",
@@ -20575,13 +21744,18 @@
         "instruction": "将汤汁收汁上芡淋在牛肉上面即可。特点: 色泽红亮， 糟香浓郁。关键: 牛肉必须卤至肥烂。",
         "tips": "牛肉必须卤至肥烂。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "紫薯山药糕",
     "name": "紫薯山药糕",
     "description": "属于融合菜，口味果香味烹法:蒸，采用蒸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "蒸菜",
@@ -20636,13 +21810,18 @@
         "instruction": "，上笼蒸制熟炸。 二:分别放到碗中捣成泥加糖搅拌均匀。 三:用横具摆盘浇上果酱即可，可用朱古力点缀修饰。 色泽鲜明，香甜可口。 蒸至时一定要熟烂。",
         "tips": "蒸至时一定要熟烂。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "金钱发菜",
     "name": "金钱发菜",
     "description": "属于西北菜，口味咸鲜，采用蒸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -20725,13 +21904,18 @@
         "instruction": "勾薄芡浇在上面，淋香油即可",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸；蒸制时保持大火，一次蒸熟避免回蒸；芡汁要趁热浇上，才能保持菜品温度和光泽；发菜要充分泡发，洗净沙子；造型时注意大小均匀，蒸制时间不宜过长"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麦仁粒粒香",
     "name": "麦仁粒粒香",
     "description": "属于地方菜，口味咸鲜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学"
@@ -20814,13 +21998,18 @@
         "id": "cook_1",
         "instruction": ",沥去水分上笼蒸制 20 分钟取出备用。 2:锅中烧开水下入麦仁焯水。 3:锅中烧适量油四五成熟时下入肉丁滑油至熟出锅沥油。 4:锅中加低油，下入青红椒粒，麦仁翻炒再调味，再加肉丁上薄芡放香菜节翻炒均匀装盘。特点: 咸鲆香糯，香菜味突出关键:。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "手撕羊排",
     "name": "手撕羊排",
     "description": "属于清真菜，口味香辣味(孜然味)。",
-    "category": "清真菜",
     "tags": [
       "清真菜",
       "简单易学",
@@ -20910,13 +22099,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "荷包里脊",
     "name": "荷包里脊",
     "description": "属于京菜，口味咸鲜味。",
-    "category": "京菜",
     "tags": [
       "京菜",
       "咸鲜",
@@ -20965,13 +22159,18 @@
         "instruction": "将油菜叶切成细丝。 炒锅上火加花生油。 至四成热时。 放入油菜丝炸成菜松。 在盘里撒上一圈。再将荷包用温油炸熟。放在盘中即可。 色泽金黄。形似荷包。皮酥里嫩。味道鲜香。 荷包用油炸熟。",
         "tips": "荷包用油炸熟。"
       }
-    ]
+    ],
+    "categories": [
+      "京菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "羊肉杂粮皇",
     "name": "羊肉杂粮皇",
     "description": "属于地方菜，口味香辣。",
-    "category": "辣味菜",
     "tags": [
       "简单易学",
       "羊肉",
@@ -21065,13 +22264,18 @@
         "instruction": "锅中加底油，下香辣酱，辣妹子，蚝油炒香，在下入主辅料翻炒调味，淋芡出锅装入小碗中放到圆盘中间，四周摆上杂粮即可上桌。 风味独特形态美观关键: 滑油至八成熟即可炒制，炒制时间不能太长。",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸；滑油至八成熟即可炒制，炒制时间不能太长。"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "水煮牛肉",
     "name": "水煮牛肉",
     "description": "口味麻辣。",
-    "category": "辣味菜",
     "tags": [
       "下饭菜",
       "水煮系列",
@@ -21186,13 +22390,18 @@
         "instruction": "上面撒上蒜末，花椒粉，辣椒面，芝麻炝油即可。 麻辣诱人，肉质嫩。 麻味正，肉片嫩。",
         "tips": "水开后下料，煮制过程中不要频繁搅动；上浆时蛋清和淀粉比例适当，抓匀上劲；炝油时油温要够高，才能激发出香味；麻味正，肉片嫩。"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸菜鱼",
     "name": "酸菜鱼",
     "description": "属于川，口味泡椒。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "泡椒",
@@ -21283,13 +22492,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "醋椒鱼",
     "name": "醋椒鱼",
     "description": "属于鲁菜，口味酸辣，采用煮的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "简单易学",
@@ -21374,13 +22588,18 @@
         "instruction": "煮开后勾薄芡，浇在鱼身上，淋香油，撒香菜",
         "tips": "水开后下料，煮制过程中不要频繁搅动；水开后下料，煮制过程中不要频繁搅动；胡椒粉和醋的量要大，这是醋椒鱼的灵魂；煮鱼时用中火，避免大火把鱼煮散"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "红烧瓦块鱼",
     "name": "红烧瓦块鱼",
     "description": "属于川，口味咸鲜。",
-    "category": "川菜",
     "tags": [
       "咸鲜",
       "川菜",
@@ -21458,13 +22677,18 @@
         "instruction": "，再用料酒，盐码味，再用水淀粉上浆(或拍干粉)待用。 二:锅中烧油至高油温时，下入鱼块炸制定型上色，捞出沥油。 三:锅中加底油下入葱，姜，蒜煸出香味，下入鲜汤调味，加糖色，酱油，下入鱼块烧制入味，最后用水淀粉上芡淋明油出锅装盘。 色泽红润油亮，鲜嫩入味。 1:腌制入味。 2:炸制高油温。",
         "tips": "1:腌制入味。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "土豆烤丸子_2",
     "name": "土豆烤丸子",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "烧烤",
     "tags": [
       "土豆",
       "烧烤",
@@ -21501,13 +22725,18 @@
         "instruction": "锅中加底油，下入蒜末，辣面，花椒粉 炒香，加味，然后下入炸好的土豆丸子翻均匀，装盘即可。",
         "tips": "油温控制好，中火慢炸至金黄酥脆"
       }
-    ]
+    ],
+    "categories": [
+      "烧烤"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "豆瓣鲜鱼",
     "name": "豆瓣鲜鱼",
     "description": "属于川，口味鱼香味，采用炸的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "炸菜",
@@ -21547,13 +22776,18 @@
         "id": "cook_1",
         "instruction": "，两面剞上牧丹花刀，放在盆里，放人料酱油，胡椒粉，葱段姜蒜片码味。 ，炸锅上火放入宽油，烧至六成热时将鱼投入作至微黄时捞出炸用，3.炒锅上火放人底油，下入豆瓣酱火南香炒红下入葱姜蒜炮出香味后下入鲜汤， 再放入其它调味品将鱼投入锅内用慢火烧至入味将鱼移至盘内鱼上，再放上香菜即可。 ，收汁时不要太清要少稠为)准"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "醋熘菜瓜",
     "name": "醋熘菜瓜",
     "description": "属于家常菜，口味陈醋味，采用熘的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "家常菜",
       "简单易学"
@@ -21601,13 +22835,18 @@
         "instruction": "锅中加底油下入焯水的菜瓜，调味加芡淋明油翻炒均匀出锅装盘即可",
         "tips": "勾芡时明芡，不能太多"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "韭菜炒豆芽",
     "name": "韭菜炒豆芽",
     "description": "属于家常菜，口味咸鲜味，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -21684,13 +22923,18 @@
         "instruction": "，青椒切丝 ，韭菜切成段备用 2:锅中加底油，加干辣段少许炒出味，下入豆芽炝炒迅速翻炒，再加盐 味精 鸡精 糖等调味继续翻炒至豆芽八成熟时下入青椒丝 韭菜段翻炒成熟均匀加入醋出锅装盘",
         "tips": "切丝时粗细要均匀，炒制时受热一致；炝炒时一定是火力均匀，翻锅迅速"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香菇菜心",
     "name": "香菇菜心",
     "description": "属于粤，口味咸鲜味，采用扒的烹饪方式。",
-    "category": "粤菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -21745,13 +22989,18 @@
         "instruction": "锅中烧水至开时加明油，下入香菇和菜心焯水，出锅沥干",
         "tips": "焯水必须开水焯，摆盘形状要美观大方，浇汁要浇到上面，不宜过多"
       }
-    ]
+    ],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干烧鲫鱼",
     "name": "干烧鲫鱼",
     "description": "属于川，口味酱香，采用干烧的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "海鲜",
@@ -21788,13 +23037,18 @@
         "instruction": "，锅中烧油至高油温时，下入鲫鱼进行制制，炸至表面发干上色时捞出沥油 3 锅中加底油，下入葱姜蒜，煸炒, 出香加香辣酱，老干妈，蚝油炒制片刻，再加入高汤加鸡汁等调味， 4， 打专杂质后，下入作好的鲫鱼进行烧制得其物汁收干时，淋薄芡，上明油，出锅装盘。",
         "tips": "1 、作制时，必须炸干 2 、烧至时味淡一点，最后要收汁淋芡"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "怪味鸡丁",
     "name": "怪味鸡丁",
     "description": "属于川菜，口味怪味，采用炒的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "怪味",
@@ -21888,13 +23142,18 @@
         "instruction": "锅中加底油（红油）下入花椒粒、葱、姜、蒜、煸出香味下入葱节、鸡丁、翻炒均匀，最后倒入汁水翻匀加香油、出锅装盘。",
         "tips": "过油时控制油温，炸至金黄酥脆捞出；调制怪味汁时，注意各种调味品，滋味的层次，用量的多少。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蚕丝如梦",
     "name": "蚕丝如梦",
     "description": "属于宫廷，口味香甜 烹法 :炸。",
-    "category": "家常菜",
     "tags": [
       "甜味",
       "简单易学"
@@ -21943,13 +23202,18 @@
         "instruction": "，在用手做成蚕形的坯子，先沾上糖水在再上面均匀粘上威化纸丝 三锅中烧干净色拉油，烧至五成热，炸制使威化纸变脆 四装盘即可",
         "tips": "油温控制好，中火慢炸至金黄酥脆；紫薯一定蒸热烂炸制时在五成油温中"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "松仁鱼米",
     "name": "松仁鱼米",
     "description": "属于沪，口味咸鲜，采用原料:鳜鱼（或青鱼）净油 300的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -21984,13 +23248,18 @@
         "instruction": "，精盐，味精和少量胡椒粉。 二炒锅上旺火下油烧至四成热，下松子炒至断生， 色呈金黄时到出沥油 三炒锅上旺火 下猪油烧至四成热，下入鱼米用筷子划散倒入辣椒粒至油六成热鱼米粉烹发时到出 四炒锅留油，倒入松子玉米和辣椒粒稍炒加味精，盐， 白糖和少量鸡汤，开锅后用少量湿淀粉勾芡，淋麻油，出锅装盘。",
         "tips": "要用新鲜鱼，要吃准火候，调味要准"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "青椒肚片",
     "name": "青椒肚片",
     "description": "属于清真菜，口味咸鲜，采用炒 主料：牛肚的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "咸鲜",
       "清真菜",
@@ -22067,13 +23336,18 @@
         "id": "cook_4",
         "instruction": "锅中加底油下入葱姜蒜片煸出香味，下入青椒肚片，一同 翻炒调味，出锅装盘。 特点： 色泽油亮 口味鲜嫩"
       }
-    ]
+    ],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "红烧肚片",
     "name": "红烧肚片",
     "description": "属于清真菜，口味酱香 烹法：红烧，采用红烧的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "清真菜",
       "简单易学",
@@ -22172,13 +23446,18 @@
         "instruction": "锅中加底油下入葱姜蒜炝锅炒香下入豆瓣酱炒制出架时加入鲜汤调味捞去杂质，放入肚片和辅料炒制入味加十三香匀芡淋红油出锅装盘。",
         "tips": "过油时控制油温，炸至金黄酥脆捞出；牛肚必须涨发透，否则口感变差。"
       }
-    ]
+    ],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄焖甲鱼_2",
     "name": "黄焖甲鱼",
     "description": "属于鲁菜，口味咸鲜 烹法 :炒。",
-    "category": "鲁菜",
     "tags": [
       "咸鲜",
       "宴席菜",
@@ -22213,13 +23492,18 @@
         "instruction": "厘米宽5 厘米长的条. 二，炒锅烧热，下花椒油，姜葱丝炒呈黄色，放入酱油，盐，原汤(煮甲鱼和鸡的汤丿绍酒，味精，然后把甲鱼肉和鸡肉一起放入锅中焖烧的六七分钟，淋上麻油即可。",
         "tips": "甲鱼的黑衣， 白衣，血筋，要去除干净，重用文火煨煮，卤汁要浓"
       }
-    ]
+    ],
+    "categories": [
+      "鲁菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "白菜炒粉条",
     "name": "白菜炒粉条",
     "description": "属于家常菜，口味酱香。",
-    "category": "面食",
     "tags": [
       "家常菜",
       "快手菜",
@@ -22307,13 +23591,18 @@
         "instruction": "，粉条用凉水涨发，改刀焯水回软备用 三，锅中加底油下入干辣椒（豆瓣酱）葱蒜煸炒出香改中火，下入白菜丝翻炒成熟下入酱油调味最后下入粉条翻匀加红油少许醋十三香翻匀出锅装盘",
         "tips": "炒制时注意出水后加粉条收汁合适再出锅装盘"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "醋溜鸡块",
     "name": "醋溜鸡块",
     "description": "属于川菜，口味鱼香味，采用溜的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -22397,13 +23686,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "青笋鸡柳",
     "name": "青笋鸡柳",
     "description": "属于家常菜，口味咸鲜，采用炒、炸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -22479,13 +23773,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "凉拌苦菊",
     "name": "凉拌苦菊",
     "description": "属于川菜，，口味芥末味，采用拌的烹饪方式。",
-    "category": "凉菜",
     "tags": [
       "凉菜",
       "川菜",
@@ -22565,13 +23864,18 @@
         "id": "cook_1",
         "instruction": "，"
       }
-    ]
+    ],
+    "categories": [
+      "凉菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄焖鸡块",
     "name": "黄焖鸡块",
     "description": "属于川菜，口味家常味，采用黄焖的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "中等难度",
       "川菜",
@@ -22670,13 +23974,18 @@
         "id": "cook_1",
         "instruction": "。 一：鸡剁成块，青笋切成滚刀块。 二：锅中加水下入鸡块焯水，烧开后打去浮沫，然后捞出洗净，青笋焯水去异味。 三：锅中加厎油，放入泡椒沫和豆瓣酱煸炒出香，再加葱姜蒜片炒香加鲜汤烧开打去杂质调好味，下入鸡块青笋烧开，再改用小火焖至酥烂。 四：最后加入青红椒块，烧制收汁上芡，打明油出锅装盘。 关健：焖至时一定要用小火。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香酥鸡排",
     "name": "香酥鸡排",
     "description": "属于融合菜，口味咸鲜，采用炸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "炸菜",
@@ -22767,13 +24076,18 @@
         "id": "cook_1",
         "instruction": "，用盐，料酒（葱姜蒜水）码味十几分钟。 二：将花生米炒熟去皮，拍碎，用瓜子仁，芝麻，面包糠，香酥粉拌匀待用。 三：用蛋清调成糊，将鸡柳放入蛋清中捞出，再沾上拌好的芝麻，面包糠，瓜子仁等压实待用。 四：锅中烧干净色拉油至中高油温时，缓缓放几鸡排，炸至定型上色时捞出改刀装盘。 关健：腌制入味，拖糊拍粉到位，炸至时注意油温，腌制时可以添加香料，麻辣的调味。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "清炖全鸡",
     "name": "清炖全鸡",
     "description": "属于地方菜，口味咸鲜味，采用炖的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -22890,13 +24204,18 @@
         "id": "cook_1",
         "instruction": "，先将母鸡宰杀，退毛，去内脏洗去血污。 二，锅中加水，下入鸡加热，烧开撇去浮沫焯水捞出。 三：将鸡放入钵或砂锅中加料酒，葱姜，加桂圆，红枣，加水淹没原料，烧开后改用温火加盖炖至鸡肉酥烂时，调味加枸杞等上桌即可。 关健：清洗必须干净，炖至要用温水。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "可乐鸡翅",
     "name": "可乐鸡翅",
     "description": "属于融合菜，口味咸鲜，采用炸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "炸菜",
@@ -22987,13 +24306,18 @@
         "id": "cook_1",
         "instruction": "一：将鸡脯肉改成大片，用盐，料酒（葱姜蒜水）码味十几分钟。 二：将花生米炒熟去皮，拍碎，用瓜子仁，芝麻，面包糠，香酥粉拌匀待用。 三：用蛋清调成糊，将鸡柳放入蛋清中捞出，再沾上拌好的芝麻，面包糠，瓜子仁等压实待用。 四：锅中烧干净色拉油至中高油温时，缓缓放几鸡排，炸至定型上色时捞出改刀装盘。 关健：腌制入味，拖糊拍粉到位，炸至时注意油温，腌制时可以添加香料，麻辣的调味。 一：先将鸡翅清洗干净，再两面改上一字花刀，加盐，料酒，味极鲜，腌制 2O分钟。 二：锅中加少许油，下入鸡翅，煎制两面金黄时下入葱姜蒜煸炒出香，再加可乐，适当进行调味。 三：成熟入味后，改小火收汁上欠，淋明油，出锅装盘。 关健：先煎后烧，必须操作到位。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "炸烹羊肉串",
     "name": "炸烹羊肉串",
     "description": "属于清真菜，口味麻辣 烹法：炸炸，采用炸炸的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "清真菜",
       "炸菜",
@@ -23079,13 +24403,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "手撕羊排_2",
     "name": "手撕羊排",
     "description": "属于清真，口味香辣、孜然味，采用炸、烹的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "清真菜",
       "炸菜",
@@ -23177,13 +24506,18 @@
         "instruction": "将土豆改刀成大一字条拍吉土粉，下中油温的油温中炸制金黄成熟时，捞出备用。",
         "tips": "炸制时一定要拍吉士粉，炸制外脆里嫩，炒制时注意咸淡合适，孜然粉重"
       }
-    ]
+    ],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "软炸香菇",
     "name": "软炸香菇",
     "description": "口味椒麻，采用软炸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "椒麻",
       "炸菜",
@@ -23268,13 +24602,18 @@
         "instruction": "撒上椒盐即可。 可变化菜肴有《软炸茉菊花》《玫瑰花》",
         "tips": "油温控制好，中火慢炸至金黄酥脆；油温控制好，中火慢炸至金黄酥脆；油温控制好，中火慢炸至金黄酥脆；蛋泡糊调好，拖糊炒均匀"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "砂锅老豆腐",
     "name": "砂锅老豆腐",
     "description": "属于家常菜，口味咸鲜，采用炖的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -23362,13 +24701,18 @@
         "instruction": "大火烧开后转小火炖15分钟，至汤汁浓稠即可",
         "tips": "先大火烧开，再转小火慢炖更入味；选用老豆腐（北豆腐），煎后不易碎且口感好；砂锅炖煮可以让豆腐充分吸收汤汁入味"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "百年好合菜肴粤",
     "name": "百年好合菜肴：粤",
     "description": "口味咸鲜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学"
@@ -23412,13 +24756,18 @@
         "instruction": "先将西芹去茎，然后改刀成菱形块备用。 锅中加水，烧开加明油，然后西芹百合分别焯水后冲凉得用，将料头花也一同焯水。 锅中加葱油，下入主辅料，再调味上明芡，淋明油，出锅装盘，摆上料头花即可。",
         "tips": "焯水时开水焯，炒锅一定要洗干净，淋明芡。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "西红柿鸡蛋汤菜肴川",
     "name": "西红柿鸡蛋汤菜肴：川",
     "description": "口味咸鲜，采用煮的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "咸鲜",
       "暖身汤",
@@ -23467,13 +24816,18 @@
         "instruction": "先将西红柿切成两瓣，将鸡蛋打入碗中加少许盐少许水淀粉搅拌均匀，菠菜用少部分叶子待用。 锅中加汤烧开加味，再将西红柿放入烧开加明芡，再将蛋液缓缓倒入汤中加菠菜，淋香油即可出锅。",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感；胡椒味突出，淋蛋液时注意汤汁似开非开的时候进行淋制。"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "红烧鸡块",
     "name": "红烧鸡块",
     "description": "属于地方菜，口味酱香，采用红烧的烹饪方式。",
-    "category": "硬菜",
     "tags": [
       "简单易学",
       "红烧系列",
@@ -23563,13 +24917,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "硬菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "滑溜鸡片",
     "name": "滑溜鸡片",
     "description": "属于粵，口味咸鲜，采用溜 主料:鸡脯肉的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学",
@@ -23628,13 +24987,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "平菇炒肉",
     "name": "平菇炒肉",
     "description": "属于家常菜，口味咸鲜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -23710,13 +25074,18 @@
         "instruction": ",平菇别去根部，再撕成大小适中的块儿，鲜肉改刀切片待用。 2 ，用盐料酒（葱 姜蒜水）码味再用水淀粉上浆，抓匀待 用。 3,锅中烧水，加少许盐，下入平菇焯水，五成熟的时候捞出待用。 4,锅中烧油烧至四五成时，下入肉片，滑油至 八九成熟时倒出沥油。 5,锅中加底油， 下葱姜蒜煸炒出香，下入焯水的平菇翻炒再用盐味精味鸡精糖等调料，然后下入下肉片一同翻炒上芡淋时油出锅即可。特点：色泽鲜亮，味道鲜美嫩。",
         "tips": "①此菜在味口上可进行改变。 ②通过普料的添加进行新菜品改进。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "椒麻鸡丝_2",
     "name": "椒麻鸡丝",
     "description": "属于川，口味麻辣，采用拌的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -23746,13 +25115,18 @@
         "instruction": "克，味精 1 克，鸡汤 50 克，麻油 25 克。制作过程：",
         "tips": "选用嫩草鸡为佳，煮到断生即可。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "菜花炒肉",
     "name": "菜花炒肉",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "快手菜",
       "简单易学"
@@ -23794,13 +25168,18 @@
         "instruction": ", 锅中加适量油，烧至三四成热时下入码好味的肉片滑油断生时出锅沥油。",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构；滑油温度控制在四成热，快速捞出保持嫩滑"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "山药芹兰_2",
     "name": "山药芹兰",
     "description": "属于味型:，口味烹法:，采用主料: 山药的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -23852,13 +25231,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "油淋洋白菜_2",
     "name": "油淋洋白菜",
     "description": "属于川菜，口味豉油味，采用煮的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学"
@@ -23916,13 +25300,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "土豆松",
     "name": "土豆松",
     "description": "属于家常菜，口味咸香酥脆，采用炸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "土豆",
       "家常菜",
@@ -23986,13 +25375,18 @@
         "instruction": "装盘后用香菜和青红椒丝点缀即可",
         "tips": "油温控制好，中火慢炸至金黄酥脆；装盘要整齐美观，趁热上桌；土豆丝一定要切得细且均匀，冲洗去淀粉是关键；炸制时要分批下锅，避免粘连，炸至金黄即可捞出"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻酱凤尾",
     "name": "麻酱凤尾",
     "description": "口味麻酱味，采用焯 拌的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -24058,13 +25452,18 @@
         "instruction": "必须取净莴笋筋皮，直接伴味即可。",
         "tips": "1.莴笋焯水要旺火，沸水量多，放少量菜油在水锅中能保持原料色泽。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香油豆腐皮",
     "name": "香油豆腐皮",
     "description": "属于川，口味蒜泥味，采用拌的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -24143,13 +25542,18 @@
         "instruction": "用盐，味精，鸡精，糖，香油，红油，蒜泥，调成蒜泥汁，再将汁倒入豆腐皮上面，加辅料拌匀即可装盘。",
         "tips": "装盘要整齐美观，趁热上桌；调制汁水时一定使盐等调味品充分融化方可使用。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "青椒肚片_2",
     "name": "青椒肚片",
     "description": "属于清真菜，口味咸鲜，采用炒 主料：牛肚的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "咸鲜",
       "清真菜",
@@ -24242,13 +25646,18 @@
         "id": "cook_3",
         "instruction": "锅中烧适量油至四五成时将肚片和青椒块一同下油锅沥油。 ③锅中加底油下入 葱姜蒜片煸出香味，下入青椒肚片，一同翻炒调味，出锅装盘。"
       }
-    ]
+    ],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "蒸水蛋",
     "name": "蒸水蛋",
     "description": "口味咸鲜，采用蒸的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -24303,13 +25712,18 @@
         "instruction": "，然后放到蒸笼上蒸制 15 分钟即可。",
         "tips": "蒸制时保持大火，一次蒸熟避免回蒸；蒸制时保持大火，一次蒸熟避免回蒸"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "大梁炒鲜奶",
     "name": "大梁炒鲜奶",
     "description": "属于粤菜，口味咸鲜，采用炒的烹饪方式。",
-    "category": "粤菜",
     "tags": [
       "咸鲜",
       "快手菜",
@@ -24359,13 +25773,18 @@
         "instruction": "，炒锅上火，倒入生油拌好的奶糊放入摊匀继续炒至熟即可。",
         "tips": "调糊必须均匀炒制必须是中火烹制。"
       }
-    ]
+    ],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "金瓜银耳羹",
     "name": "金瓜银耳羹",
     "description": "属于粤菜，口味甜香。",
-    "category": "汤羹",
     "tags": [
       "暖身汤",
       "汤品",
@@ -24407,13 +25826,18 @@
         "instruction": "锅中加干净水下入金瓜，烧煮至金瓜熟烂时加糖.盐调味，再用水淀粉上芡，装入汤碗中，上面撒上银尔和苟吉既可。",
         "tips": "上欠时注意稠希"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "黄瓜炒鸡蛋_2",
     "name": "黄瓜炒鸡蛋",
     "description": "属于家常菜，口味咸鲜味，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -24481,13 +25905,18 @@
         "instruction": "，将黄瓜清洗干净，在斜刀改成菱形的段再切成菱形片。(0.5cm厚，不能太薄) 二 ，将鸡蛋打入碗中，加盐，水淀粉，搅拌均匀。 三，锅上火上，热锅冷油，将锅滑好再加适量干净色拉油。 烧至五六成熟时倒入蛋液。不停推动手勺，烧制成熟后， 倒出沥油。 四:锅中加葱节炒香。下入黄瓜翻炒成熟，加盐，味精等调味，再加鸡蛋，翻炒均匀，出锅装盘。",
         "tips": "鸡蛋炒制要求嫩，②黄瓜炒至八成熟即可，不能炒制过熟而出水了。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "胡萝_卜炒鸡蛋",
     "name": "胡萝 卜炒鸡蛋",
     "description": "属于家常菜，口味咸鲜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -24560,13 +25989,18 @@
         "instruction": "，切成丝，鸡蛋打入碗中，加盐，水淀粉沥干待用。 2:锅中油烧至中油温时下入胡萝 卜滑油断生后倒入沥油。 3:锅中烧干净油至中高油温时，倒入鸡蛋液煎制成型用勺产成小块出锅沥油。 4:原锅加葱煸香下入胡萝 卜调味后翻炒。最后加鸡蛋灼匀即可出锅装盘。",
         "tips": "胡萝 卜先必须过油才能炒制。否则口感和营养都会欠缺。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻婆豆腐_2",
     "name": "麻婆豆腐",
     "description": "属于沪，口味香甜，采用蒸、凉的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "甜味",
@@ -24596,13 +26030,18 @@
         "instruction": "咸菜完全冷却后才能放入冰箱冷却否则会有异味。",
         "tips": "①洋菜用糖煮，然后必须滤去渣，否则凝结豆腐色泽不佳，"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "青椒炒鸡蛋",
     "name": "青椒炒鸡蛋",
     "description": "属于家常菜，口味咸鲜，采用炒的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -24674,13 +26113,18 @@
         "instruction": "青椒煸炒，火力不能过高。",
         "tips": "①煎鸡蛋尤文在中友文，否则鸡蛋起泡易碎。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "家常萝_卜块",
     "name": "家常萝 卜块",
     "description": "属于家常菜，口味咸鲜，采用拌的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -24749,13 +26193,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸辣苕皮",
     "name": "酸辣苕皮",
     "description": "属于川，口味酸辣，采用拌的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -24843,13 +26292,18 @@
         "instruction": "将焯好的苕皮用汁拌匀，加青红椒圈、酒鬼花生、装盘。",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感；装盘要整齐美观，趁热上桌；苕皮现用现焯"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "柠檬瓜条",
     "name": "柠檬瓜条",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -24881,13 +26335,18 @@
         "id": "cook_1",
         "instruction": "参照原始制作流程进行炒制"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "凉粉烧牛腩",
     "name": "凉粉烧牛腩",
     "description": "属于地方菜，口味酱香，采用烧的烹饪方式。",
-    "category": "面食",
     "tags": [
       "牛肉",
       "简单易学",
@@ -24986,13 +26445,18 @@
         "instruction": "锅中加红油，下入葱、姜、蒜，煸炒出香，再加辣妹子、香辣酱、蚝油煸炒出味后，加汤调味。把去杂质，将牛腩 放入烧至，片刻至计合适时。上芡加凉粉放十三香出锅装盘。",
         "tips": "凉粉煎制好，待牛腩烧至入味上芡，出锅前加入凉粉即可。"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "洋葱木耳",
     "name": "洋葱木耳",
     "description": "属于川，口味咸鲜，采用拌的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "咸鲜",
       "川菜",
@@ -25077,13 +26541,18 @@
         "instruction": "用盐、蚝油、味精、鸡精调味，加少许陈醋、香油调成汁水，将主副料全部放入容器，加入调好的汁，拌匀即可装盘。",
         "tips": "洋葱必须提前腌制，再拌制口味才佳。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干煸牛肉丝",
     "name": "干煸牛肉丝",
     "description": "属于川，口味麻辣，采用煸的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "干煸",
@@ -25183,13 +26652,18 @@
         "instruction": "锅中加底油下入干辣段、花椒粒，煸香再加葱、姜、蒜片朝向，后加入香辣酱少许下入炸好的牛肉干继续煸炒再调味，烹料酒（或少许水），最后加入辅料辣面、芝麻等翻炒均匀，出锅装盘。",
         "tips": "油温控制好，中火慢炸至金黄酥脆；码味要入味，炸制要炸干，烹制需味足、味重。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "土豆烧牛腩",
     "name": "土豆烧牛腩",
     "description": "属于地方菜，口味酱香，采用烧的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "土豆",
       "牛肉",
@@ -25297,13 +26771,18 @@
         "instruction": "最后收汁加十三香，上明芡，淋明油，出锅装盘。",
         "tips": "拍粉要均匀薄透，炸出来才酥脆；出锅前可勾薄芡，增加菜品光泽和口感；牛腩卤制时一定要酥烂，土豆炸制要色泽金黄，炸透炸熟。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "咖喱牛肉",
     "name": "咖喱牛肉",
     "description": "属于粤，口味咖喱味，采用烧、炖的烹饪方式。",
-    "category": "粤菜",
     "tags": [
       "中等难度",
       "牛肉",
@@ -25400,13 +26879,18 @@
         "instruction": "烧至土豆有糊的情况时，加青红椒收汁，上芡，淋明油，出锅装盘。",
         "tips": "水开后下料，煮制过程中不要频繁搅动；出锅前可勾薄芡，增加菜品光泽和口感；烧制时一定要酥烂。"
       }
-    ]
+    ],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "香油金针菇",
     "name": "香油金针菇",
     "description": "属于凉菜，口味香油味，采用拌的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -25473,13 +26957,18 @@
         "id": "cook_1",
         "instruction": "，烧开加明油焯金针菇成熟时捞出冲凉。 4:用兑好的汁拌匀装盘既可 成菜要求:色泽明快，色齐划一"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "麻花鸡珍",
     "name": "麻花鸡珍",
     "description": "属于川，口味香辣味，采用拌的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -25563,13 +27052,18 @@
         "instruction": "将主副料拌在一起，加入调好的汁拌匀装盘，上面撒上小葱花，芝麻，装盘。特点： 口味香辣，麻花酥脆",
         "tips": "装盘要整齐美观，趁热上桌；鸡珍一定清洗干净，卤制一定足时至软烂。"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "清汆丸子汤",
     "name": "清汆丸子汤",
     "description": "属于鲁，口味咸鲜，采用汆的烹饪方式。",
-    "category": "汤羹",
     "tags": [
       "咸鲜",
       "暖身汤",
@@ -25646,13 +27140,18 @@
         "instruction": "出锅装盘，淋上香油即可。",
         "tips": "出锅前可勾薄芡，增加菜品光泽和口感；汆丸子时保证馅料的稀稠，和丸子大小均匀。"
       }
-    ]
+    ],
+    "categories": [
+      "汤羹"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "糖醋脆皮鱼_2",
     "name": "糖醋脆皮鱼",
     "description": "属于鲁，口味糖醋，采用炸的烹饪方式。",
-    "category": "海鲜",
     "tags": [
       "海鲜",
       "炸菜",
@@ -25719,13 +27218,18 @@
         "instruction": "锅中加底油，下入适量白糖，炒制成糖汁，再用盐 味精 糖 醋",
         "tips": "调汁收汁要浓，炸制一定要炸干。"
       }
-    ]
+    ],
+    "categories": [
+      "海鲜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "干烧带鱼",
     "name": "干烧带鱼",
     "description": "属于川，口味酱香，采用干烧的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "海鲜",
@@ -25787,13 +27291,18 @@
         "instruction": "锅中烧油至高油温，下入码味的带鱼炸制上色发干时捞出。 锅中加底油（红油），下入葱姜蒜煸香，下入豆瓣酱炒香，下适量鲜汤调味，下入带鱼烧制，待汤汁干时加明油出锅装盘。",
         "tips": "码味时轻轻拌匀，不要过度搅拌以免破坏食材结构"
       }
-    ]
+    ],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "番茄炖牛腩",
     "name": "番茄炖牛腩",
     "description": "属于粤，口味咸鲜，采用炖的烹饪方式。",
-    "category": "粤菜",
     "tags": [
       "中等难度",
       "咸鲜",
@@ -25859,13 +27368,18 @@
         "instruction": "放入蒜苗和青红椒炖制装盘，将青红椒摆到汤面即可上桌。",
         "tips": "先大火烧开，再转小火慢炖更入味；牛腩要酥烂，土豆泥起返沙作用，汤汁要浓稠。"
       }
-    ]
+    ],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "甘蓝炒粉条",
     "name": "甘蓝炒粉条",
     "description": "属于家常，口味咸鲜。",
-    "category": "面食",
     "tags": [
       "咸鲜",
       "家常菜",
@@ -25944,13 +27458,18 @@
         "id": "cook_3",
         "instruction": "锅中加底油，下入干辣椒，料头煸炒出香味。在加入甘蓝丝，炒制片刻再加入粉条调味炒制最后加油翻炒出锅。"
       }
-    ]
+    ],
+    "categories": [
+      "面食"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "白灼莲花白_2",
     "name": "白灼莲花白",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学"
     ],
@@ -26009,13 +27528,18 @@
         "id": "cook_4",
         "instruction": "锅中加适量油炝于三丝上面即可"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "鱼香茄子",
     "name": "鱼香茄子",
     "description": "属于川，采用烧的烹饪方式。",
-    "category": "川菜",
     "tags": [
       "川菜",
       "简单易学",
@@ -26085,13 +27609,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "川菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "杏仁豆腐",
     "name": "杏仁豆腐",
     "description": "属于沪，口味香甜，采用蒸冻的烹饪方式。",
-    "category": "家常菜",
     "tags": [
       "中等难度",
       "甜味",
@@ -26127,13 +27656,18 @@
         "instruction": "，取出滤去渣，将液汁倒入钢精锅中， 加牛奶杏仁霜、绵白糖烧开 后滚去渣倒入大碗中冷却 加盖放入冰箱速冻成杏仁豆腐，炒锅洗净上火，加开水下绵白糖溶化后倒入碗内冷却，加盖入冷箱成糖冰水 食用时用小刀将杏仁豆腐划成菱形块盛入大汤碗中，加糖冰水，将樱桃放入在杏仁豆席上面，桔子围边。",
         "tips": "洋菜用糖煮化后必须过渣，否则凝结成豆腐色泽不佳。成菜完全冷却后才能放入冰箱冷冻否则会有异味。"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "柠檬藕片_2",
     "name": "柠檬藕片",
     "description": "经典家常菜，制作简便，老少皆宜。",
-    "category": "家常菜",
     "tags": [
       "简单易学",
       "莲藕"
@@ -26170,13 +27704,18 @@
         "id": "cook_2",
         "instruction": "小时即可食用"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "酸菜粉条",
     "name": "酸菜粉条",
     "description": "属于家常菜，口味酸辣，采用炒的烹饪方式。",
-    "category": "辣味菜",
     "tags": [
       "家常菜",
       "简单易学",
@@ -26217,13 +27756,18 @@
         "instruction": "锅中烧水至开，下入酸菜焯制片刻， （太酸时适量增加焯水时间）再下入粉 条一同焯出。 锅中加底油，（可适量加入鱼泡椒，小米椒）加葱蒜炒制，再加入主辅翻炒，加少许鲜汤，烧制片刻加青红椒丝翻匀， （还可以适量加醋）淋少许红油出锅装盘。",
         "tips": "适当加少许鲜汤，味才浓郁。"
       }
-    ]
+    ],
+    "categories": [
+      "辣味菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "韭香豆干",
     "name": "韭香豆干",
     "description": "口味咸鲜味。",
-    "category": "家常菜",
     "tags": [
       "咸鲜",
       "简单易学"
@@ -26287,13 +27831,18 @@
         "instruction": "，加酱油小入豆干焯水至成熟后捞出沥干水分。 三、锅中烧油至中油温时入下豆炸制上色倒出沥油 四、锅中油底油，下入红椒条炒熟加入韭菜翻炒至七八成熟时下入豆干调味，翻炒均匀出锅装盘。",
         "tips": "炒制韭菜注意成熟度"
       }
-    ]
+    ],
+    "categories": [
+      "家常菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "豆豉鲮鱼油麦菜",
     "name": "豆豉鲮鱼油麦菜",
     "description": "属于粤，口味豉油味，采用扒、浇汁的烹饪方式。",
-    "category": "粤菜",
     "tags": [
       "简单易学",
       "粤菜",
@@ -26343,13 +27892,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "粤菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "杨梅圆子",
     "name": "杨梅圆子",
     "description": "属于微，口味香甜，采用炸收的烹饪方式。",
-    "category": "徽菜",
     "tags": [
       "徽菜",
       "炸菜",
@@ -26394,13 +27948,18 @@
         "id": "cook_1",
         "instruction": "，放入碗中，加入鸡蛋液，盐和清水，搅拌上劲，再放入面包糠，拌匀成馅。 炒锅上火，下熟动物油，烧至五成热时，将肉馅捏成像圆梅大小的圆球，入锅炸制起浮成形，呈金黄色时捞出沥油。 炒锅放水，下白糖，醋，杨梅汁在中火上熬化成卤汁，再用湿淀粉调稀勾薄芡，将炸好的肉圆倒入，颠翻几下，淋上动物油，出锅装盘即成。"
       }
-    ]
+    ],
+    "categories": [
+      "徽菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "爆炒牛肉",
     "name": "爆炒牛肉",
     "description": "属于清真，口味五香（酱香），采用爆炒的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "五香",
       "快手菜",
@@ -26482,13 +28041,18 @@
         "instruction": "，用盐，葱姜蒜水 码味，再用水淀粉上芡 二、青红椒切菱形块，洋葱切块备用 三 、锅中烧油至 中油温时，下入牛肉片，滑油断生，再 将洋葱块，青红椒下入滑油出锅沥油 四、锅中留底油，加入香辣酱、老干妈、葱 姜蒜，煸炒出香 ，再加入主辅料调味 速速煸炒，加十三香出锅装盘",
         "tips": "牛肉滑锅断生即可，爆炒速度要快"
       }
-    ]
+    ],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "肉沫羊筋",
     "name": "肉沫羊筋",
     "description": "属于清真，口味酱香，采用烧的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "清真菜",
       "简单易学",
@@ -26558,13 +28122,18 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   },
   {
     "id": "鲍汁扣牛筋",
     "name": "鲍汁扣牛筋",
     "description": "属于清真，口味咸鲜（鲍汁），采用扣的烹饪方式。",
-    "category": "清真菜",
     "tags": [
       "咸鲜",
       "清真菜",
@@ -26629,6 +28198,12 @@
         "ingredients": []
       }
     ],
-    "cookingSteps": []
+    "cookingSteps": [],
+    "categories": [
+      "清真菜"
+    ],
+    "mainIngredients": [],
+    "auxiliaryIngredients": [],
+    "seasonings": []
   }
 ]
