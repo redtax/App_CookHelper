@@ -55,6 +55,7 @@ const RecipeEditScreen: React.FC = () => {
 
   const scrollViewRef = useRef<ScrollView>(null);
   const sectionLayouts = useRef<Record<string, number>>({});
+  const isSavingRef = useRef(false);
 
   const scrollToSection = (sectionKey: string, delay = 100) => {
     setTimeout(() => {
@@ -72,7 +73,7 @@ const RecipeEditScreen: React.FC = () => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('beforeRemove', (e: any) => {
-      if (!hasChanges) return;
+      if (!hasChanges || isSavingRef.current) return;
       e.preventDefault();
       Alert.alert(
         '未保存的修改',
@@ -140,6 +141,7 @@ const RecipeEditScreen: React.FC = () => {
     };
 
     await updateRecipe(updatedRecipe);
+    isSavingRef.current = true;
     setHasChanges(false);
     navigation.goBack();
   };
@@ -150,8 +152,7 @@ const RecipeEditScreen: React.FC = () => {
     else if (category === 'auxiliary') setAuxiliaryIngredients([...auxiliaryIngredients, newIngredient]);
     else setSeasonings([...seasonings, newIngredient]);
     markChanged();
-    const key = category === 'main' ? 'ingredients-main' : category === 'auxiliary' ? 'ingredients-auxiliary' : 'ingredients-seasoning';
-    scrollToSection(key, 150);
+    scrollToSection('ingredients', 150);
   };
 
   const removeFromCategory = (category: 'main' | 'auxiliary' | 'seasoning', index: number) => {
@@ -554,13 +555,12 @@ const RecipeEditScreen: React.FC = () => {
           </View>
         </View>
 
-        <View style={styles.section}>
+        <View style={styles.section} onLayout={measureLayout('ingredients')}>
           <Text style={styles.sectionTitle}>🥗 食材清单</Text>
 
           <View style={styles.subSection}>
             <View
               style={styles.sectionHeader}
-              onLayout={measureLayout('ingredients-main')}
             >
               <Text style={styles.subSectionTitle}>🥗 主料 ({mainIngredients.length}项)</Text>
               <TouchableOpacity style={styles.addButton} onPress={() => addToCategory('main')}>
@@ -571,10 +571,7 @@ const RecipeEditScreen: React.FC = () => {
           </View>
 
           <View style={styles.subSection}>
-            <View
-              style={styles.sectionHeader}
-              onLayout={measureLayout('ingredients-auxiliary')}
-            >
+            <View style={styles.sectionHeader}>
               <Text style={styles.subSectionTitle}>🥕 辅料 ({auxiliaryIngredients.length}项)</Text>
               <TouchableOpacity style={styles.addButton} onPress={() => addToCategory('auxiliary')}>
                 <Text style={styles.addButtonText}>+ 添加</Text>
@@ -584,10 +581,7 @@ const RecipeEditScreen: React.FC = () => {
           </View>
 
           <View style={styles.subSection}>
-            <View
-              style={styles.sectionHeader}
-              onLayout={measureLayout('ingredients-seasoning')}
-            >
+            <View style={styles.sectionHeader}>
               <Text style={styles.subSectionTitle}>🧂 调料 ({seasonings.length}项)</Text>
               <TouchableOpacity style={styles.addButton} onPress={() => addToCategory('seasoning')}>
                 <Text style={styles.addButtonText}>+ 添加</Text>
@@ -609,10 +603,12 @@ const RecipeEditScreen: React.FC = () => {
           )}
         </View>
 
-        <View style={styles.section}>
+        <View
+          style={styles.section}
+          onLayout={measureLayout('prep-steps')}
+        >
           <View
             style={styles.sectionHeader}
-            onLayout={measureLayout('prep-steps')}
           >
             <Text style={styles.sectionTitle}>📝 备料步骤</Text>
             <TouchableOpacity style={styles.addButton} onPress={addPreparationStep}>
@@ -674,10 +670,12 @@ const RecipeEditScreen: React.FC = () => {
           ))}
         </View>
 
-        <View style={styles.section}>
+        <View
+          style={styles.section}
+          onLayout={measureLayout('cooking-steps')}
+        >
           <View
             style={styles.sectionHeader}
-            onLayout={measureLayout('cooking-steps')}
           >
             <Text style={styles.sectionTitle}>🍳 炒制步骤</Text>
             <TouchableOpacity style={styles.addButton} onPress={addCookingStep}>
