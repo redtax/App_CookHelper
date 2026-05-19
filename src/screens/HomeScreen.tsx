@@ -59,6 +59,10 @@ const HomeScreen: React.FC = () => {
 
       const matchesIngredient = (recipe.mainIngredients || []).some(ing =>
         ing.name.toLowerCase().includes(query)
+      ) || (recipe.auxiliaryIngredients || []).some(ing =>
+        ing.name.toLowerCase().includes(query)
+      ) || (recipe.seasonings || []).some(ing =>
+        ing.name.toLowerCase().includes(query)
       ) || (recipe.ingredients || []).some(ing =>
         ing.name.toLowerCase().includes(query)
       );
