@@ -443,18 +443,13 @@ const exportRecipeToText = (recipe: Recipe): string => {
   lines.push(recipe.name);
   lines.push('');
 
-  if (recipe.description) {
-    lines.push('📝 简介');
-    lines.push(recipe.description);
-    lines.push('');
-  }
+  lines.push('📝 简介');
+  lines.push(recipe.description || '');
+  lines.push('');
 
-  if (recipe.overallFlow) {
-    lines.push('🗺️ 总体流程');
-    const flowLines = recipe.overallFlow.split('\n');
-    flowLines.forEach(line => lines.push(line));
-    lines.push('');
-  }
+  lines.push('🗺️ 总体流程');
+  lines.push(recipe.overallFlow || '');
+  lines.push('');
 
   lines.push('⏱️ 基本信息');
   lines.push(`准备时间\t${recipe.prepTime}`);
@@ -463,48 +458,31 @@ const exportRecipeToText = (recipe: Recipe): string => {
   const difficultyText = recipe.difficulty === 'easy' ? '简单' : recipe.difficulty === 'medium' ? '中等' : '困难';
   lines.push(`难度\t${difficultyText}`);
   lines.push(`分类\t${(recipe.categories || []).join('、')}`);
-  if (recipe.technique) {
-    lines.push(`技法\t${recipe.technique}`);
-  }
-  if (recipe.flavor) {
-    lines.push(`味型\t${recipe.flavor}`);
-  }
+  lines.push(`技法\t${recipe.technique || ''}`);
+  lines.push(`味型\t${recipe.flavor || ''}`);
   lines.push('');
 
-  const hasCategories = (recipe.mainIngredients || []).length > 0 || (recipe.auxiliaryIngredients || []).length > 0 || (recipe.seasonings || []).length > 0;
-  if (hasCategories) {
-    if ((recipe.mainIngredients || []).length > 0) {
-      lines.push('主料');
-      (recipe.mainIngredients || []).forEach(ing => lines.push(exportIngredientLine(ing)));
-      lines.push('');
-    }
-    if ((recipe.auxiliaryIngredients || []).length > 0) {
-      lines.push('辅料');
-      (recipe.auxiliaryIngredients || []).forEach(ing => lines.push(exportIngredientLine(ing)));
-      lines.push('');
-    }
-    if ((recipe.seasonings || []).length > 0) {
-      lines.push('调料');
-      (recipe.seasonings || []).forEach(ing => lines.push(exportIngredientLine(ing)));
-      lines.push('');
-    }
-  } else {
-    lines.push('🥦 食材清单');
-    (recipe.ingredients || []).forEach(ing => lines.push(exportIngredientLine(ing)));
-    lines.push('');
-  }
+  lines.push('主料');
+  (recipe.mainIngredients || []).forEach(ing => lines.push(exportIngredientLine(ing)));
+  lines.push('');
 
-  if ((recipe.preparationSteps || []).length > 0) {
-    lines.push('📋 备料步骤');
-    (recipe.preparationSteps || []).forEach((step, index) => {
-      let line = `${index + 1}. ${step.description}`;
-      if (step.tips) {
-        line += ` 💡 小贴士：${step.tips}`;
-      }
-      lines.push(line);
-    });
-    lines.push('');
-  }
+  lines.push('辅料');
+  (recipe.auxiliaryIngredients || []).forEach(ing => lines.push(exportIngredientLine(ing)));
+  lines.push('');
+
+  lines.push('调料');
+  (recipe.seasonings || []).forEach(ing => lines.push(exportIngredientLine(ing)));
+  lines.push('');
+
+  lines.push('📋 备料步骤');
+  (recipe.preparationSteps || []).forEach((step, index) => {
+    let line = `${index + 1}. ${step.description}`;
+    if (step.tips) {
+      line += ` 💡 小贴士：${step.tips}`;
+    }
+    lines.push(line);
+  });
+  lines.push('');
 
   lines.push('🍳 炒菜步骤');
   (recipe.cookingSteps || []).forEach((step, index) => {
@@ -519,10 +497,8 @@ const exportRecipeToText = (recipe: Recipe): string => {
   });
   lines.push('');
 
-  if ((recipe.tags || []).length > 0) {
-    lines.push('🏷️ 标签');
-    lines.push((recipe.tags || []).join('、'));
-  }
+  lines.push('🏷️ 标签');
+  lines.push((recipe.tags || []).join('、'));
 
   return lines.join('\n');
 };
