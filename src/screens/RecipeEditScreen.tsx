@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -52,6 +52,18 @@ const RecipeEditScreen: React.FC = () => {
   const [showNewTag, setShowNewTag] = useState(false);
   const [newTagName, setNewTagName] = useState('');
   const [hasChanges, setHasChanges] = useState(false);
+
+  const scrollViewRef = useRef<ScrollView>(null);
+  const sectionLayouts = useRef<Record<string, number>>({});
+
+  const scrollToSection = (sectionKey: string, delay = 100) => {
+    setTimeout(() => {
+      const y = sectionLayouts.current[sectionKey];
+      if (y !== undefined && scrollViewRef.current) {
+        scrollViewRef.current.scrollTo({ y: y - 80, animated: true });
+      }
+    }, delay);
+  };
 
   const allCategories = Array.from(new Set(recipes.flatMap(r => r.categories || [])));
   const allTags = Array.from(new Set(recipes.flatMap(r => r.tags || [])));
@@ -138,6 +150,8 @@ const RecipeEditScreen: React.FC = () => {
     else if (category === 'auxiliary') setAuxiliaryIngredients([...auxiliaryIngredients, newIngredient]);
     else setSeasonings([...seasonings, newIngredient]);
     markChanged();
+    const key = category === 'main' ? 'ingredients-main' : category === 'auxiliary' ? 'ingredients-auxiliary' : 'ingredients-seasoning';
+    scrollToSection(key, 150);
   };
 
   const removeFromCategory = (category: 'main' | 'auxiliary' | 'seasoning', index: number) => {
@@ -173,6 +187,7 @@ const RecipeEditScreen: React.FC = () => {
   const addPreparationStep = () => {
     setPreparationSteps([...preparationSteps, { id: Date.now().toString(), description: '', tips: '' }]);
     markChanged();
+    scrollToSection('prep-steps', 150);
   };
 
   const removePreparationStep = (index: number) => {
@@ -187,9 +202,28 @@ const RecipeEditScreen: React.FC = () => {
     markChanged();
   };
 
+  const movePreparationStep = (fromIndex: number, direction: 'up' | 'down') => {
+    const toIndex = direction === 'up' ? fromIndex - 1 : fromIndex + 1;
+    if (toIndex < 0 || toIndex >= preparationSteps.length) return;
+    const newSteps = [...preparationSteps];
+    const [moved] = newSteps.splice(fromIndex, 1);
+    newSteps.splice(toIndex, 0, moved);
+    setPreparationSteps(newSteps);
+    markChanged();
+  };
+
+  const prepToCooking = (index: number) => {
+    const step = preparationSteps[index];
+    setCookingSteps([...cookingSteps, { id: step.id || Date.now().toString(), instruction: step.description, duration: '', tips: step.tips || '' }]);
+    setPreparationSteps(preparationSteps.filter((_, i) => i !== index));
+    markChanged();
+    scrollToSection('cooking-steps', 150);
+  };
+
   const addCookingStep = () => {
     setCookingSteps([...cookingSteps, { id: Date.now().toString(), instruction: '', duration: '', tips: '' }]);
     markChanged();
+    scrollToSection('cooking-steps', 150);
   };
 
   const removeCookingStep = (index: number) => {
@@ -202,6 +236,28 @@ const RecipeEditScreen: React.FC = () => {
     newSteps[index] = { ...newSteps[index], [field]: value };
     setCookingSteps(newSteps);
     markChanged();
+  };
+
+  const moveCookingStep = (fromIndex: number, direction: 'up' | 'down') => {
+    const toIndex = direction === 'up' ? fromIndex - 1 : fromIndex + 1;
+    if (toIndex < 0 || toIndex >= cookingSteps.length) return;
+    const newSteps = [...cookingSteps];
+    const [moved] = newSteps.splice(fromIndex, 1);
+    newSteps.splice(toIndex, 0, moved);
+    setCookingSteps(newSteps);
+    markChanged();
+  };
+
+  const cookingToPrep = (index: number) => {
+    const step = cookingSteps[index];
+    setPreparationSteps([...preparationSteps, { id: step.id || Date.now().toString(), description: step.instruction, tips: step.tips || '' }]);
+    setCookingSteps(cookingSteps.filter((_, i) => i !== index));
+    markChanged();
+    scrollToSection('prep-steps', 150);
+  };
+
+  const measureLayout = (key: string) => (event: any) => {
+    sectionLayouts.current[key] = event.nativeEvent.layout.y;
   };
 
   const toggleCategory = (cat: string) => {
@@ -353,7 +409,12 @@ const RecipeEditScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        ref={scrollViewRef}
+        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+      >
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>📋 基本信息</Text>
           <View style={styles.inputGroup}>
@@ -497,7 +558,10 @@ const RecipeEditScreen: React.FC = () => {
           <Text style={styles.sectionTitle}>🥗 食材清单</Text>
 
           <View style={styles.subSection}>
-            <View style={styles.sectionHeader}>
+            <View
+              style={styles.sectionHeader}
+              onLayout={measureLayout('ingredients-main')}
+            >
               <Text style={styles.subSectionTitle}>🥗 主料 ({mainIngredients.length}项)</Text>
               <TouchableOpacity style={styles.addButton} onPress={() => addToCategory('main')}>
                 <Text style={styles.addButtonText}>+ 添加</Text>
@@ -507,7 +571,10 @@ const RecipeEditScreen: React.FC = () => {
           </View>
 
           <View style={styles.subSection}>
-            <View style={styles.sectionHeader}>
+            <View
+              style={styles.sectionHeader}
+              onLayout={measureLayout('ingredients-auxiliary')}
+            >
               <Text style={styles.subSectionTitle}>🥕 辅料 ({auxiliaryIngredients.length}项)</Text>
               <TouchableOpacity style={styles.addButton} onPress={() => addToCategory('auxiliary')}>
                 <Text style={styles.addButtonText}>+ 添加</Text>
@@ -517,7 +584,10 @@ const RecipeEditScreen: React.FC = () => {
           </View>
 
           <View style={styles.subSection}>
-            <View style={styles.sectionHeader}>
+            <View
+              style={styles.sectionHeader}
+              onLayout={measureLayout('ingredients-seasoning')}
+            >
               <Text style={styles.subSectionTitle}>🧂 调料 ({seasonings.length}项)</Text>
               <TouchableOpacity style={styles.addButton} onPress={() => addToCategory('seasoning')}>
                 <Text style={styles.addButtonText}>+ 添加</Text>
@@ -540,16 +610,43 @@ const RecipeEditScreen: React.FC = () => {
         </View>
 
         <View style={styles.section}>
-          <View style={styles.sectionHeader}>
+          <View
+            style={styles.sectionHeader}
+            onLayout={measureLayout('prep-steps')}
+          >
             <Text style={styles.sectionTitle}>📝 备料步骤</Text>
             <TouchableOpacity style={styles.addButton} onPress={addPreparationStep}>
               <Text style={styles.addButtonText}>+ 添加</Text>
             </TouchableOpacity>
           </View>
           {preparationSteps.map((step, index) => (
-            <View key={index} style={styles.stepEditItem}>
-              <View style={styles.stepNumber}>
-                <Text style={styles.stepNumberText}>{index + 1}</Text>
+            <View key={step.id || `prep-${index}`} style={styles.stepEditItem}>
+              <View style={styles.stepDragArea}>
+                <View style={styles.stepNumber}>
+                  <Text style={styles.stepNumberText}>{index + 1}</Text>
+                </View>
+                <View style={styles.moveButtons}>
+                  <TouchableOpacity
+                    style={[styles.moveBtn, index === 0 && styles.moveBtnDisabled]}
+                    onPress={() => movePreparationStep(index, 'up')}
+                    disabled={index === 0}
+                  >
+                    <Text style={[styles.moveBtnText, index === 0 && styles.moveBtnTextDisabled]}>▲</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.moveBtn, index === preparationSteps.length - 1 && styles.moveBtnDisabled]}
+                    onPress={() => movePreparationStep(index, 'down')}
+                    disabled={index === preparationSteps.length - 1}
+                  >
+                    <Text style={[styles.moveBtnText, index === preparationSteps.length - 1 && styles.moveBtnTextDisabled]}>▼</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.moveCrossBtn}
+                    onPress={() => prepToCooking(index)}
+                  >
+                    <Text style={styles.moveCrossBtnText}>⇄ 炒</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
               <View style={styles.stepContent}>
                 <TextInput
@@ -578,16 +675,43 @@ const RecipeEditScreen: React.FC = () => {
         </View>
 
         <View style={styles.section}>
-          <View style={styles.sectionHeader}>
+          <View
+            style={styles.sectionHeader}
+            onLayout={measureLayout('cooking-steps')}
+          >
             <Text style={styles.sectionTitle}>🍳 炒制步骤</Text>
             <TouchableOpacity style={styles.addButton} onPress={addCookingStep}>
               <Text style={styles.addButtonText}>+ 添加</Text>
             </TouchableOpacity>
           </View>
           {cookingSteps.map((step, index) => (
-            <View key={index} style={styles.stepEditItem}>
-              <View style={styles.stepNumber}>
-                <Text style={styles.stepNumberText}>{index + 1}</Text>
+            <View key={step.id || `cook-${index}`} style={styles.stepEditItem}>
+              <View style={styles.stepDragArea}>
+                <View style={styles.stepNumber}>
+                  <Text style={styles.stepNumberText}>{index + 1}</Text>
+                </View>
+                <View style={styles.moveButtons}>
+                  <TouchableOpacity
+                    style={[styles.moveBtn, index === 0 && styles.moveBtnDisabled]}
+                    onPress={() => moveCookingStep(index, 'up')}
+                    disabled={index === 0}
+                  >
+                    <Text style={[styles.moveBtnText, index === 0 && styles.moveBtnTextDisabled]}>▲</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.moveBtn, index === cookingSteps.length - 1 && styles.moveBtnDisabled]}
+                    onPress={() => moveCookingStep(index, 'down')}
+                    disabled={index === cookingSteps.length - 1}
+                  >
+                    <Text style={[styles.moveBtnText, index === cookingSteps.length - 1 && styles.moveBtnTextDisabled]}>▼</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.moveCrossBtn}
+                    onPress={() => cookingToPrep(index)}
+                  >
+                    <Text style={styles.moveCrossBtnText}>⇄ 备</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
               <View style={styles.stepContent}>
                 <TextInput
@@ -828,8 +952,14 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   addButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#f4511e',
+    backgroundColor: '#fff5f0',
+    minWidth: 64,
+    alignItems: 'center',
   },
   addButtonText: {
     color: '#f4511e',
@@ -906,6 +1036,49 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     alignSelf: 'flex-start',
     marginTop: 4,
+  },
+  stepDragArea: {
+    alignItems: 'center',
+    marginRight: 10,
+    width: 44,
+  },
+  moveButtons: {
+    alignItems: 'center',
+    marginTop: 4,
+    gap: 2,
+  },
+  moveBtn: {
+    width: 28,
+    height: 22,
+    borderRadius: 4,
+    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  moveBtnDisabled: {
+    backgroundColor: '#fafafa',
+    opacity: 0.4,
+  },
+  moveBtnText: {
+    fontSize: 11,
+    color: '#666',
+  },
+  moveBtnTextDisabled: {
+    color: '#ccc',
+  },
+  moveCrossBtn: {
+    marginTop: 2,
+    paddingHorizontal: 5,
+    paddingVertical: 3,
+    borderRadius: 4,
+    backgroundColor: '#fff3e0',
+    borderWidth: 1,
+    borderColor: '#f4511e',
+  },
+  moveCrossBtnText: {
+    fontSize: 10,
+    color: '#f4511e',
+    fontWeight: 'bold',
   },
   removeButtonText: {
     color: '#d32f2f',
