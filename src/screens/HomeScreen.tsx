@@ -53,8 +53,21 @@ const HomeScreen: React.FC = () => {
 
   const filteredRecipes = useMemo(() => {
     return recipes.filter(recipe => {
-      const matchesSearch = recipe.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        recipe.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      const query = searchQuery.toLowerCase();
+      const matchesName = recipe.name.toLowerCase().includes(query);
+      const matchesTag = recipe.tags.some(tag => tag.toLowerCase().includes(query));
+
+      const hasCategorized = (recipe.mainIngredients || []).length > 0
+        || (recipe.auxiliaryIngredients || []).length > 0
+        || (recipe.seasonings || []).length > 0;
+      const searchIngredients = hasCategorized
+        ? (recipe.mainIngredients || [])
+        : (recipe.ingredients || []);
+      const matchesIngredient = searchIngredients.some(ing =>
+        ing.name.toLowerCase().includes(query)
+      );
+
+      const matchesSearch = !query || matchesName || matchesTag || matchesIngredient;
       const matchesCategory = !selectedCategory || selectedCategory === '全部' || recipe.tags.includes(selectedCategory);
       return matchesSearch && matchesCategory;
     });
