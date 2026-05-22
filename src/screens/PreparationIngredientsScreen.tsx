@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
+  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
@@ -21,7 +22,7 @@ const PreparationIngredientsScreen: React.FC = () => {
   const navigation = useNavigation<PreparationIngredientsNavigationProp>();
   const route = useRoute<PreparationIngredientsRouteProp>();
   const { recipe } = route.params;
-  const { preparationCheckedItems, togglePreparationItem, resetPreparationChecklist, resetPreparationSteps } = useApp();
+  const { preparationCheckedItems, togglePreparationItem, resetPreparationChecklist, resetPreparationSteps, setActiveCooking, addShoppingItem } = useApp();
 
   const mainIngredients = recipe.mainIngredients || [];
   const auxiliaryIngredients = recipe.auxiliaryIngredients || [];
@@ -37,6 +38,44 @@ const PreparationIngredientsScreen: React.FC = () => {
   const totalIngredients = displayIngredients.length;
   const progress = totalIngredients > 0 ? (checkedCount / totalIngredients) * 100 : 0;
 
+  const [toastMessage, setToastMessage] = useState('');
+  const toastOpacity = useRef(new Animated.Value(0)).current;
+  const toastTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const showToast = (msg: string) => {
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    setToastMessage(msg);
+    Animated.timing(toastOpacity, {
+      toValue: 1,
+      duration: 150,
+      useNativeDriver: true,
+    }).start();
+    toastTimer.current = setTimeout(() => {
+      Animated.timing(toastOpacity, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: true,
+      }).start(() => setToastMessage(''));
+    }, 300);
+  };
+
+  const handleAddToShoppingList = (ingredient: { name: string; amount: string; unit?: string }) => {
+    addShoppingItem({
+      id: Date.now().toString(),
+      name: ingredient.name,
+      quantity: ingredient.amount || '1',
+      unit: ingredient.unit || '个',
+      checked: false,
+    });
+    showToast('已加入采购清单');
+  };
+
+  useEffect(() => {
+    return () => {
+      if (toastTimer.current) clearTimeout(toastTimer.current);
+    };
+  }, []);
+
   const handleNext = () => {
     const hasPreparationSteps = (recipe.preparationSteps || []).length > 0;
 
@@ -46,6 +85,7 @@ const PreparationIngredientsScreen: React.FC = () => {
       } else {
         resetPreparationChecklist();
         resetPreparationSteps();
+        setActiveCooking(recipe.id, 0);
         navigation.navigate('Cooking', { recipe });
       }
     };
@@ -78,108 +118,129 @@ const PreparationIngredientsScreen: React.FC = () => {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {hasCategories ? (
           <>
-            {mainIngredients.length > 0 && (
+            {mainIngredients.length > 0 ? (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>🥦 主料</Text>
                 {mainIngredients.map((ingredient, index) => {
                   const isChecked = preparationCheckedItems.includes(ingredient.name);
                   return (
-                    <TouchableOpacity
-                      key={`main-${index}`}
-                      style={styles.ingredientItem}
-                      onPress={() => togglePreparationItem(ingredient.name)}
-                    >
-                      <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
-                        {isChecked && <Text style={styles.checkmark}>✓</Text>}
-                      </View>
-                      <View style={styles.ingredientInfo}>
-                        <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
-                          {ingredient.name}
-                        </Text>
-                        {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
-                          <View style={styles.ingredientAmountRow}>
-                            <Text style={styles.ingredientAmount}>
-                              {ingredient.amount}{ingredient.unit || ''}
-                            </Text>
-                            {ingredient.notes ? (
-                              <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
-                            ) : null}
-                          </View>
-                        ) : null}
-                      </View>
-                    </TouchableOpacity>
+                    <View key={`main-${index}`} style={styles.ingredientItem}>
+                      <TouchableOpacity
+                        style={styles.ingredientTouchArea}
+                        onPress={() => togglePreparationItem(ingredient.name)}
+                      >
+                        <View style={[styles.checkbox, isChecked ? styles.checkboxChecked : undefined]}>
+                          {isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
+                        </View>
+                        <View style={styles.ingredientInfo}>
+                          <Text style={[styles.ingredientName, isChecked ? styles.ingredientNameChecked : undefined]}>
+                            {ingredient.name}
+                          </Text>
+                          {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                            <View style={styles.ingredientAmountRow}>
+                              <Text style={styles.ingredientAmount}>
+                                {ingredient.amount}{ingredient.unit || ''}
+                              </Text>
+                              {ingredient.notes ? (
+                                <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
+                              ) : null}
+                            </View>
+                          ) : null}
+                        </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles.cartButton}
+                        onPress={() => handleAddToShoppingList(ingredient)}
+                      >
+                        <Text style={styles.cartIcon}>🛒</Text>
+                      </TouchableOpacity>
+                    </View>
                   );
                 })}
               </View>
-            )}
-            {auxiliaryIngredients.length > 0 && (
+            ) : null}
+            {auxiliaryIngredients.length > 0 ? (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>🥕 辅料</Text>
                 {auxiliaryIngredients.map((ingredient, index) => {
                   const isChecked = preparationCheckedItems.includes(ingredient.name);
                   return (
-                    <TouchableOpacity
-                      key={`aux-${index}`}
-                      style={styles.ingredientItem}
-                      onPress={() => togglePreparationItem(ingredient.name)}
-                    >
-                      <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
-                        {isChecked && <Text style={styles.checkmark}>✓</Text>}
-                      </View>
-                      <View style={styles.ingredientInfo}>
-                        <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
-                          {ingredient.name}
-                        </Text>
-                        {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
-                          <View style={styles.ingredientAmountRow}>
-                            <Text style={styles.ingredientAmount}>
-                              {ingredient.amount}{ingredient.unit || ''}
-                            </Text>
-                            {ingredient.notes ? (
-                              <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
-                            ) : null}
-                          </View>
-                        ) : null}
-                      </View>
-                    </TouchableOpacity>
+                    <View key={`aux-${index}`} style={styles.ingredientItem}>
+                      <TouchableOpacity
+                        style={styles.ingredientTouchArea}
+                        onPress={() => togglePreparationItem(ingredient.name)}
+                      >
+                        <View style={[styles.checkbox, isChecked ? styles.checkboxChecked : undefined]}>
+                          {isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
+                        </View>
+                        <View style={styles.ingredientInfo}>
+                          <Text style={[styles.ingredientName, isChecked ? styles.ingredientNameChecked : undefined]}>
+                            {ingredient.name}
+                          </Text>
+                          {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                            <View style={styles.ingredientAmountRow}>
+                              <Text style={styles.ingredientAmount}>
+                                {ingredient.amount}{ingredient.unit || ''}
+                              </Text>
+                              {ingredient.notes ? (
+                                <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
+                              ) : null}
+                            </View>
+                          ) : null}
+                        </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles.cartButton}
+                        onPress={() => handleAddToShoppingList(ingredient)}
+                      >
+                        <Text style={styles.cartIcon}>🛒</Text>
+                      </TouchableOpacity>
+                    </View>
                   );
                 })}
               </View>
-            )}
-            {seasonings.length > 0 && (
+            ) : null}
+            {seasonings.length > 0 ? (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>🧂 调料</Text>
                 {seasonings.map((ingredient, index) => {
                   const isChecked = preparationCheckedItems.includes(ingredient.name);
                   return (
-                    <TouchableOpacity
-                      key={`seasoning-${index}`}
-                      style={styles.ingredientItem}
-                      onPress={() => togglePreparationItem(ingredient.name)}
-                    >
-                      <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
-                        {isChecked && <Text style={styles.checkmark}>✓</Text>}
-                      </View>
-                      <View style={styles.ingredientInfo}>
-                        <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
-                          {ingredient.name}
-                        </Text>
-                        {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
-                          <View style={styles.ingredientAmountRow}>
-                            <Text style={styles.ingredientAmount}>
-                              {ingredient.amount}{ingredient.unit || ''}
-                            </Text>
-                            {ingredient.notes ? (
-                              <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
-                            ) : null}
-                          </View>
-                        ) : null}
-                      </View>
-                    </TouchableOpacity>
+                    <View key={`seasoning-${index}`} style={styles.ingredientItem}>
+                      <TouchableOpacity
+                        style={styles.ingredientTouchArea}
+                        onPress={() => togglePreparationItem(ingredient.name)}
+                      >
+                        <View style={[styles.checkbox, isChecked ? styles.checkboxChecked : undefined]}>
+                          {isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
+                        </View>
+                        <View style={styles.ingredientInfo}>
+                          <Text style={[styles.ingredientName, isChecked ? styles.ingredientNameChecked : undefined]}>
+                            {ingredient.name}
+                          </Text>
+                          {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                            <View style={styles.ingredientAmountRow}>
+                              <Text style={styles.ingredientAmount}>
+                                {ingredient.amount}{ingredient.unit || ''}
+                              </Text>
+                              {ingredient.notes ? (
+                                <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
+                              ) : null}
+                            </View>
+                          ) : null}
+                        </View>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={styles.cartButton}
+                        onPress={() => handleAddToShoppingList(ingredient)}
+                      >
+                        <Text style={styles.cartIcon}>🛒</Text>
+                      </TouchableOpacity>
+                    </View>
                   );
                 })}
               </View>
-            )}
+            ) : null}
           </>
         ) : (
           <View style={styles.section}>
@@ -187,30 +248,37 @@ const PreparationIngredientsScreen: React.FC = () => {
             {ingredients.map((ingredient, index) => {
               const isChecked = preparationCheckedItems.includes(ingredient.name);
               return (
-                <TouchableOpacity
-                  key={index}
-                  style={styles.ingredientItem}
-                  onPress={() => togglePreparationItem(ingredient.name)}
-                >
-                  <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
-                    {isChecked && <Text style={styles.checkmark}>✓</Text>}
-                  </View>
-                  <View style={styles.ingredientInfo}>
-                    <Text style={[styles.ingredientName, isChecked && styles.ingredientNameChecked]}>
-                      {ingredient.name}
-                    </Text>
-                    {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
-                      <View style={styles.ingredientAmountRow}>
-                        <Text style={styles.ingredientAmount}>
-                          {ingredient.amount}{ingredient.unit || ''}
-                        </Text>
-                        {ingredient.notes ? (
-                          <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
-                        ) : null}
-                      </View>
-                    ) : null}
-                  </View>
-                </TouchableOpacity>
+                <View key={index} style={styles.ingredientItem}>
+                  <TouchableOpacity
+                    style={styles.ingredientTouchArea}
+                    onPress={() => togglePreparationItem(ingredient.name)}
+                  >
+                    <View style={[styles.checkbox, isChecked ? styles.checkboxChecked : undefined]}>
+                      {isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
+                    </View>
+                    <View style={styles.ingredientInfo}>
+                      <Text style={[styles.ingredientName, isChecked ? styles.ingredientNameChecked : undefined]}>
+                        {ingredient.name}
+                      </Text>
+                      {(ingredient.amount || ingredient.unit || ingredient.notes) ? (
+                        <View style={styles.ingredientAmountRow}>
+                          <Text style={styles.ingredientAmount}>
+                            {ingredient.amount}{ingredient.unit || ''}
+                          </Text>
+                          {ingredient.notes ? (
+                            <Text style={styles.ingredientNotes}> · {ingredient.notes}</Text>
+                          ) : null}
+                        </View>
+                      ) : null}
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.cartButton}
+                    onPress={() => handleAddToShoppingList(ingredient)}
+                  >
+                    <Text style={styles.cartIcon}>🛒</Text>
+                  </TouchableOpacity>
+                </View>
               );
             })}
           </View>
@@ -228,6 +296,12 @@ const PreparationIngredientsScreen: React.FC = () => {
           <Text style={styles.buttonText}>下一步 →</Text>
         </TouchableOpacity>
       </View>
+
+      {toastMessage ? (
+        <Animated.View style={[styles.toast, { opacity: toastOpacity }]}>
+          <Text style={styles.toastText}>{toastMessage}</Text>
+        </Animated.View>
+      ) : null}
     </SafeAreaView>
   );
 };
@@ -282,6 +356,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#f0f0f0',
   },
+  ingredientTouchArea: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   checkbox: {
     width: 28,
     height: 28,
@@ -324,6 +403,32 @@ const styles = StyleSheet.create({
   ingredientNotes: {
     fontSize: 13,
     color: '#999',
+  },
+  cartButton: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    backgroundColor: '#f4511e',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 8,
+  },
+  cartIcon: {
+    fontSize: 16,
+  },
+  toast: {
+    position: 'absolute',
+    bottom: 80,
+    alignSelf: 'center',
+    backgroundColor: 'rgba(0,0,0,0.8)',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+  },
+  toastText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '500',
   },
   buttonContainer: {
     padding: 16,

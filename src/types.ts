@@ -42,6 +42,41 @@ export interface Recipe {
   overallFlow?: string;
 }
 
+export interface InventoryItem {
+  id: string;
+  name: string;
+  quantity: string;
+  unit: string;
+  expiryDate?: string;
+  addedDate: string;
+}
+
+export interface ShoppingItem {
+  id: string;
+  name: string;
+  quantity: string;
+  unit: string;
+  checked: boolean;
+}
+
+export interface CookingNote {
+  id: string;
+  recipeId: string;
+  recipeName: string;
+  date: string;
+  content: string;
+  rating: number;
+  isSuccess: boolean;
+}
+
+export interface MealPlanItem {
+  id: string;
+  dayOfWeek: number;
+  mealType: 'breakfast' | 'lunch' | 'dinner';
+  recipeId: string;
+  recipeName: string;
+}
+
 export interface AppState {
   recipes: Recipe[];
   selectedRecipe: Recipe | null;
@@ -49,6 +84,15 @@ export interface AppState {
   selectedCategory: string | null;
   preparationCheckedItems: string[];
   preparationCheckedSteps: string[];
+  activeCookingRecipeId: string | null;
+  activeCookingStepIndex: number;
+  favorites: string[];
+  inventory: InventoryItem[];
+  cookingNotes: CookingNote[];
+  mealPlans: MealPlanItem[];
+  shoppingList: ShoppingItem[];
+  userModifiedRecipes: string[];
+  recentlyOpenedIds: string[];
 }
 
 export interface AppContextType extends AppState {
@@ -64,4 +108,18 @@ export interface AppContextType extends AppState {
   resetPreparationChecklist: () => void;
   togglePreparationStep: (stepId: string) => void;
   resetPreparationSteps: () => void;
+  setActiveCooking: (recipeId: string | null, stepIndex: number) => void;
+  toggleFavorite: (recipeId: string) => void;
+  addInventoryItem: (item: InventoryItem) => void;
+  removeInventoryItem: (id: string) => void;
+  updateInventoryItem: (item: InventoryItem) => void;
+  addShoppingItem: (item: ShoppingItem) => void;
+  toggleShoppingItem: (id: string) => void;
+  removeShoppingItem: (id: string) => void;
+  addCookingNote: (note: CookingNote) => void;
+  updateCookingNote: (note: CookingNote) => void;
+  deleteCookingNote: (id: string) => void;
+  saveMealPlan: (plans: MealPlanItem[]) => void;
+  markRecipeAsModified: (recipeId: string) => void;
+  markRecipeAsOpened: (recipeId: string) => void;
 }

@@ -7,12 +7,6 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
-  Modal,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  Alert,
-  Clipboard,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -20,11 +14,9 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation';
 import { useApp } from '../context';
 import { Recipe } from '../types';
-import parseRecipeText from '../parseRecipe';
+import ImportRecipeModal from './ImportRecipeModal';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
-
-const FORMAT_TEMPLATE = '番茄炒蛋\n\n📝 简介\n家常菜经典款，酸甜可口\n\n🗺️ 总体流程\n备料→炒蛋→炒番茄→混合调味\n\n⏱️ 基本信息\n准备时间\t10分钟\n烹饪时间\t5分钟\n份量\t2人份\n难度\t简单\n分类\t家常菜\n烹饪技法\t炒\n菜肴味型\t酸甜\n\n主料\n鸡蛋\t3个\n番茄\t2个\n\n辅料\n葱花\t适量\n\n调料\n盐\t适量\n糖\t1勺\n\n📋 备料步骤\n番茄洗净，在顶部划十字刀\n将番茄放入开水中烫30秒 💡 小贴士：更容易去皮\n\n🍳 炒菜步骤\n热锅凉油，倒入蛋液 耗时：1分钟 💡 小贴士：油温七成热\n\n🏷️ 标签\n家常菜、快手菜、下饭菜';
 
 const getDifficultyText = (difficulty: string) => {
   switch (difficulty) {
@@ -46,13 +38,11 @@ const getDifficultyColor = (difficulty: string) => {
 
 const HomeScreen: React.FC = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
-  const { recipes, searchQuery, setSearchQuery, selectedCategory, setSelectedCategory, addRecipe } = useApp();
+  const { recipes, searchQuery, setSearchQuery, selectedCategory, setSelectedCategory, addRecipe, markRecipeAsModified, recentlyOpenedIds } = useApp();
   const [showImportModal, setShowImportModal] = useState(false);
-  const [recipeText, setRecipeText] = useState('');
-  const [importError, setImportError] = useState('');
 
   const filteredRecipes = useMemo(() => {
-    return recipes.filter(recipe => {
+    const filtered = recipes.filter(recipe => {
       const query = searchQuery.toLowerCase();
       const matchesName = recipe.name.toLowerCase().includes(query);
       const matchesTag = recipe.tags.some(tag => tag.toLowerCase().includes(query));
@@ -67,7 +57,19 @@ const HomeScreen: React.FC = () => {
       const matchesCategory = !selectedCategory || selectedCategory === '全部' || recipe.tags.includes(selectedCategory);
       return matchesSearch && matchesCategory;
     });
-  }, [recipes, searchQuery, selectedCategory]);
+
+    if (recentlyOpenedIds.length > 0) {
+      return [...filtered].sort((a, b) => {
+        const aIndex = recentlyOpenedIds.indexOf(a.id);
+        const bIndex = recentlyOpenedIds.indexOf(b.id);
+        if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+        if (aIndex !== -1) return -1;
+        if (bIndex !== -1) return 1;
+        return 0;
+      });
+    }
+    return filtered;
+  }, [recipes, searchQuery, selectedCategory, recentlyOpenedIds]);
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
@@ -75,31 +77,9 @@ const HomeScreen: React.FC = () => {
     return ['全部', ...Array.from(tags).sort()];
   }, [recipes]);
 
-  const handleImport = async () => {
-    if (!recipeText.trim()) {
-      setImportError('请输入菜谱内容');
-      return;
-    }
-
-    try {
-      const recipe = parseRecipeText(recipeText.trim());
-      if (!recipe.name || recipe.name === '未命名菜谱') {
-        setImportError('无法识别菜谱名称，请确保第一行是菜谱名称');
-        return;
-      }
-      await addRecipe(recipe);
-      setShowImportModal(false);
-      setRecipeText('');
-      setImportError('');
-    } catch (error) {
-      setImportError('解析失败，请检查菜谱格式');
-    }
-  };
-
-  const handleCloseImport = () => {
-    setShowImportModal(false);
-    setRecipeText('');
-    setImportError('');
+  const handleImport = async (recipe: Recipe) => {
+    await addRecipe(recipe);
+    markRecipeAsModified(recipe.id);
   };
 
   const renderRecipeItem = ({ item }: { item: Recipe }) => (
@@ -113,9 +93,9 @@ const HomeScreen: React.FC = () => {
           <Text style={styles.difficultyText}>{getDifficultyText(item.difficulty)}</Text>
         </View>
       </View>
-      {item.description && (
+      {item.description ? (
         <Text style={styles.recipeDescription} numberOfLines={2}>{item.description}</Text>
-      )}
+      ) : null}
       <View style={styles.recipeMeta}>
         <Text style={styles.metaText}>⏱ {item.prepTime} + {item.cookTime}</Text>
         <Text style={styles.metaText}>👥 {item.servings}人份</Text>
@@ -133,8 +113,7 @@ const HomeScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
       <StatusBar barStyle="light-content" backgroundColor="#f4511e" />
-      
-      {/* 搜索栏 */}
+
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
@@ -150,8 +129,7 @@ const HomeScreen: React.FC = () => {
           <Text style={styles.importButtonText}>+ 导入</Text>
         </TouchableOpacity>
       </View>
-      
-      {/* 标签筛选栏 */}
+
       <View style={styles.categoryContainer}>
         <FlatList
           horizontal
@@ -162,13 +140,13 @@ const HomeScreen: React.FC = () => {
             <TouchableOpacity
               style={[
                 styles.categoryButton,
-                selectedCategory === item && styles.categoryButtonActive,
+                selectedCategory === item ? styles.categoryButtonActive : undefined,
               ]}
               onPress={() => setSelectedCategory(item)}
             >
               <Text style={[
                 styles.categoryText,
-                selectedCategory === item && styles.categoryTextActive,
+                selectedCategory === item ? styles.categoryTextActive : undefined,
               ]}>
                 {item}
               </Text>
@@ -176,8 +154,7 @@ const HomeScreen: React.FC = () => {
           )}
         />
       </View>
-      
-      {/* 菜谱列表 */}
+
       <FlatList
         data={filteredRecipes}
         keyExtractor={(item) => item.id}
@@ -190,65 +167,11 @@ const HomeScreen: React.FC = () => {
         }
       />
 
-      {/* 导入模态框 */}
-      <Modal
+      <ImportRecipeModal
         visible={showImportModal}
-        animationType="slide"
-        onRequestClose={handleCloseImport}
-      >
-        <SafeAreaView style={styles.modalContainer}>
-          <View style={styles.modalHeader}>
-            <TouchableOpacity onPress={handleCloseImport}>
-              <Text style={styles.modalCancelText}>取消</Text>
-            </TouchableOpacity>
-            <Text style={styles.modalTitle}>导入菜谱</Text>
-            <TouchableOpacity onPress={handleImport}>
-              <Text style={styles.modalConfirmText}>导入</Text>
-            </TouchableOpacity>
-          </View>
-
-          <ScrollView style={styles.modalBody}>
-            <View style={styles.formatGuide}>
-              <View style={styles.formatGuideHeader}>
-                <Text style={styles.formatGuideTitle}>📋 菜谱格式参考</Text>
-                <TouchableOpacity
-                  style={styles.copyButton}
-                  onPress={() => {
-                    Clipboard.setString(FORMAT_TEMPLATE);
-                    Alert.alert('已复制', '格式模板已复制到剪贴板');
-                  }}
-                >
-                  <Text style={styles.copyButtonText}>📋 一键复制</Text>
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.formatGuideText}>
-                {FORMAT_TEMPLATE}
-              </Text>
-            </View>
-
-            <KeyboardAvoidingView
-              behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-            >
-              <TextInput
-                style={styles.recipeTextInput}
-                placeholder="粘贴或输入菜谱内容..."
-                placeholderTextColor="#999"
-                value={recipeText}
-                onChangeText={(text) => {
-                  setRecipeText(text);
-                  setImportError('');
-                }}
-                multiline
-                textAlignVertical="top"
-              />
-            </KeyboardAvoidingView>
-
-            {importError ? (
-              <Text style={styles.errorText}>{importError}</Text>
-            ) : null}
-          </ScrollView>
-        </SafeAreaView>
-      </Modal>
+        onClose={() => setShowImportModal(false)}
+        onImport={handleImport}
+      />
     </SafeAreaView>
   );
 };
@@ -314,6 +237,7 @@ const styles = StyleSheet.create({
   },
   recipeList: {
     padding: 12,
+    paddingBottom: 60,
   },
   recipeCard: {
     backgroundColor: '#fff',
@@ -389,89 +313,6 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 16,
     color: '#999',
-  },
-
-  modalContainer: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  modalHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    backgroundColor: '#f4511e',
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  modalCancelText: {
-    fontSize: 16,
-    color: '#fff',
-  },
-  modalConfirmText: {
-    fontSize: 16,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  modalBody: {
-    flex: 1,
-    padding: 16,
-  },
-  formatGuide: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
-  },
-  formatGuideTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  formatGuideHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  copyButton: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 6,
-    backgroundColor: '#f4511e',
-  },
-  copyButtonText: {
-    fontSize: 12,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  formatGuideText: {
-    fontSize: 13,
-    color: '#666',
-    lineHeight: 22,
-    backgroundColor: '#f9f9f9',
-    padding: 12,
-    borderRadius: 8,
-  },
-  recipeTextInput: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    fontSize: 15,
-    color: '#333',
-    minHeight: 300,
-    lineHeight: 24,
-    textAlignVertical: 'top',
-  },
-  errorText: {
-    color: '#f44336',
-    fontSize: 14,
-    marginTop: 10,
-    textAlign: 'center',
   },
 });
 

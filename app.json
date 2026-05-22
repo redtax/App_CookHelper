@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "炒菜助手",
+    "name": "味溯新东方",
     "slug": "CookHelper",
     "version": "1.0.0",
     "orientation": "default",
@@ -27,7 +27,8 @@
       "favicon": "./assets/favicon.png"
     },
     "assetBundlePatterns": [
-      "assets/recipes.txt"
+      "assets/recipes.json",
+      "media/images/*"
     ]
   }
 }

@@ -20,7 +20,7 @@ const PreparationStepsScreen: React.FC = () => {
   const navigation = useNavigation<PreparationStepsNavigationProp>();
   const route = useRoute<PreparationStepsRouteProp>();
   const { recipe } = route.params;
-  const { preparationCheckedSteps, togglePreparationStep, resetPreparationChecklist, resetPreparationSteps } = useApp();
+  const { preparationCheckedSteps, togglePreparationStep, resetPreparationSteps, resetPreparationChecklist, setActiveCooking } = useApp();
 
   const preparationSteps = recipe.preparationSteps || [];
   const totalSteps = preparationSteps.length;
@@ -72,22 +72,22 @@ const PreparationStepsScreen: React.FC = () => {
                   style={styles.stepHeader}
                   onPress={() => togglePreparationStep(step.id)}
                 >
-                  <View style={[styles.stepNumber, isChecked && styles.stepNumberChecked]}>
+                  <View style={[styles.stepNumber, isChecked ? styles.stepNumberChecked : undefined]}>
                     <Text style={styles.stepNumberText}>
                       {isChecked ? '✓' : index + 1}
                     </Text>
                   </View>
                 </TouchableOpacity>
                 <View style={styles.stepContent}>
-                  <Text style={[styles.stepDescription, isChecked && styles.stepDescriptionChecked]}>
+                  <Text style={[styles.stepDescription, isChecked ? styles.stepDescriptionChecked : undefined]}>
                     {step.description}
                   </Text>
-                  {step.tips && (
+                  {step.tips ? (
                     <View style={styles.stepTipsContainer}>
                       <Text style={styles.stepTipsTitle}>💡 小贴士</Text>
                       <Text style={styles.stepTipsText}>{step.tips}</Text>
                     </View>
-                  )}
+                  ) : null}
                 </View>
               </View>
             );

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Image,
   Modal,
   TextInput,
   Alert,
@@ -15,8 +14,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation';
-import { exportRecipeToText, parseRecipeText } from '../parseRecipe';
+import { exportRecipeToText } from '../parseRecipe';
 import { useApp } from '../context';
+import OptimizedImage from '../OptimizedImage';
+import ImportRecipeModal from './ImportRecipeModal';
 
 type RecipeDetailRouteProp = RouteProp<RootStackParamList, 'RecipeDetail'>;
 type RecipeDetailNavigationProp = NativeStackNavigationProp<RootStackParamList, 'RecipeDetail'>;
@@ -25,13 +26,16 @@ const RecipeDetailScreen: React.FC = () => {
   const navigation = useNavigation<RecipeDetailNavigationProp>();
   const route = useRoute<RecipeDetailRouteProp>();
   const { recipe: routeRecipe } = route.params;
-  const { updateRecipe, recipes } = useApp();
+  const { updateRecipe, recipes, toggleFavorite, favorites, markRecipeAsOpened } = useApp();
   const recipe = recipes.find(r => r.id === routeRecipe.id) || routeRecipe;
   const [showModal, setShowModal] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
-  const [showImportModal, setShowImportModal] = useState(false);
+  const [showImportRecipeModal, setShowImportRecipeModal] = useState(false);
   const [exportText, setExportText] = useState('');
-  const [importText, setImportText] = useState('');
+
+  useEffect(() => {
+    markRecipeAsOpened(recipe.id);
+  }, []);
 
   const mainIngredients = recipe.mainIngredients || [];
   const auxiliaryIngredients = recipe.auxiliaryIngredients || [];
@@ -59,41 +63,39 @@ const RecipeDetailScreen: React.FC = () => {
 
   const handleImport = () => {
     setShowModal(false);
-    setImportText('');
-    setShowImportModal(true);
+    setShowImportRecipeModal(true);
   };
 
-  const confirmImport = () => {
-    if (!importText.trim()) {
-      Alert.alert('错误', '请粘贴菜谱文本！');
-      return;
-    }
-
-    try {
-      const parsedRecipe = parseRecipeText(importText);
-      const updatedRecipe = {
-        ...parsedRecipe,
-        id: recipe.id, // 保持原有的 id
-        imageUrl: recipe.imageUrl, // 保持原有的图片
-      };
-      updateRecipe(updatedRecipe);
-      setShowImportModal(false);
-      Alert.alert('成功', '菜谱已更新！', [
-        { text: '确定', onPress: () => navigation.navigate('RecipeDetail', { recipe: updatedRecipe }) }
-      ]);
-    } catch (error) {
-      Alert.alert('错误', '解析菜谱失败，请检查格式！');
-    }
+  const handleImportRecipe = (parsedRecipe: any) => {
+    const updatedRecipe = {
+      ...parsedRecipe,
+      id: recipe.id,
+      imageUrl: parsedRecipe.imageUrl || recipe.imageUrl,
+    };
+    updateRecipe(updatedRecipe);
+    Alert.alert('成功', '菜谱已更新！', [
+      { text: '确定', onPress: () => navigation.navigate('RecipeDetail', { recipe: updatedRecipe }) }
+    ]);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        {recipe.imageUrl && (
-          <Image source={{ uri: recipe.imageUrl }} style={styles.recipeImage} resizeMode="cover" />
-        )}
+        {recipe.imageUrl ? (
+          <OptimizedImage source={{ uri: recipe.imageUrl }} style={styles.recipeImage} resizeMode="cover" />
+        ) : null}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>📋 简介</Text>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>📋 简介</Text>
+            <TouchableOpacity
+              style={styles.favButton}
+              onPress={() => toggleFavorite(recipe.id)}
+            >
+              <Text style={styles.favIcon}>
+                {favorites.includes(recipe.id) ? '★' : '☆'}
+              </Text>
+            </TouchableOpacity>
+          </View>
           <Text style={styles.description}>{recipe.description || '暂无简介'}</Text>
         </View>
 
@@ -131,7 +133,7 @@ const RecipeDetailScreen: React.FC = () => {
 
         {hasIngredientCategories ? (
           <>
-            {mainIngredients.length > 0 && (
+            {mainIngredients.length > 0 ? (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>🥗 主料 ({mainIngredients.length}项)</Text>
                 {mainIngredients.map((ingredient, index) => (
@@ -146,8 +148,8 @@ const RecipeDetailScreen: React.FC = () => {
                   </View>
                 ))}
               </View>
-            )}
-            {auxiliaryIngredients.length > 0 && (
+            ) : null}
+            {auxiliaryIngredients.length > 0 ? (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>🥕 辅料 ({auxiliaryIngredients.length}项)</Text>
                 {auxiliaryIngredients.map((ingredient, index) => (
@@ -162,8 +164,8 @@ const RecipeDetailScreen: React.FC = () => {
                   </View>
                 ))}
               </View>
-            )}
-            {seasonings.length > 0 && (
+            ) : null}
+            {seasonings.length > 0 ? (
               <View style={styles.section}>
                 <Text style={styles.sectionTitle}>🧂 调料 ({seasonings.length}项)</Text>
                 {seasonings.map((ingredient, index) => (
@@ -178,7 +180,7 @@ const RecipeDetailScreen: React.FC = () => {
                   </View>
                 ))}
               </View>
-            )}
+            ) : null}
           </>
         ) : (
           <View style={styles.section}>
@@ -197,12 +199,12 @@ const RecipeDetailScreen: React.FC = () => {
           </View>
         )}
 
-        {recipe.overallFlow && (
+        {recipe.overallFlow ? (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>🗺️ 总体流程</Text>
             <Text style={styles.overallFlowText}>{recipe.overallFlow}</Text>
           </View>
-        )}
+        ) : null}
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>🏷️ 标签</Text>
@@ -299,41 +301,11 @@ const RecipeDetailScreen: React.FC = () => {
       </Modal>
 
       {/* 导入模态框 */}
-      <Modal
-        visible={showImportModal}
-        transparent={true}
-        animationType="slide"
-        onRequestClose={() => setShowImportModal(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={[styles.modalContent, styles.largeModalContent]}>
-            <Text style={styles.modalTitle}>导入菜谱</Text>
-            <TextInput
-              style={styles.importTextInput}
-              value={importText}
-              onChangeText={setImportText}
-              placeholder="请粘贴菜谱文本..."
-              multiline
-              numberOfLines={10}
-              autoFocus
-            />
-            <View style={styles.modalButtonRow}>
-              <TouchableOpacity
-                style={[styles.modalButton, styles.modalCancelButton]}
-                onPress={() => setShowImportModal(false)}
-              >
-                <Text style={styles.modalCancelButtonText}>取消</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.modalButton, styles.modalSaveButton]}
-                onPress={confirmImport}
-              >
-                <Text style={styles.modalSaveButtonText}>导入</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
+      <ImportRecipeModal
+        visible={showImportRecipeModal}
+        onClose={() => setShowImportRecipeModal(false)}
+        onImport={handleImportRecipe}
+      />
     </SafeAreaView>
   );
 };
@@ -363,6 +335,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
     marginBottom: 12,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  favButton: {
+    padding: 4,
+  },
+  favIcon: {
+    fontSize: 24,
+    color: '#f4511e',
   },
   description: {
     fontSize: 15,

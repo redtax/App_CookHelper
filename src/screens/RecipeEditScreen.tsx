@@ -15,6 +15,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation';
 import { Recipe, Ingredient, PreparationStep, CookingStep } from '../types';
 import { useApp } from '../context';
+import ImagePickerButton from '../components/ImagePickerButton';
 
 type RecipeEditRouteProp = RouteProp<RootStackParamList, 'RecipeEdit'>;
 type RecipeEditNavigationProp = NativeStackNavigationProp<RootStackParamList, 'RecipeEdit'>;
@@ -23,7 +24,7 @@ const RecipeEditScreen: React.FC = () => {
   const navigation = useNavigation<RecipeEditNavigationProp>();
   const route = useRoute<RecipeEditRouteProp>();
   const { recipe: initialRecipe, isNew } = route.params;
-  const { updateRecipe, recipes } = useApp();
+  const { updateRecipe, recipes, markRecipeAsModified } = useApp();
 
   const [name, setName] = useState(initialRecipe.name);
   const [description, setDescription] = useState(initialRecipe.description || '');
@@ -48,6 +49,7 @@ const RecipeEditScreen: React.FC = () => {
   );
   const [preparationSteps, setPreparationSteps] = useState<PreparationStep[]>(initialRecipe.preparationSteps || []);
   const [cookingSteps, setCookingSteps] = useState<CookingStep[]>(initialRecipe.cookingSteps || []);
+  const [imageUrl, setImageUrl] = useState<string | undefined>(initialRecipe.imageUrl);
 
   const [showNewTag, setShowNewTag] = useState(false);
   const [newTagName, setNewTagName] = useState('');
@@ -138,9 +140,11 @@ const RecipeEditScreen: React.FC = () => {
       seasonings,
       preparationSteps,
       cookingSteps,
+      imageUrl,
     };
 
     await updateRecipe(updatedRecipe);
+    markRecipeAsModified(updatedRecipe.id);
     setHasChanges(false);
     setSavedIndicator(true);
     setTimeout(() => setSavedIndicator(false), 2000);
@@ -337,30 +341,30 @@ const RecipeEditScreen: React.FC = () => {
       </View>
       <View style={styles.categorySwitchRow}>
         <Text style={styles.categorySwitchLabel}>归类：</Text>
-        {category !== 'main' && (
+        {category !== 'main' ? (
           <TouchableOpacity
             style={[styles.categorySwitchBtn, { backgroundColor: '#f4511e' }]}
             onPress={() => moveAcrossCategory(category, index, 'main')}
           >
             <Text style={styles.categorySwitchBtnText}>主料</Text>
           </TouchableOpacity>
-        )}
-        {category !== 'auxiliary' && (
+        ) : null}
+        {category !== 'auxiliary' ? (
           <TouchableOpacity
             style={[styles.categorySwitchBtn, { backgroundColor: '#FF9800' }]}
             onPress={() => moveAcrossCategory(category, index, 'auxiliary')}
           >
             <Text style={styles.categorySwitchBtnText}>辅料</Text>
           </TouchableOpacity>
-        )}
-        {category !== 'seasoning' && (
+        ) : null}
+        {category !== 'seasoning' ? (
           <TouchableOpacity
             style={[styles.categorySwitchBtn, { backgroundColor: '#8BC34A' }]}
             onPress={() => moveAcrossCategory(category, index, 'seasoning')}
           >
             <Text style={styles.categorySwitchBtnText}>调料</Text>
           </TouchableOpacity>
-        )}
+        ) : null}
       </View>
     </View>
   );
@@ -455,6 +459,7 @@ const RecipeEditScreen: React.FC = () => {
       >
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>📋 基本信息</Text>
+          <ImagePickerButton imageUri={imageUrl} onImagePicked={setImageUrl} />
           <View style={styles.inputGroup}>
             <Text style={styles.inputLabel}>菜谱名称</Text>
             <TextInput
@@ -525,14 +530,14 @@ const RecipeEditScreen: React.FC = () => {
                     key={d}
                     style={[
                       styles.difficultyOption,
-                      difficulty === d && styles.difficultyOptionSelected,
+                      difficulty === d ? styles.difficultyOptionSelected : undefined,
                     ]}
                     onPress={() => { setDifficulty(d); markChanged(); }}
                   >
                     <Text
                       style={[
                         styles.difficultyOptionText,
-                        difficulty === d && styles.difficultyOptionTextSelected,
+                        difficulty === d ? styles.difficultyOptionTextSelected : undefined,
                       ]}
                     >
                       {d === 'easy' ? '简单' : d === 'medium' ? '中等' : '困难'}
@@ -550,14 +555,14 @@ const RecipeEditScreen: React.FC = () => {
                   key={cat}
                   style={[
                     styles.chipOption,
-                    categories.includes(cat) && styles.chipOptionSelected,
+                    categories.includes(cat) ? styles.chipOptionSelected : undefined,
                   ]}
                   onPress={() => toggleCategory(cat)}
                 >
                   <Text
                     style={[
                       styles.chipOptionText,
-                      categories.includes(cat) && styles.chipOptionTextSelected,
+                      categories.includes(cat) ? styles.chipOptionTextSelected : undefined,
                     ]}
                   >
                     {cat}
@@ -627,7 +632,7 @@ const RecipeEditScreen: React.FC = () => {
             {seasonings.map((ing, i) => renderIngredientRow(ing, 'seasoning', i))}
           </View>
 
-          {uncategorizedIngredients.length > 0 && (
+          {uncategorizedIngredients.length > 0 ? (
             <View style={styles.subSection}>
               <View style={styles.sectionHeader}>
                 <Text style={[styles.subSectionTitle, styles.warningTitle]}>
@@ -637,7 +642,7 @@ const RecipeEditScreen: React.FC = () => {
               <Text style={styles.warningHint}>请为以下食材选择分类后保存</Text>
               {uncategorizedIngredients.map((ing, i) => renderUncategorizedRow(ing, i))}
             </View>
-          )}
+          ) : null}
         </View>
 
         <View
@@ -660,18 +665,18 @@ const RecipeEditScreen: React.FC = () => {
                 </View>
                 <View style={styles.moveButtons}>
                   <TouchableOpacity
-                    style={[styles.moveBtn, index === 0 && styles.moveBtnDisabled]}
+                    style={[styles.moveBtn, index === 0 ? styles.moveBtnDisabled : undefined]}
                     onPress={() => movePreparationStep(index, 'up')}
                     disabled={index === 0}
                   >
-                    <Text style={[styles.moveBtnText, index === 0 && styles.moveBtnTextDisabled]}>▲</Text>
+                    <Text style={[styles.moveBtnText, index === 0 ? styles.moveBtnTextDisabled : undefined]}>▲</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={[styles.moveBtn, index === preparationSteps.length - 1 && styles.moveBtnDisabled]}
+                    style={[styles.moveBtn, index === preparationSteps.length - 1 ? styles.moveBtnDisabled : undefined]}
                     onPress={() => movePreparationStep(index, 'down')}
                     disabled={index === preparationSteps.length - 1}
                   >
-                    <Text style={[styles.moveBtnText, index === preparationSteps.length - 1 && styles.moveBtnTextDisabled]}>▼</Text>
+                    <Text style={[styles.moveBtnText, index === preparationSteps.length - 1 ? styles.moveBtnTextDisabled : undefined]}>▼</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={styles.moveCrossBtn}
@@ -727,18 +732,18 @@ const RecipeEditScreen: React.FC = () => {
                 </View>
                 <View style={styles.moveButtons}>
                   <TouchableOpacity
-                    style={[styles.moveBtn, index === 0 && styles.moveBtnDisabled]}
+                    style={[styles.moveBtn, index === 0 ? styles.moveBtnDisabled : undefined]}
                     onPress={() => moveCookingStep(index, 'up')}
                     disabled={index === 0}
                   >
-                    <Text style={[styles.moveBtnText, index === 0 && styles.moveBtnTextDisabled]}>▲</Text>
+                    <Text style={[styles.moveBtnText, index === 0 ? styles.moveBtnTextDisabled : undefined]}>▲</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={[styles.moveBtn, index === cookingSteps.length - 1 && styles.moveBtnDisabled]}
+                    style={[styles.moveBtn, index === cookingSteps.length - 1 ? styles.moveBtnDisabled : undefined]}
                     onPress={() => moveCookingStep(index, 'down')}
                     disabled={index === cookingSteps.length - 1}
                   >
-                    <Text style={[styles.moveBtnText, index === cookingSteps.length - 1 && styles.moveBtnTextDisabled]}>▼</Text>
+                    <Text style={[styles.moveBtnText, index === cookingSteps.length - 1 ? styles.moveBtnTextDisabled : undefined]}>▼</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={styles.moveCrossBtn}
@@ -795,14 +800,14 @@ const RecipeEditScreen: React.FC = () => {
                 key={tag}
                 style={[
                   styles.chipOption,
-                  tags.includes(tag) && styles.chipOptionSelected,
+                  tags.includes(tag) ? styles.chipOptionSelected : undefined,
                 ]}
                 onPress={() => toggleTag(tag)}
               >
                 <Text
                   style={[
                     styles.chipOptionText,
-                    tags.includes(tag) && styles.chipOptionTextSelected,
+                    tags.includes(tag) ? styles.chipOptionTextSelected : undefined,
                   ]}
                 >
                   {tag}
@@ -826,9 +831,9 @@ const RecipeEditScreen: React.FC = () => {
             <Text style={styles.saveButtonText}>{savedIndicator ? '✓ 已保存' : '保存'}</Text>
           </TouchableOpacity>
         </View>
-        {savedIndicator && (
+        {savedIndicator ? (
           <Text style={styles.savedHint}>菜谱已保存，可继续编辑或返回</Text>
-        )}
+        ) : null}
       </ScrollView>
 
       <Modal

@@ -1,10 +1,13 @@
 import { Recipe } from './types';
 
 const parseIngredientLine = (line: string) => {
-  const tabParts = line.split(/\t+/);
-  if (tabParts.length >= 2) {
-    const ingredientName = tabParts[0].trim();
-    const amountStr = tabParts[1].trim();
+  const separatorPattern = /[\t]+|[ ]{2,}|[—–\-]+|[…\.]{3,}/;
+  const sepMatch = line.match(separatorPattern);
+
+  if (sepMatch && sepMatch.index !== undefined) {
+    const ingredientName = line.substring(0, sepMatch.index).trim();
+    const amountStr = line.substring(sepMatch.index! + sepMatch[0].length).trim();
+
     const notesMatch = amountStr.match(/[（(](.+)[）)]/);
     const cleanAmount = amountStr.replace(/[（(].+[）)]/, '').trim();
     const amountMatch = cleanAmount.match(/^([\d.]+)\s*(.*)/);
@@ -19,36 +22,15 @@ const parseIngredientLine = (line: string) => {
       return {
         name: ingredientName,
         amount: cleanAmount || '',
+        unit: undefined,
         notes: notesMatch ? notesMatch[1] : undefined,
       };
     }
-  } else {
-    const spaceParts = line.split(/\s{2,}/);
-    if (spaceParts.length >= 2) {
-      const ingredientName = spaceParts[0].trim();
-      const amountStr = spaceParts.slice(1).join(' ').trim();
-      const notesMatch = amountStr.match(/[（(](.+)[）)]/);
-      const cleanAmount = amountStr.replace(/[（(].+[）)]/, '').trim();
-      const amountMatch = cleanAmount.match(/^([\d.]+)\s*(.*)/);
-      if (amountMatch) {
-        return {
-          name: ingredientName,
-          amount: amountMatch[1],
-          unit: amountMatch[2] || undefined,
-          notes: notesMatch ? notesMatch[1] : undefined,
-        };
-      } else {
-        return {
-          name: ingredientName,
-          amount: cleanAmount || '',
-          notes: notesMatch ? notesMatch[1] : undefined,
-        };
-      }
-    }
   }
+
   const delimParts = line.split(/[、，,。.;；\s]+/);
   if (delimParts.length > 1) {
-    return null; // multiple ingredients, handled separately
+    return null;
   }
   return { name: line, amount: '' };
 };
@@ -125,7 +107,7 @@ const parseRecipeText = (text: string) => {
       continue;
     }
 
-    if (line.match(/^🍳\s*炒[制菜]/) || line.match(/^炒[制菜]步骤/) || line.match(/^炒[制菜]$/)) {
+    if (line.match(/^🍳\s*(炒|制作|烹饪)/) || line.match(/^(炒|制作|烹饪)步骤/) || line.match(/^(炒|制作|烹饪)$/)) {
       currentSection = 'cooking';
       continue;
     }
@@ -217,7 +199,7 @@ const parseRecipeText = (text: string) => {
       if (line.match(/^(食材|用量)\s*$/) || line.match(/食材\s+用量/)) {
         continue;
       }
-      
+
       const parsedIngredient = parseIngredientLine(line);
       if (parsedIngredient) {
         if (currentIngredientCategory === 'main') {
@@ -230,7 +212,6 @@ const parseRecipeText = (text: string) => {
           ingredients.push(parsedIngredient);
         }
       } else {
-        // Handle multiple ingredients
         const delimParts = line.split(/[、，,。.;；\s]+/);
         delimParts.forEach(part => {
           const trimmed = part.trim();
@@ -275,39 +256,60 @@ const parseRecipeText = (text: string) => {
     }
 
     if (currentSection === 'preparation') {
-      const stepMatch = line.match(/^\d+[.、)\s]+(.*)/);
+      const stepMatch = line.match(/^第?\s*\d+[.、)\s]+(.*)/);
       let desc = stepMatch ? stepMatch[1] : line;
+
       const tipsMatch = desc.match(/💡\s*小贴士[：:]?\s*(.*)/);
       if (tipsMatch) {
         const cleanDesc = desc.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
         if (cleanDesc) {
-          preparationSteps.push({
-            description: cleanDesc,
-            tips: tipsMatch[1].trim(),
-          });
+          const timeMatch = cleanDesc.match(/耗时[：:]\s*(.+)$/);
+          if (timeMatch) {
+            preparationSteps.push({
+              description: cleanDesc.replace(/耗时[：:]\s*.+$/, '').trim(),
+              tips: tipsMatch[1].trim(),
+            });
+          } else {
+            preparationSteps.push({
+              description: cleanDesc,
+              tips: tipsMatch[1].trim(),
+            });
+          }
         } else if (preparationSteps.length > 0) {
           preparationSteps[preparationSteps.length - 1].tips = tipsMatch[1].trim();
         }
         continue;
       }
-      const inlineTips = desc.match(/[（(]([^）)]+)[）)]/);
-      const cleanDesc = desc.replace(/[（(].+[）)]/, '').trim();
-      preparationSteps.push({
-        description: cleanDesc || desc,
-        tips: inlineTips ? inlineTips[1] : undefined,
-      });
+
+      const timeMatch = desc.match(/耗时[：:]\s*(.+)$/);
+      let cleanDesc = desc;
+      if (timeMatch) {
+        cleanDesc = desc.replace(/耗时[：:]\s*.+$/, '').trim();
+      }
+      const inlineTips = cleanDesc.match(/[（(]([^）)]+)[）)]/);
+      const finalDesc = cleanDesc.replace(/[（(].+[）)]/, '').trim();
+
+      if (finalDesc) {
+        preparationSteps.push({
+          description: finalDesc,
+          tips: inlineTips ? inlineTips[1] : undefined,
+        });
+      }
       continue;
     }
 
     if (currentSection === 'cooking') {
-      const stepMatch = line.match(/^\d+[.、)\s]+(.*)/);
-      const instruction = stepMatch ? stepMatch[1] : line;
+      const stepMatch = line.match(/^第?\s*\d+[.、)\s]+(.*)/);
+      let instruction = stepMatch ? stepMatch[1] : line;
+
       const tipsMatch = instruction.match(/💡\s*小贴士[：:]?\s*(.*)/);
       if (tipsMatch) {
         const instructionWithoutTips = instruction.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
         if (instructionWithoutTips) {
+          const timeMatch = instructionWithoutTips.match(/耗时[：:]\s*(.+)$/);
           cookingSteps.push({
-            instruction: instructionWithoutTips,
+            instruction: timeMatch ? instructionWithoutTips.replace(/耗时[：:]\s*.+$/, '').trim() : instructionWithoutTips,
+            duration: timeMatch ? timeMatch[1].trim() : undefined,
             tips: tipsMatch[1].trim(),
           });
         } else if (cookingSteps.length > 0) {
@@ -315,9 +317,30 @@ const parseRecipeText = (text: string) => {
         }
         continue;
       }
-      cookingSteps.push({
-        instruction,
-      });
+
+      const timeMatch = instruction.match(/耗时[：:]\s*(.+?)(?:\s*💡|$)/);
+      let duration: string | undefined;
+      let tips: string | undefined;
+      let cleanInstruction = instruction;
+
+      if (timeMatch) {
+        duration = timeMatch[1].trim();
+        cleanInstruction = instruction.replace(/耗时[：:]\s*.+?(?=\s*💡|$)/, '').trim();
+      }
+
+      const inlineTips = cleanInstruction.match(/💡\s*小贴士[：:]?\s*(.*)/);
+      if (inlineTips) {
+        tips = inlineTips[1].trim();
+        cleanInstruction = cleanInstruction.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
+      }
+
+      if (cleanInstruction) {
+        cookingSteps.push({
+          instruction: cleanInstruction,
+          duration,
+          tips,
+        });
+      }
       continue;
     }
 
@@ -363,18 +386,6 @@ const parseRecipeText = (text: string) => {
       imageUrl = line;
       continue;
     }
-  }
-
-  if (cookingSteps.length === 0 && preparationSteps.length > 0) {
-    cookingSteps = preparationSteps.map(s => ({
-      instruction: s.description,
-      tips: s.tips,
-    }));
-    preparationSteps = [];
-  }
-
-  if (cookingSteps.length === 0) {
-    cookingSteps = [{ instruction: '请补充炒菜步骤' }];
   }
 
   if (ingredients.length === 0 && mainIngredients.length === 0 && auxiliaryIngredients.length === 0 && seasonings.length === 0) {
