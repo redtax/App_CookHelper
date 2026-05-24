@@ -2,13 +2,13 @@ import React from 'react';
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
   StyleSheet,
   Alert,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Paths, File as FsFile } from 'expo-file-system';
+import * as FileSystem from 'expo-file-system';
+import OptimizedImage from '../OptimizedImage';
 
 interface ImagePickerButtonProps {
   imageUri: string | undefined;
@@ -34,13 +34,15 @@ const ImagePickerButton: React.FC<ImagePickerButtonProps> = ({ imageUri, onImage
       try {
         const pickedUri = result.assets[0].uri;
         const fileName = `recipe_img_${Date.now()}.jpg`;
-        const destFile = new FsFile(Paths.document, fileName);
+        const destUri = FileSystem.documentDirectory + fileName;
 
-        const response = await fetch(pickedUri);
-        const bytes = new Uint8Array(await response.arrayBuffer());
-        destFile.create({ overwrite: true });
-        destFile.write(bytes);
-        onImagePicked(destFile.uri);
+        // Copy the image to app's document directory
+        await FileSystem.copyAsync({
+          from: pickedUri,
+          to: destUri,
+        });
+
+        onImagePicked(destUri);
       } catch (error) {
         console.error('Failed to save image:', error);
         Alert.alert('错误', '图片保存失败，请重试');
@@ -58,7 +60,7 @@ const ImagePickerButton: React.FC<ImagePickerButtonProps> = ({ imageUri, onImage
   if (imageUri) {
     return (
       <View style={styles.container}>
-        <Image source={{ uri: imageUri }} style={styles.preview} resizeMode="cover" />
+        <OptimizedImage source={{ uri: imageUri }} style={styles.preview} resizeMode="cover" />
         <View style={styles.imageActions}>
           <TouchableOpacity style={styles.changeButton} onPress={handlePickImage}>
             <Text style={styles.changeButtonText}>更换图片</Text>
@@ -88,7 +90,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     borderRadius: 10,
-    backgroundColor: '#f0f0f0',
   },
   imageActions: {
     flexDirection: 'row',

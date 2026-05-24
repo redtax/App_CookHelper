@@ -86,6 +86,9 @@ const CookingScreen: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#f4511e" />
 
+      {/* 间距区域 1：React Navigation 导航栏与自定义导航栏之间的区域 */}
+      <View style={{ paddingTop: 10 }} />
+
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Text style={styles.headerTitle}>{recipe.name}</Text>
@@ -218,7 +221,7 @@ const CookingScreen: React.FC = () => {
           }}
         >
           <Text style={styles.portraitNavButtonText}>
-            {isCompletionPage ? '炒制步骤' : isLastStep ? '🎉 完成!' : '下一步 →'}
+            {isCompletionPage ? '制作步骤' : isLastStep ? '🎉 完成!' : '下一步 →'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -268,27 +271,28 @@ const styles = StyleSheet.create({
     backgroundColor: '#1a1a1a',
   },
   header: {
-    paddingHorizontal: 16,
-    paddingTop: 12,
-    paddingBottom: 10,
-    backgroundColor: '#f4511e',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+        paddingHorizontal: 16,
+        paddingTop: 4,
+        paddingBottom: 0,
+        backgroundColor: '#f4511e',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40,
+    },
   headerContent: {
     alignItems: 'center',
   },
   headerTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#fff',
+    },
   stepIndicator: {
-    fontSize: 13,
-    color: 'rgba(255, 255, 255, 0.8)',
-    marginTop: 2,
-  },
+        fontSize: 12,
+        color: 'rgba(255, 255, 255, 0.8)',
+        marginTop: 2,
+    },
   progressContainer: {
     backgroundColor: '#2a2a2a',
     paddingVertical: 8,

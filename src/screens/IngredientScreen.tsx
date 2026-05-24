@@ -317,15 +317,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   header: {
-    backgroundColor: '#f4511e',
-    paddingHorizontal: 20,
-    paddingVertical: 25,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
+        backgroundColor: '#f4511e',
+        paddingHorizontal: 20,
+        paddingVertical: 25,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#fff',
+    },
   tabBar: {
     flexDirection: 'row',
     backgroundColor: '#fff',

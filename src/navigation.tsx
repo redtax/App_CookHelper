@@ -82,29 +82,61 @@ const AppNavigator: React.FC = () => {
           }}
         />
         <Stack.Screen
-          name="RecipeDetail"
-          component={RecipeDetailScreen}
-          options={({ route }) => ({ title: route.params.recipe.name })}
+            name="RecipeDetail"
+            component={RecipeDetailScreen}
+            options={({ route }) => ({ 
+                title: route.params.recipe.name,
+                headerStyle: {
+                    backgroundColor: '#f4511e',
+                    height: 10,
+                },
+                headerTitleStyle: {
+                    fontSize: 10,
+                },
+            })}
         />
         <Stack.Screen
-          name="PreparationIngredients"
-          component={PreparationIngredientsScreen}
-          options={{ title: '备料食材' }}
+            name="PreparationIngredients"
+            component={PreparationIngredientsScreen}
+            options={{ 
+                title: '备料食材',
+                headerStyle: {
+                    backgroundColor: '#f4511e',
+                    height: 10,
+                },
+                headerTitleStyle: {
+                    fontSize: 10,
+                },
+            }}
         />
         <Stack.Screen
-          name="PreparationSteps"
-          component={PreparationStepsScreen}
-          options={{ title: '备料步骤' }}
+            name="PreparationSteps"
+            component={PreparationStepsScreen}
+            options={{ 
+                title: '备料步骤',
+                headerStyle: {
+                    backgroundColor: '#f4511e',
+                    height: 10,
+                },
+                headerTitleStyle: {
+                    fontSize: 10,
+                },
+            }}
         />
         <Stack.Screen
-          name="Cooking"
-          component={CookingScreen}
-          options={{
-            title: '开始炒菜',
-            headerStyle: {
-              backgroundColor: '#f4511e',
-            },
-          }}
+            name="Cooking"
+            component={CookingScreen}
+            options={{
+                title: '开始炒菜',
+                headerStyle: {
+                    backgroundColor: '#f4511e',
+                    paddingBottom: 4,
+                },
+                headerTitleStyle: {
+                    fontSize: 16,
+                    fontWeight: 'bold',
+                },
+            }}
         />
         <Stack.Screen
           name="RecipeEdit"
