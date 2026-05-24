@@ -86,9 +86,6 @@ const CookingScreen: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#f4511e" />
 
-      {/* 间距区域 1：React Navigation 导航栏与自定义导航栏之间的区域 */}
-      <View style={{ paddingTop: 10 }} />
-
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Text style={styles.headerTitle}>{recipe.name}</Text>

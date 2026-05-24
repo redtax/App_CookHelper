@@ -88,10 +88,11 @@ const AppNavigator: React.FC = () => {
                 title: route.params.recipe.name,
                 headerStyle: {
                     backgroundColor: '#f4511e',
-                    height: 10,
+                    height: 40,
                 },
                 headerTitleStyle: {
-                    fontSize: 10,
+                    fontSize: 16,
+                    fontWeight: 'bold',
                 },
             })}
         />
@@ -102,10 +103,11 @@ const AppNavigator: React.FC = () => {
                 title: '备料食材',
                 headerStyle: {
                     backgroundColor: '#f4511e',
-                    height: 10,
+                    height: 40,
                 },
                 headerTitleStyle: {
-                    fontSize: 10,
+                    fontSize: 16,
+                    fontWeight: 'bold',
                 },
             }}
         />
@@ -116,10 +118,11 @@ const AppNavigator: React.FC = () => {
                 title: '备料步骤',
                 headerStyle: {
                     backgroundColor: '#f4511e',
-                    height: 10,
+                    height: 40,
                 },
                 headerTitleStyle: {
-                    fontSize: 10,
+                    fontSize: 16,
+                    fontWeight: 'bold',
                 },
             }}
         />
