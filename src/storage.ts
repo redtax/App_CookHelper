@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Recipe, InventoryItem, ShoppingItem, CookingNote, MealPlanItem } from './types';
 
 const RECIPES_KEY = 'cookhelper_recipes';
-const INITIALIZED_KEY = 'cookhelper_initialized_v10';
+const INITIALIZED_KEY = 'cookhelper_initialized_v11';
 const FAVORITES_KEY = 'cookhelper_favorites';
 const INVENTORY_KEY = 'cookhelper_inventory';
 const SHOPPING_KEY = 'cookhelper_shopping';
@@ -33,13 +33,15 @@ const migrateRecipe = (recipe: any): Recipe => {
     flavor: recipe.flavor || undefined,
     overallFlow: recipe.overallFlow || undefined,
     imageUrl: recipe.imageUrl || undefined,
+    source: recipe.source || 'user',
   };
 };
 
 const loadRecipesFromAsset = async (): Promise<Recipe[]> => {
   try {
     const data = require('../assets/recipes.json');
-    return (Array.isArray(data) ? data : []) as Recipe[];
+    const recipes = (Array.isArray(data) ? data : []) as Recipe[];
+    return recipes.map(r => ({ ...r, source: 'official' as const }));
   } catch (error) {
     console.error('Failed to load recipes from asset:', error);
   }
@@ -54,16 +56,38 @@ export const initializeStorage = async (): Promise<void> => {
       const parsed = JSON.parse(recipesJson);
       recipes = parsed.map(migrateRecipe);
     }
+
     const initialized = await AsyncStorage.getItem(INITIALIZED_KEY);
+    const assetRecipes = await loadRecipesFromAsset();
+
     if (!initialized) {
-      const assetRecipes = await loadRecipesFromAsset();
       if (assetRecipes.length > 0) {
         recipes = assetRecipes.map(migrateRecipe);
         await AsyncStorage.setItem(RECIPES_KEY, JSON.stringify(recipes));
         await AsyncStorage.setItem(INITIALIZED_KEY, 'true');
       }
-    } else if (recipes.length > 0) {
-      await AsyncStorage.setItem(RECIPES_KEY, JSON.stringify(recipes));
+    } else {
+      const modifiedIds = await loadModifiedRecipes();
+      let changed = false;
+
+      for (const official of assetRecipes) {
+        if (modifiedIds.includes(official.id)) continue;
+
+        const existingIdx = recipes.findIndex(r => r.id === official.id);
+        if (existingIdx >= 0) {
+          if (recipes[existingIdx].source === 'official') {
+            recipes[existingIdx] = migrateRecipe(official);
+            changed = true;
+          }
+        } else {
+          recipes.push(migrateRecipe(official));
+          changed = true;
+        }
+      }
+
+      if (changed) {
+        await AsyncStorage.setItem(RECIPES_KEY, JSON.stringify(recipes));
+      }
     }
   } catch (error) {
     console.error('Failed to initialize storage:', error);

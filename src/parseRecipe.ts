@@ -1,4 +1,4 @@
-import { Recipe } from './types';
+import { Recipe, generateRecipeId } from './types';
 
 const parseIngredientLine = (line: string) => {
   const separatorPattern = /[\t]+|[ ]{2,}|[—–\-]+|[…\.]{3,}/;
@@ -401,7 +401,7 @@ const parseRecipeText = (text: string) => {
   }
 
   return {
-    id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+    id: generateRecipeId(),
     name: name || '未命名菜谱',
     description: description || undefined,
     categories,
@@ -418,6 +418,7 @@ const parseRecipeText = (text: string) => {
     mainIngredients,
     auxiliaryIngredients,
     seasonings,
+    source: 'user' as const,
     preparationSteps: preparationSteps.map((step, index) => ({
       id: `prep_${index + 1}`,
       description: step.description,

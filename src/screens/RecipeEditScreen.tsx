@@ -121,9 +121,53 @@ const RecipeEditScreen: React.FC = () => {
       return;
     }
 
+    const trimmedName = name.trim();
+
+    if (isNew) {
+      const conflictRecipe = recipes.find(r => r.name === trimmedName);
+      if (conflictRecipe) {
+        Alert.alert(
+          '菜谱名称已存在',
+          `已存在名为「${trimmedName}」的菜谱，请修改名称后再保存。`,
+          [{ text: '知道了' }]
+        );
+        return;
+      }
+    } else if (trimmedName !== initialRecipe.name) {
+      const conflictRecipe = recipes.find(r => r.name === trimmedName && r.id !== initialRecipe.id);
+      if (conflictRecipe) {
+        if (initialRecipe.source === 'official') {
+          Alert.alert(
+            '同名菜谱确认',
+            `已存在名为「${trimmedName}」的菜谱，是否覆盖原有菜谱？`,
+            [
+              { text: '取消', style: 'cancel' },
+              {
+                text: '覆盖保存',
+                style: 'destructive',
+                onPress: () => performSave(trimmedName),
+              },
+            ]
+          );
+          return;
+        } else {
+          Alert.alert(
+            '菜谱名称已存在',
+            `已存在名为「${trimmedName}」的菜谱，请修改名称后再保存。`,
+            [{ text: '知道了' }]
+          );
+          return;
+        }
+      }
+    }
+
+    await performSave(trimmedName);
+  };
+
+  const performSave = async (trimmedName: string) => {
     const updatedRecipe: Recipe = {
       ...initialRecipe,
-      name: name.trim(),
+      name: trimmedName,
       description: description.trim() || undefined,
       overallFlow: overallFlow.trim() || undefined,
       categories,
