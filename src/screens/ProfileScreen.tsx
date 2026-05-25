@@ -129,7 +129,11 @@ const ProfileScreen: React.FC = () => {
     favorites,
     inventory,
     cookingNotes,
-    mealPlans,
+    shoppingList,
+    toggleShoppingItem,
+    addShoppingItem,
+    removeShoppingItem,
+    addInventoryItem,
     toggleFavorite,
     loadRecipes,
     activeCookingRecipeId,
@@ -140,7 +144,7 @@ const ProfileScreen: React.FC = () => {
     userModifiedRecipes,
   } = useApp();
   const [activeSection, setActiveSection] = useState<
-    'favorites' | 'mealplans' | 'notes' | 'inventory' | 'settings' | 'about'
+    'favorites' | 'shopping' | 'notes' | 'inventory' | 'settings' | 'about'
   >('favorites');
   const [noteSubTab, setNoteSubTab] = useState<'notes' | 'recipes'>('notes');
   const [showNoteModal, setShowNoteModal] = useState(false);
@@ -148,6 +152,9 @@ const ProfileScreen: React.FC = () => {
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
   const [readmeContent, setReadmeContent] = useState('加载中...');
   const [unfavoritedIds, setUnfavoritedIds] = useState<Set<string>>(new Set());
+  const [shoppingName, setShoppingName] = useState('');
+  const [shoppingQty, setShoppingQty] = useState('');
+  const [shoppingUnit, setShoppingUnit] = useState('');
 
   useEffect(() => {
     if (activeSection === 'about') {
@@ -281,9 +288,38 @@ const ProfileScreen: React.FC = () => {
     ]);
   };
 
+  const handleAddShoppingItem = () => {
+    if (!shoppingName.trim()) {
+      Alert.alert('提示', '请输入食材名称');
+      return;
+    }
+    addShoppingItem({
+      id: Date.now().toString(),
+      name: shoppingName.trim(),
+      quantity: shoppingQty || '1',
+      unit: shoppingUnit || '个',
+      checked: false,
+    });
+    setShoppingName('');
+    setShoppingQty('');
+    setShoppingUnit('');
+  };
+
+  const handlePurchaseItem = (item: { id: string; name: string; quantity: string; unit: string }) => {
+    removeShoppingItem(item.id);
+    addInventoryItem({
+      id: Date.now().toString(),
+      name: item.name,
+      quantity: item.quantity,
+      unit: item.unit,
+      addedDate: new Date().toISOString().split('T')[0],
+    });
+    Alert.alert('提示', '已添加到食材库存');
+  };
+
   const menuSections = [
     { key: 'favorites' as const, label: '我的收藏', count: favorites.length },
-    { key: 'mealplans' as const, label: '计划菜单', count: mealPlans.length },
+    { key: 'shopping' as const, label: '采购清单', count: shoppingList.length },
     { key: 'notes' as const, label: '烹饪笔记', count: cookingNotes.length },
     { key: 'inventory' as const, label: '食材库存', count: inventory.length },
     { key: 'settings' as const, label: '设置', count: 0 },
@@ -355,11 +391,68 @@ const ProfileScreen: React.FC = () => {
           ))
         );
 
-      case 'mealplans':
-        return (
+      case 'shopping':
+        return shoppingList.length === 0 ? (
           <View style={styles.emptyContainer}>
-            <Text style={styles.emptyText}>计划菜单功能开发中</Text>
-            <Text style={styles.emptySubtext}>敬请期待一周菜单规划功能</Text>
+            <Text style={styles.emptyText}>采购清单为空</Text>
+            <Text style={styles.emptySubtext}>前往「备料」页面或备料步骤中添加食材</Text>
+          </View>
+        ) : (
+          <View>
+            <View style={styles.shoppingAddRow}>
+              <TextInput
+                style={styles.shoppingInput}
+                placeholder="食材名称"
+                placeholderTextColor="#999"
+                value={shoppingName}
+                onChangeText={setShoppingName}
+              />
+              <TextInput
+                style={styles.shoppingInputSmall}
+                placeholder="数量"
+                placeholderTextColor="#999"
+                value={shoppingQty}
+                onChangeText={setShoppingQty}
+                keyboardType="numeric"
+              />
+              <TextInput
+                style={styles.shoppingInputSmall}
+                placeholder="单位"
+                placeholderTextColor="#999"
+                value={shoppingUnit}
+                onChangeText={setShoppingUnit}
+              />
+              <TouchableOpacity style={styles.shoppingAddBtn} onPress={handleAddShoppingItem}>
+                <Text style={styles.shoppingAddBtnText}>添加</Text>
+              </TouchableOpacity>
+            </View>
+            {shoppingList.map(item => (
+              <View key={item.id} style={[styles.shopItem, item.checked ? styles.shopItemChecked : undefined]}>
+                <TouchableOpacity
+                  style={styles.shopItemInfo}
+                  onPress={() => toggleShoppingItem(item.id)}
+                >
+                  <Text style={[styles.shopItemName, item.checked ? styles.shopItemNameChecked : undefined]}>
+                    {item.name}
+                  </Text>
+                  <Text style={styles.shopItemDetail}>
+                    {item.quantity} {item.unit}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.shopPurchaseBtn}
+                  onPress={() => handlePurchaseItem(item)}
+                >
+                  <Text style={styles.shopPurchaseBtnText}>已购买</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.shopDeleteBtn}
+                  onPress={() => removeShoppingItem(item.id)}
+                >
+                  <Text style={styles.shopDeleteBtnText}>删除</Text>
+                </TouchableOpacity>
+              </View>
+            ))}
           </View>
         );
 
@@ -774,6 +867,100 @@ const styles = StyleSheet.create({
   invQty: {
     fontSize: 14,
     color: '#888',
+  },
+  shoppingAddRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+    gap: 6,
+  },
+  shoppingInput: {
+    flex: 2,
+    height: 40,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    fontSize: 14,
+    color: '#333',
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  shoppingInputSmall: {
+    flex: 1,
+    height: 40,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    fontSize: 14,
+    color: '#333',
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  },
+  shoppingAddBtn: {
+    height: 40,
+    paddingHorizontal: 14,
+    borderRadius: 8,
+    backgroundColor: '#f4511e',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  shoppingAddBtnText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  shopItem: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 14,
+    marginBottom: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    shadowOffset: { width: 0, height: 1 },
+    elevation: 1,
+  },
+  shopItemChecked: {
+    opacity: 0.5,
+  },
+  shopItemInfo: {
+    flex: 1,
+  },
+  shopItemName: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#333',
+  },
+  shopItemNameChecked: {
+    textDecorationLine: 'line-through',
+    color: '#999',
+  },
+  shopItemDetail: {
+    fontSize: 13,
+    color: '#888',
+    marginTop: 2,
+  },
+  shopPurchaseBtn: {
+    backgroundColor: '#4CAF50',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 6,
+    marginRight: 8,
+  },
+  shopPurchaseBtnText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  shopDeleteBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  shopDeleteBtnText: {
+    fontSize: 13,
+    color: '#f44336',
   },
   settingSection: {
     marginBottom: 20,

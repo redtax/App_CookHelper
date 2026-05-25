@@ -12,6 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StackActions } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation';
 import { useApp } from '../context';
 
@@ -28,6 +29,7 @@ const CookingScreen: React.FC = () => {
   );
   const [showCompletionModal, setShowCompletionModal] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
+  const handledBackRef = useRef(false);
 
   const cookingSteps = recipe.cookingSteps || [];
   const totalSteps = cookingSteps.length;
@@ -38,6 +40,26 @@ const CookingScreen: React.FC = () => {
   useEffect(() => {
     setActiveCooking(recipe.id, currentStepIndex);
   }, [currentStepIndex]);
+
+  const handleGoToPreparation = () => {
+    if (handledBackRef.current) return;
+    handledBackRef.current = true;
+    const hasPrepSteps = recipe.preparationSteps && recipe.preparationSteps.length > 0;
+    if (hasPrepSteps) {
+      navigation.dispatch(StackActions.replace('PreparationSteps', { recipe }));
+    } else {
+      navigation.dispatch(StackActions.replace('PreparationIngredients', { recipe }));
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+      if (handledBackRef.current) return;
+      e.preventDefault();
+      handleGoToPreparation();
+    });
+    return unsubscribe;
+  }, [navigation, recipe]);
 
   const goToStep = (index: number) => {
     if (index >= 0 && index <= totalSteps) {
@@ -62,20 +84,24 @@ const CookingScreen: React.FC = () => {
     }
   };
 
+  const goToHome = () => {
+    resetPreparationChecklist();
+    setActiveCooking(null, 0);
+    navigation.popToTop();
+  };
+
   const handleFinish = () => {
     setShowCompletionModal(true);
   };
 
   const handleGoHome = () => {
     setShowCompletionModal(false);
-    resetPreparationChecklist();
-    setActiveCooking(null, 0);
-    navigation.popToTop();
+    goToHome();
   };
 
   const handleGoBackToPreparation = () => {
     setShowCompletionModal(false);
-    navigation.goBack();
+    handleGoToPreparation();
   };
 
   const handleCloseModal = () => {
@@ -193,7 +219,7 @@ const CookingScreen: React.FC = () => {
             styles.portraitNavButton,
             (currentStepIndex === 0 && !isCompletionPage) ? styles.portraitNavButtonDisabled : undefined,
           ]}
-          onPress={() => isCompletionPage ? navigation.popToTop() : currentStepIndex === 0 ? navigation.goBack() : goToStep(currentStepIndex - 1)}
+          onPress={() => isCompletionPage ? goToHome() : currentStepIndex === 0 ? handleGoToPreparation() : goToStep(currentStepIndex - 1)}
         >
           <Text style={[
             styles.portraitNavButtonText,
