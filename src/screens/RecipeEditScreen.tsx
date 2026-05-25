@@ -24,7 +24,7 @@ const RecipeEditScreen: React.FC = () => {
   const navigation = useNavigation<RecipeEditNavigationProp>();
   const route = useRoute<RecipeEditRouteProp>();
   const { recipe: initialRecipe, isNew } = route.params;
-  const { updateRecipe, recipes, markRecipeAsModified } = useApp();
+  const { updateRecipe, deleteRecipe, recipes, markRecipeAsModified } = useApp();
 
   const [name, setName] = useState(initialRecipe.name);
   const [description, setDescription] = useState(initialRecipe.description || '');
@@ -145,7 +145,7 @@ const RecipeEditScreen: React.FC = () => {
               {
                 text: '覆盖保存',
                 style: 'destructive',
-                onPress: () => performSave(trimmedName),
+                onPress: () => performSave(trimmedName, conflictRecipe.id),
               },
             ]
           );
@@ -164,7 +164,7 @@ const RecipeEditScreen: React.FC = () => {
     await performSave(trimmedName);
   };
 
-  const performSave = async (trimmedName: string) => {
+  const performSave = async (trimmedName: string, conflictRecipeId?: string) => {
     const updatedRecipe: Recipe = {
       ...initialRecipe,
       name: trimmedName,
@@ -188,6 +188,9 @@ const RecipeEditScreen: React.FC = () => {
     };
 
     await updateRecipe(updatedRecipe);
+    if (conflictRecipeId) {
+      await deleteRecipe(conflictRecipeId);
+    }
     markRecipeAsModified(updatedRecipe.id);
     setHasChanges(false);
     setSavedIndicator(true);

@@ -38,7 +38,7 @@ const getDifficultyColor = (difficulty: string) => {
 
 const HomeScreen: React.FC = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
-  const { recipes, searchQuery, setSearchQuery, selectedCategory, setSelectedCategory, addRecipe, markRecipeAsModified, recentlyOpenedIds } = useApp();
+  const { recipes, searchQuery, setSearchQuery, selectedCategory, setSelectedCategory, recentlyOpenedIds } = useApp();
   const [showImportModal, setShowImportModal] = useState(false);
 
   const filteredRecipes = useMemo(() => {
@@ -78,8 +78,8 @@ const HomeScreen: React.FC = () => {
   }, [recipes]);
 
   const handleImport = async (recipe: Recipe) => {
-    await addRecipe(recipe);
-    markRecipeAsModified(recipe.id);
+    setShowImportModal(false);
+    navigation.navigate('RecipeEdit', { recipe, isNew: true });
   };
 
   const renderRecipeItem = ({ item }: { item: Recipe }) => (

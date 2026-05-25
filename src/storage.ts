@@ -48,6 +48,14 @@ const loadRecipesFromAsset = async (): Promise<Recipe[]> => {
   return [];
 };
 
+const migrateSourceField = (recipes: Recipe[], assetRecipes: Recipe[]): Recipe[] => {
+  const assetIdSet = new Set(assetRecipes.map(r => r.id));
+  return recipes.map(r => {
+    if (r.source) return r;
+    return { ...r, source: assetIdSet.has(r.id) ? 'official' as const : 'user' as const };
+  });
+};
+
 export const initializeStorage = async (): Promise<void> => {
   try {
     const recipesJson = await AsyncStorage.getItem(RECIPES_KEY);
@@ -62,11 +70,18 @@ export const initializeStorage = async (): Promise<void> => {
 
     if (!initialized) {
       if (assetRecipes.length > 0) {
-        recipes = assetRecipes.map(migrateRecipe);
+        recipes = migrateSourceField(recipes, assetRecipes);
+        const existingIds = new Set(recipes.map(r => r.id));
+        for (const official of assetRecipes) {
+          if (!existingIds.has(official.id)) {
+            recipes.push(migrateRecipe(official));
+          }
+        }
         await AsyncStorage.setItem(RECIPES_KEY, JSON.stringify(recipes));
         await AsyncStorage.setItem(INITIALIZED_KEY, 'true');
       }
     } else {
+      recipes = migrateSourceField(recipes, assetRecipes);
       const modifiedIds = await loadModifiedRecipes();
       let changed = false;
 

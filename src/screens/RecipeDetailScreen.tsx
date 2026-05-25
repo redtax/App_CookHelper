@@ -26,7 +26,7 @@ const RecipeDetailScreen: React.FC = () => {
   const navigation = useNavigation<RecipeDetailNavigationProp>();
   const route = useRoute<RecipeDetailRouteProp>();
   const { recipe: routeRecipe } = route.params;
-  const { updateRecipe, recipes, toggleFavorite, favorites, markRecipeAsOpened } = useApp();
+  const { recipes, toggleFavorite, favorites, markRecipeAsOpened } = useApp();
   const recipe = recipes.find(r => r.id === routeRecipe.id) || routeRecipe;
   const [showModal, setShowModal] = useState(false);
   const [showExportModal, setShowExportModal] = useState(false);
@@ -67,15 +67,13 @@ const RecipeDetailScreen: React.FC = () => {
   };
 
   const handleImportRecipe = (parsedRecipe: any) => {
+    setShowImportRecipeModal(false);
     const updatedRecipe = {
       ...parsedRecipe,
       id: recipe.id,
       imageUrl: parsedRecipe.imageUrl || recipe.imageUrl,
     };
-    updateRecipe(updatedRecipe);
-    Alert.alert('成功', '菜谱已更新！', [
-      { text: '确定', onPress: () => navigation.navigate('RecipeDetail', { recipe: updatedRecipe }) }
-    ]);
+    navigation.navigate('RecipeEdit', { recipe: updatedRecipe });
   };
 
   return (
