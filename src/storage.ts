@@ -33,7 +33,7 @@ const migrateRecipe = (recipe: any): Recipe => {
     flavor: recipe.flavor || undefined,
     overallFlow: recipe.overallFlow || undefined,
     imageUrl: recipe.imageUrl || undefined,
-    source: recipe.source || 'user',
+    source: recipe.source || undefined,
   };
 };
 
@@ -51,8 +51,9 @@ const loadRecipesFromAsset = async (): Promise<Recipe[]> => {
 const migrateSourceField = (recipes: Recipe[], assetRecipes: Recipe[]): Recipe[] => {
   const assetIdSet = new Set(assetRecipes.map(r => r.id));
   return recipes.map(r => {
-    if (r.source) return r;
-    return { ...r, source: assetIdSet.has(r.id) ? 'official' as const : 'user' as const };
+    const correctSource = assetIdSet.has(r.id) ? 'official' as const : (r.source || 'user' as const);
+    if (r.source === correctSource) return r;
+    return { ...r, source: correctSource };
   });
 };
 

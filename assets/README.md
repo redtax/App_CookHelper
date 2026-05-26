@@ -368,11 +368,27 @@ MIT License
 - **简化冲突处理**：改名冲突统一提示"请修改名称"，不再提供删除选项
 - **优化命名冲突逻辑**：所有改名冲突都先阻止再提示，避免误删
 
+### v3.4.6 (2026-05-26) - 组件与界面优化
+- **SafeAreaView 迁移**：从废弃的 react-native 内置组件迁移到 react-native-safe-area-context
+- **ProfileScreen 关于页修复**：将关于页内容移入 ScrollView，修复九宫格跟随滚动问题
+- **ProfileScreen 九宫格拆分**：烹饪笔记和我的配方独立入口
+- **PreparationStepsScreen 按钮文本更改**：「开始炒菜」→「开始制作」
+
+### v3.4.7 (2026-05-26) - 制作界面头部重新设计
+- **CookingScreen 头部移除**：隐藏 Stack Navigator 自带头部，使用自定义紧凑头部
+- **自定义紧凑头部**：添加返回按钮、菜谱名称、当前步数指示器
+- **导航逻辑优化**：使用 CommonActions.reset 替代 StackActions.replace，解决空白页面问题
+
+### v3.4.8 (2026-05-26) - 返回首页功能修复
+- **goToHome 函数修复**：使用 CommonActions.reset 替代 popToTop，确保正确重置到首页
+- **beforeRemove 监听器处理**：在 goToHome 中设置 handledBackRef.current = true，避免被监听器拦截
+- **两个返回首页按钮统一修复**：完成页面下方左侧按钮和完成弹窗右侧按钮都能正确跳转到首页
+
 ## 版本声明
 
-**当前版本**：v3.4.5
+**当前版本**：v3.4.8
 **发布日期**：2026-05-26
-**版本状态**：保存功能完善，覆盖与另存双向选择，九宫格功能分离
+**版本状态**：制作界面头部优化，返回首页功能完善
 
 ## 开发者信息
 

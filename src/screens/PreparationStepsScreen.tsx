@@ -39,7 +39,7 @@ const PreparationStepsScreen: React.FC = () => {
     if (checkedCount < totalSteps) {
       Alert.alert(
         '提示',
-        '还有 ' + (totalSteps - checkedCount) + ' 项备料步骤未完成，是否开始炒菜？',
+        '还有 ' + (totalSteps - checkedCount) + ' 项备料步骤未完成，是否开始制作？',
         [
           { text: '继续', style: 'default', onPress: proceed },
           { text: '取消', style: 'cancel' }
@@ -103,7 +103,7 @@ const PreparationStepsScreen: React.FC = () => {
           ]}
           onPress={handleStartCooking}
         >
-          <Text style={styles.buttonText}>开始炒菜 →</Text>
+          <Text style={styles.buttonText}>开始制作 →</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

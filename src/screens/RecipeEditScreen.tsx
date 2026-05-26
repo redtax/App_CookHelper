@@ -13,7 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation';
-import { Recipe, Ingredient, PreparationStep, CookingStep } from '../types';
+import { Recipe, Ingredient, PreparationStep, CookingStep, generateRecipeId } from '../types';
 import { useApp } from '../context';
 import ImagePickerButton from '../components/ImagePickerButton';
 
@@ -24,7 +24,7 @@ const RecipeEditScreen: React.FC = () => {
   const navigation = useNavigation<RecipeEditNavigationProp>();
   const route = useRoute<RecipeEditRouteProp>();
   const { recipe: initialRecipe, isNew } = route.params;
-  const { updateRecipe, deleteRecipe, recipes, markRecipeAsModified } = useApp();
+  const { updateRecipe, addRecipe, recipes, markRecipeAsModified } = useApp();
 
   const [name, setName] = useState(initialRecipe.name);
   const [description, setDescription] = useState(initialRecipe.description || '');
@@ -133,68 +133,83 @@ const RecipeEditScreen: React.FC = () => {
         );
         return;
       }
-    } else if (trimmedName !== initialRecipe.name) {
+      await performSave(trimmedName);
+      return;
+    }
+
+    if (trimmedName !== initialRecipe.name) {
       const conflictRecipe = recipes.find(r => r.name === trimmedName && r.id !== initialRecipe.id);
       if (conflictRecipe) {
-        if (initialRecipe.source === 'official') {
-          Alert.alert(
-            '同名菜谱确认',
-            `已存在名为「${trimmedName}」的菜谱，是否覆盖原有菜谱？`,
-            [
-              { text: '取消', style: 'cancel' },
-              {
-                text: '覆盖保存',
-                style: 'destructive',
-                onPress: () => performSave(trimmedName, conflictRecipe.id),
-              },
-            ]
-          );
-          return;
-        } else {
-          Alert.alert(
-            '菜谱名称已存在',
-            `已存在名为「${trimmedName}」的菜谱，请修改名称后再保存。`,
-            [{ text: '知道了' }]
-          );
-          return;
-        }
+        Alert.alert(
+          '菜谱名称已存在',
+          `已存在名为「${trimmedName}」的菜谱，请修改名称后再保存。`,
+          [{ text: '知道了' }]
+        );
+        return;
       }
     }
 
-    await performSave(trimmedName);
+    const title = trimmedName !== initialRecipe.name
+      ? `已将名称修改为「${trimmedName}」`
+      : '保存修改';
+    Alert.alert(
+      title,
+      '请选择保存方式：',
+      [
+        { text: '取消', style: 'cancel' },
+        { text: '覆盖保存', onPress: () => performSave(trimmedName) },
+        { text: '另存为新菜谱', onPress: () => saveAsNewRecipe(trimmedName) },
+      ]
+    );
   };
 
-  const performSave = async (trimmedName: string, conflictRecipeId?: string) => {
-    const updatedRecipe: Recipe = {
-      ...initialRecipe,
-      name: trimmedName,
-      description: description.trim() || undefined,
-      overallFlow: overallFlow.trim() || undefined,
-      categories,
-      tags,
-      servings: parseInt(servings) || 1,
-      prepTime: prepTime.trim(),
-      cookTime: cookTime.trim(),
-      difficulty,
-      technique: technique.trim() || undefined,
-      flavor: flavor.trim() || undefined,
-      ingredients: [],
-      mainIngredients,
-      auxiliaryIngredients,
-      seasonings,
-      preparationSteps,
-      cookingSteps,
-      imageUrl,
-    };
+  const buildRecipe = (trimmedName: string): Recipe => ({
+    ...initialRecipe,
+    name: trimmedName,
+    description: description.trim() || undefined,
+    overallFlow: overallFlow.trim() || undefined,
+    categories,
+    tags,
+    servings: parseInt(servings) || 1,
+    prepTime: prepTime.trim(),
+    cookTime: cookTime.trim(),
+    difficulty,
+    technique: technique.trim() || undefined,
+    flavor: flavor.trim() || undefined,
+    ingredients: [],
+    mainIngredients,
+    auxiliaryIngredients,
+    seasonings,
+    preparationSteps,
+    cookingSteps,
+    imageUrl,
+  });
 
-    await updateRecipe(updatedRecipe);
-    if (conflictRecipeId) {
-      await deleteRecipe(conflictRecipeId);
+  const performSave = async (trimmedName: string) => {
+    const updatedRecipe = buildRecipe(trimmedName);
+    if (isNew) {
+      await addRecipe(updatedRecipe);
+    } else {
+      await updateRecipe(updatedRecipe);
     }
     markRecipeAsModified(updatedRecipe.id);
     setHasChanges(false);
     setSavedIndicator(true);
     setTimeout(() => setSavedIndicator(false), 2000);
+  };
+
+  const saveAsNewRecipe = async (trimmedName: string) => {
+    const newRecipe: Recipe = {
+      ...buildRecipe(trimmedName),
+      id: generateRecipeId(),
+      source: 'user' as const,
+    };
+    await addRecipe(newRecipe);
+    markRecipeAsModified(newRecipe.id);
+    setHasChanges(false);
+    setSavedIndicator(true);
+    setTimeout(() => setSavedIndicator(false), 2000);
+    Alert.alert('保存成功', `已另存为新菜谱「${trimmedName}」`);
   };
 
   const addToCategory = (category: 'main' | 'auxiliary' | 'seasoning') => {

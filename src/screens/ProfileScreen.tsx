@@ -4,13 +4,13 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  SafeAreaView,
   TouchableOpacity,
   Alert,
   Modal,
   TextInput,
   Linking,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Asset } from 'expo-asset';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -144,9 +144,8 @@ const ProfileScreen: React.FC = () => {
     userModifiedRecipes,
   } = useApp();
   const [activeSection, setActiveSection] = useState<
-    'favorites' | 'shopping' | 'notes' | 'inventory' | 'settings' | 'about'
+    'favorites' | 'shopping' | 'notes' | 'myRecipes' | 'inventory' | 'settings' | 'about'
   >('favorites');
-  const [noteSubTab, setNoteSubTab] = useState<'notes' | 'recipes'>('notes');
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [noteContent, setNoteContent] = useState('');
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
@@ -320,7 +319,8 @@ const ProfileScreen: React.FC = () => {
   const menuSections = [
     { key: 'favorites' as const, label: '我的收藏', count: favorites.length },
     { key: 'shopping' as const, label: '采购清单', count: shoppingList.length },
-    { key: 'notes' as const, label: '烹饪笔记', count: cookingNotes.length },
+    { key: 'notes' as const, label: '烹饪笔记', count: freeNotes.length },
+    { key: 'myRecipes' as const, label: '我的配方', count: modifiedRecipes.length },
     { key: 'inventory' as const, label: '食材库存', count: inventory.length },
     { key: 'settings' as const, label: '设置', count: 0 },
     { key: 'about' as const, label: '关于', count: 0 },
@@ -459,100 +459,64 @@ const ProfileScreen: React.FC = () => {
       case 'notes':
         return (
           <View>
-            <View style={styles.noteSubTabBar}>
-              <TouchableOpacity
-                style={[
-                  styles.noteSubTab,
-                  noteSubTab === 'notes' ? styles.noteSubTabActive : undefined,
-                ]}
-                onPress={() => setNoteSubTab('notes')}
-              >
-                <Text style={[
-                  styles.noteSubTabText,
-                  noteSubTab === 'notes' ? styles.noteSubTabTextActive : undefined,
-                ]}>
-                  笔记
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[
-                  styles.noteSubTab,
-                  noteSubTab === 'recipes' ? styles.noteSubTabActive : undefined,
-                ]}
-                onPress={() => setNoteSubTab('recipes')}
-              >
-                <Text style={[
-                  styles.noteSubTabText,
-                  noteSubTab === 'recipes' ? styles.noteSubTabTextActive : undefined,
-                ]}>
-                  配方
-                </Text>
-              </TouchableOpacity>
-            </View>
-
-            {noteSubTab === 'notes' ? (
-              <View>
-                <TouchableOpacity style={styles.addNoteBtn} onPress={handleAddFreeNote}>
-                  <Text style={styles.addNoteBtnText}>+ 添加笔记</Text>
-                </TouchableOpacity>
-                {freeNotes.length === 0 ? (
-                  <View style={styles.emptyContainer}>
-                    <Text style={styles.emptyText}>暂无自由笔记</Text>
-                    <Text style={styles.emptySubtext}>点击上方按钮记录烹饪心得</Text>
-                  </View>
-                ) : (
-                  freeNotes.map(note => (
-                    <TouchableOpacity
-                      key={note.id}
-                      style={styles.freeNoteCard}
-                      onPress={() => handleEditFreeNote(note)}
-                    >
-                      <View style={styles.freeNoteHeader}>
-                        <Text style={styles.freeNoteDate}>{note.date}</Text>
-                        <TouchableOpacity
-                          onPress={() => handleDeleteFreeNote(note.id)}
-                          style={styles.freeNoteDeleteBtn}
-                        >
-                          <Text style={styles.freeNoteDeleteText}>删除</Text>
-                        </TouchableOpacity>
-                      </View>
-                      <Text style={styles.freeNoteContent} numberOfLines={4}>
-                        {note.content}
-                      </Text>
-                    </TouchableOpacity>
-                  ))
-                )}
+            <TouchableOpacity style={styles.addNoteBtn} onPress={handleAddFreeNote}>
+              <Text style={styles.addNoteBtnText}>+ 添加笔记</Text>
+            </TouchableOpacity>
+            {freeNotes.length === 0 ? (
+              <View style={styles.emptyContainer}>
+                <Text style={styles.emptyText}>暂无自由笔记</Text>
+                <Text style={styles.emptySubtext}>点击上方按钮记录烹饪心得</Text>
               </View>
             ) : (
-              <View>
-                {modifiedRecipes.length === 0 ? (
-                  <View style={styles.emptyContainer}>
-                    <Text style={styles.emptyText}>暂无维护过的菜谱</Text>
-                    <Text style={styles.emptySubtext}>编辑或导入菜谱后将在这里显示</Text>
-                  </View>
-                ) : (
-                  modifiedRecipes.map(recipe => (
+              freeNotes.map(note => (
+                <TouchableOpacity
+                  key={note.id}
+                  style={styles.freeNoteCard}
+                  onPress={() => handleEditFreeNote(note)}
+                >
+                  <View style={styles.freeNoteHeader}>
+                    <Text style={styles.freeNoteDate}>{note.date}</Text>
                     <TouchableOpacity
-                      key={recipe.id}
-                      style={styles.recipeListItem}
-                      onPress={() => navigation.navigate('RecipeDetail', { recipe })}
+                      onPress={() => handleDeleteFreeNote(note.id)}
+                      style={styles.freeNoteDeleteBtn}
                     >
-                      <View style={styles.recipeListItemInfo}>
-                        <Text style={styles.recipeListItemName}>{recipe.name}</Text>
-                        <Text style={styles.recipeListItemTags}>
-                          {(recipe.categories || []).slice(0, 2).join(' · ')}
-                          {recipe.tags && recipe.tags.length > 0
-                            ? (recipe.categories && recipe.categories.length > 0 ? ' · ' : '') + recipe.tags.slice(0, 3).join('、')
-                            : ''}
-                        </Text>
-                      </View>
-                      <Text style={styles.recipeListItemArrow}>→</Text>
+                      <Text style={styles.freeNoteDeleteText}>删除</Text>
                     </TouchableOpacity>
-                  ))
-                )}
-              </View>
+                  </View>
+                  <Text style={styles.freeNoteContent} numberOfLines={4}>
+                    {note.content}
+                  </Text>
+                </TouchableOpacity>
+              ))
             )}
           </View>
+        );
+
+      case 'myRecipes':
+        return modifiedRecipes.length === 0 ? (
+          <View style={styles.emptyContainer}>
+            <Text style={styles.emptyText}>暂无维护过的菜谱</Text>
+            <Text style={styles.emptySubtext}>编辑或导入菜谱后将在这里显示</Text>
+          </View>
+        ) : (
+          modifiedRecipes.map(recipe => (
+            <TouchableOpacity
+              key={recipe.id}
+              style={styles.recipeListItem}
+              onPress={() => navigation.navigate('RecipeDetail', { recipe })}
+            >
+              <View style={styles.recipeListItemInfo}>
+                <Text style={styles.recipeListItemName}>{recipe.name}</Text>
+                <Text style={styles.recipeListItemTags}>
+                  {(recipe.categories || []).slice(0, 2).join(' · ')}
+                  {recipe.tags && recipe.tags.length > 0
+                    ? (recipe.categories && recipe.categories.length > 0 ? ' · ' : '') + recipe.tags.slice(0, 3).join('、')
+                    : ''}
+                </Text>
+              </View>
+              <Text style={styles.recipeListItemArrow}>{'\u2192'}</Text>
+            </TouchableOpacity>
+          ))
         );
 
       case 'inventory':
@@ -608,15 +572,15 @@ const ProfileScreen: React.FC = () => {
   if (activeSection === 'about') {
     return (
       <SafeAreaView style={styles.container}>
-        {renderMenuGrid()}
-        <ScrollView style={styles.aboutFullScroll} showsVerticalScrollIndicator={false}>
-          <View style={{ padding: 14 }}>
+        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+          {renderMenuGrid()}
+          <View style={styles.section}>
             {renderMarkdown(readmeContent)}
           </View>
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>味溯新东方 - 记录每一道美味</Text>
+          </View>
         </ScrollView>
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>味溯新东方 - 记录每一道美味</Text>
-        </View>
       </SafeAreaView>
     );
   }
@@ -759,31 +723,6 @@ const styles = StyleSheet.create({
   },
   favIconInactive: {
     color: '#ccc',
-  },
-  noteSubTabBar: {
-    flexDirection: 'row',
-    marginBottom: 12,
-    backgroundColor: '#e0e0e0',
-    borderRadius: 8,
-    padding: 3,
-  },
-  noteSubTab: {
-    flex: 1,
-    paddingVertical: 8,
-    alignItems: 'center',
-    borderRadius: 6,
-  },
-  noteSubTabActive: {
-    backgroundColor: '#fff',
-  },
-  noteSubTabText: {
-    fontSize: 14,
-    color: '#666',
-    fontWeight: '500',
-  },
-  noteSubTabTextActive: {
-    color: '#f4511e',
-    fontWeight: '600',
   },
   addNoteBtn: {
     backgroundColor: '#f4511e',
@@ -1026,9 +965,6 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.8)',
     fontSize: 12,
     marginTop: 4,
-  },
-  aboutFullScroll: {
-    flex: 1,
   },
   mdH1: {
     fontSize: 20,

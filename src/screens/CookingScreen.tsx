@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StackActions } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation';
 import { useApp } from '../context';
 
@@ -45,11 +45,16 @@ const CookingScreen: React.FC = () => {
     if (handledBackRef.current) return;
     handledBackRef.current = true;
     const hasPrepSteps = recipe.preparationSteps && recipe.preparationSteps.length > 0;
-    if (hasPrepSteps) {
-      navigation.dispatch(StackActions.replace('PreparationSteps', { recipe }));
-    } else {
-      navigation.dispatch(StackActions.replace('PreparationIngredients', { recipe }));
-    }
+    const targetScreen = hasPrepSteps ? 'PreparationSteps' : 'PreparationIngredients';
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 1,
+        routes: [
+          { name: 'Home' },
+          { name: targetScreen, params: { recipe } },
+        ],
+      })
+    );
   };
 
   useEffect(() => {
@@ -87,7 +92,13 @@ const CookingScreen: React.FC = () => {
   const goToHome = () => {
     resetPreparationChecklist();
     setActiveCooking(null, 0);
-    navigation.popToTop();
+    handledBackRef.current = true;
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'Home' }],
+      })
+    );
   };
 
   const handleFinish = () => {
@@ -113,12 +124,13 @@ const CookingScreen: React.FC = () => {
       <StatusBar barStyle="light-content" backgroundColor="#f4511e" />
 
       <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <Text style={styles.headerTitle}>{recipe.name}</Text>
-          <Text style={styles.stepIndicator}>
-            {isCompletionPage ? '🎉 完成' : `第 ${currentStepIndex + 1} / ${totalSteps} 步`}
-          </Text>
-        </View>
+        <TouchableOpacity style={styles.headerBackButton} onPress={handleGoToPreparation}>
+          <Text style={styles.headerBackText}>{'\u2190'}</Text>
+        </TouchableOpacity>
+        <Text style={styles.headerTitle} numberOfLines={1}>{recipe.name}</Text>
+        <Text style={styles.stepIndicator}>
+          {isCompletionPage ? '\uD83C\uDF89 完成' : `第 ${currentStepIndex + 1}/${totalSteps} 步`}
+        </Text>
       </View>
 
       <View style={styles.progressContainer}>
@@ -294,28 +306,33 @@ const styles = StyleSheet.create({
     backgroundColor: '#1a1a1a',
   },
   header: {
-        paddingHorizontal: 16,
-        paddingTop: 4,
-        paddingBottom: 0,
-        backgroundColor: '#f4511e',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 40,
-    },
-  headerContent: {
+    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#f4511e',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    height: 38,
+  },
+  headerBackButton: {
+    paddingRight: 6,
+    paddingVertical: 2,
+  },
+  headerBackText: {
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
   },
   headerTitle: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#fff',
-    },
+    flex: 1,
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
   stepIndicator: {
-        fontSize: 12,
-        color: 'rgba(255, 255, 255, 0.8)',
-        marginTop: 2,
-    },
+    fontSize: 12,
+    color: 'rgba(255, 255, 255, 0.85)',
+    marginLeft: 8,
+  },
   progressContainer: {
     backgroundColor: '#2a2a2a',
     paddingVertical: 8,
@@ -452,9 +469,6 @@ const styles = StyleSheet.create({
   },
   portraitNavButtonPrimary: {
     backgroundColor: '#f4511e',
-  },
-  portraitNavButtonFinish: {
-    backgroundColor: '#4CAF50',
   },
   portraitNavButtonDisabled: {
     backgroundColor: '#2a2a2a',

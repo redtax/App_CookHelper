@@ -129,17 +129,7 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen
             name="Cooking"
             component={CookingScreen}
-            options={{
-                title: '开始炒菜',
-                headerStyle: {
-                    backgroundColor: '#f4511e',
-                    paddingBottom: 4,
-                },
-                headerTitleStyle: {
-                    fontSize: 16,
-                    fontWeight: 'bold',
-                },
-            }}
+            options={{ headerShown: false }}
         />
         <Stack.Screen
           name="RecipeEdit"
