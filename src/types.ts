@@ -41,6 +41,18 @@ export interface Recipe {
   imageUrl?: string;
   overallFlow?: string;
   source: 'official' | 'user';
+
+  imageUrls: string[];
+  videoUrl?: string;
+  syncSource?: 'local' | 'cloud' | 'merged';
+  userId?: string;
+  cloudId?: string;
+  syncStatus?: 'local_only' | 'pending' | 'synced';
+  localVersion?: number;
+  cloudAuthorId?: string;
+  cloudAuthorName?: string;
+  lastSyncedAt?: number | null;
+  rejectionReason?: string | null;
 }
 
 export function generateRecipeId(): string {
@@ -54,6 +66,13 @@ export interface InventoryItem {
   unit: string;
   expiryDate?: string;
   addedDate: string;
+
+  userId?: string;
+  cloudId?: string;
+  syncStatus?: 'local_only' | 'synced';
+  localVersion?: number;
+  updatedAt?: number;
+  deletedAt?: number;
 }
 
 export interface ShoppingItem {
@@ -62,6 +81,13 @@ export interface ShoppingItem {
   quantity: string;
   unit: string;
   checked: boolean;
+
+  userId?: string;
+  cloudId?: string;
+  syncStatus?: 'local_only' | 'synced';
+  localVersion?: number;
+  updatedAt?: number;
+  deletedAt?: number;
 }
 
 export interface CookingNote {
@@ -72,14 +98,57 @@ export interface CookingNote {
   content: string;
   rating: number;
   isSuccess: boolean;
+
+  userId?: string;
+  cloudId?: string;
+  syncStatus?: 'local_only' | 'synced';
+  localVersion?: number;
+  updatedAt?: number;
+  deletedAt?: number;
 }
 
 export interface MealPlanItem {
   id: string;
   dayOfWeek: number;
-  mealType: 'breakfast' | 'lunch' | 'dinner';
+  mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack';
   recipeId: string;
   recipeName: string;
+  date?: string;
+
+  userId?: string;
+  cloudId?: string;
+  syncStatus?: 'local_only' | 'synced';
+  localVersion?: number;
+  updatedAt?: number;
+  deletedAt?: number;
+}
+
+export interface AuthSession {
+  accessToken: string;
+  refreshToken: string;
+  userId: string;
+  email: string;
+  nickname: string;
+  expiresAt: number;
+}
+
+export interface SyncConfig {
+  lastPullAt: number;
+  lastPushAt: number;
+  autoSync: boolean;
+  noteLastPullAt: number;
+  noteLastPushAt: number;
+  inventoryLastPullAt: number;
+  inventoryLastPushAt: number;
+  shoppingLastPullAt: number;
+  shoppingLastPushAt: number;
+  mealplanLastPullAt: number;
+  mealplanLastPushAt: number;
+}
+
+export interface IgnoredCloudRecipe {
+  cloudId: string;
+  ignoredAt: number;
 }
 
 export interface AppState {

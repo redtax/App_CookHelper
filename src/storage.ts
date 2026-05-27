@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Recipe, InventoryItem, ShoppingItem, CookingNote, MealPlanItem } from './types';
+import { Recipe, InventoryItem, ShoppingItem, CookingNote, MealPlanItem, SyncConfig } from './types';
 
 const RECIPES_KEY = 'cookhelper_recipes';
 const INITIALIZED_KEY = 'cookhelper_initialized_v11';
@@ -13,7 +13,11 @@ const MODIFIED_KEY = 'cookhelper_modified';
 const RECENT_KEY = 'cookhelper_recent';
 
 const DATA_VERSION_KEY = 'cookhelper_data_version';
-const CURRENT_DATA_VERSION = 1;
+const CURRENT_DATA_VERSION = 2;
+
+const AUTH_SESSION_KEY = 'cookhelper_auth_session';
+const SYNC_CONFIG_KEY = 'cookhelper_sync_config';
+const IGNORED_CLOUD_KEY = 'cookhelper_ignored_cloud';
 
 const BACKUP_RECIPES_KEY = 'cookhelper_backup_recipes';
 const BACKUP_FAVORITES_KEY = 'cookhelper_backup_favorites';
@@ -24,6 +28,9 @@ const BACKUP_MEALPLAN_KEY = 'cookhelper_backup_mealplan';
 const BACKUP_COOKING_STATE_KEY = 'cookhelper_backup_cooking_state';
 const BACKUP_MODIFIED_KEY = 'cookhelper_backup_modified';
 const BACKUP_RECENT_KEY = 'cookhelper_backup_recent';
+const BACKUP_AUTH_SESSION_KEY = 'cookhelper_backup_auth_session';
+const BACKUP_SYNC_CONFIG_KEY = 'cookhelper_backup_sync_config';
+const BACKUP_IGNORED_CLOUD_KEY = 'cookhelper_backup_ignored_cloud';
 
 const BACKUP_PAIRS: [string, string][] = [
   [RECIPES_KEY, BACKUP_RECIPES_KEY],
@@ -35,6 +42,9 @@ const BACKUP_PAIRS: [string, string][] = [
   [COOKING_STATE_KEY, BACKUP_COOKING_STATE_KEY],
   [MODIFIED_KEY, BACKUP_MODIFIED_KEY],
   [RECENT_KEY, BACKUP_RECENT_KEY],
+  [AUTH_SESSION_KEY, BACKUP_AUTH_SESSION_KEY],
+  [SYNC_CONFIG_KEY, BACKUP_SYNC_CONFIG_KEY],
+  [IGNORED_CLOUD_KEY, BACKUP_IGNORED_CLOUD_KEY],
 ];
 
 const migrateRecipe = (recipe: any): Recipe => {
@@ -59,6 +69,17 @@ const migrateRecipe = (recipe: any): Recipe => {
     overallFlow: recipe.overallFlow || undefined,
     imageUrl: recipe.imageUrl || undefined,
     source: recipe.source || undefined,
+    imageUrls: recipe.imageUrls || (recipe.imageUrl ? [recipe.imageUrl] : []),
+    videoUrl: recipe.videoUrl || undefined,
+    syncSource: recipe.syncSource || undefined,
+    userId: recipe.userId || undefined,
+    cloudId: recipe.cloudId || undefined,
+    syncStatus: recipe.syncStatus || undefined,
+    localVersion: recipe.localVersion || undefined,
+    cloudAuthorId: recipe.cloudAuthorId || undefined,
+    cloudAuthorName: recipe.cloudAuthorName || undefined,
+    lastSyncedAt: recipe.lastSyncedAt || undefined,
+    rejectionReason: recipe.rejectionReason || undefined,
   };
 };
 
@@ -66,7 +87,11 @@ const loadRecipesFromAsset = async (): Promise<Recipe[]> => {
   try {
     const data = require('../assets/recipes.json');
     const recipes = (Array.isArray(data) ? data : []) as Recipe[];
-    return recipes.map(r => ({ ...r, source: 'official' as const }));
+    return recipes.map(r => ({
+      ...r,
+      source: 'official' as const,
+      imageUrls: r.imageUrls || (r.imageUrl ? [r.imageUrl] : []),
+    }));
   } catch (error) {
     console.error('Failed to load recipes from asset:', error);
   }
@@ -120,6 +145,10 @@ async function getValidRecipeIds(): Promise<Set<string>> {
     return new Set();
   }
 }
+
+// ============================================================
+// v0 → v1 迁移函数
+// ============================================================
 
 async function migrateInventoryV0toV1(): Promise<void> {
   const data = await AsyncStorage.getItem(INVENTORY_KEY);
@@ -281,6 +310,152 @@ async function migrateCookingStateV0toV1(): Promise<void> {
 }
 
 // ============================================================
+// v1 → v2 迁移函数
+// ============================================================
+
+async function migrateRecipesV1toV2(): Promise<void> {
+  const data = await AsyncStorage.getItem(RECIPES_KEY);
+  if (!data) return;
+  try {
+    const recipes: any[] = JSON.parse(data);
+    if (!Array.isArray(recipes)) return;
+    let changed = false;
+    const migrated = recipes.map((r: any) => {
+      let needsUpdate = false;
+      const updated: any = { ...r };
+
+      if (!updated.imageUrls) {
+        updated.imageUrls = updated.imageUrl ? [updated.imageUrl] : [];
+        needsUpdate = true;
+      }
+      if (updated.videoUrl === undefined) {
+        updated.videoUrl = undefined;
+      }
+      if (updated.syncSource === undefined) {
+        updated.syncSource = undefined;
+      }
+      if (updated.userId === undefined) {
+        updated.userId = undefined;
+      }
+      if (updated.cloudId === undefined) {
+        updated.cloudId = undefined;
+      }
+      if (updated.syncStatus === undefined) {
+        updated.syncStatus = undefined;
+      }
+      if (updated.localVersion === undefined) {
+        updated.localVersion = undefined;
+      }
+      if (updated.cloudAuthorId === undefined) {
+        updated.cloudAuthorId = undefined;
+      }
+      if (updated.cloudAuthorName === undefined) {
+        updated.cloudAuthorName = undefined;
+      }
+      if (updated.lastSyncedAt === undefined) {
+        updated.lastSyncedAt = undefined;
+      }
+      if (updated.rejectionReason === undefined) {
+        updated.rejectionReason = undefined;
+      }
+
+      if (needsUpdate) changed = true;
+      return updated;
+    });
+    if (changed) {
+      await AsyncStorage.setItem(RECIPES_KEY, JSON.stringify(migrated));
+    }
+  } catch (e) {
+    console.error('[Migration] Recipe v1→v2 failed:', e);
+  }
+}
+
+async function migrateNotesV1toV2(): Promise<void> {
+  const data = await AsyncStorage.getItem(NOTES_KEY);
+  if (!data) return;
+  try {
+    const notes: any[] = JSON.parse(data);
+    if (!Array.isArray(notes)) return;
+    const migrated = notes.map((n: any) => ({
+      ...n,
+      userId: n.userId || undefined,
+      cloudId: n.cloudId || undefined,
+      syncStatus: n.syncStatus || 'local_only',
+      localVersion: n.localVersion || 1,
+      updatedAt: n.updatedAt || Date.now(),
+      deletedAt: n.deletedAt || undefined,
+    }));
+    await AsyncStorage.setItem(NOTES_KEY, JSON.stringify(migrated));
+  } catch (e) {
+    console.error('[Migration] Notes v1→v2 failed:', e);
+  }
+}
+
+async function migrateInventoryV1toV2(): Promise<void> {
+  const data = await AsyncStorage.getItem(INVENTORY_KEY);
+  if (!data) return;
+  try {
+    const items: any[] = JSON.parse(data);
+    if (!Array.isArray(items)) return;
+    const migrated = items.map((item: any) => ({
+      ...item,
+      userId: item.userId || undefined,
+      cloudId: item.cloudId || undefined,
+      syncStatus: item.syncStatus || 'local_only',
+      localVersion: item.localVersion || 1,
+      updatedAt: item.updatedAt || Date.now(),
+      deletedAt: item.deletedAt || undefined,
+    }));
+    await AsyncStorage.setItem(INVENTORY_KEY, JSON.stringify(migrated));
+  } catch (e) {
+    console.error('[Migration] Inventory v1→v2 failed:', e);
+  }
+}
+
+async function migrateShoppingV1toV2(): Promise<void> {
+  const data = await AsyncStorage.getItem(SHOPPING_KEY);
+  if (!data) return;
+  try {
+    const items: any[] = JSON.parse(data);
+    if (!Array.isArray(items)) return;
+    const migrated = items.map((item: any) => ({
+      ...item,
+      userId: item.userId || undefined,
+      cloudId: item.cloudId || undefined,
+      syncStatus: item.syncStatus || 'local_only',
+      localVersion: item.localVersion || 1,
+      updatedAt: item.updatedAt || Date.now(),
+      deletedAt: item.deletedAt || undefined,
+    }));
+    await AsyncStorage.setItem(SHOPPING_KEY, JSON.stringify(migrated));
+  } catch (e) {
+    console.error('[Migration] Shopping v1→v2 failed:', e);
+  }
+}
+
+async function migrateMealPlansV1toV2(): Promise<void> {
+  const data = await AsyncStorage.getItem(MEALPLAN_KEY);
+  if (!data) return;
+  try {
+    const plans: any[] = JSON.parse(data);
+    if (!Array.isArray(plans)) return;
+    const migrated = plans.map((plan: any) => ({
+      ...plan,
+      date: plan.date || undefined,
+      userId: plan.userId || undefined,
+      cloudId: plan.cloudId || undefined,
+      syncStatus: plan.syncStatus || 'local_only',
+      localVersion: plan.localVersion || 1,
+      updatedAt: plan.updatedAt || Date.now(),
+      deletedAt: plan.deletedAt || undefined,
+    }));
+    await AsyncStorage.setItem(MEALPLAN_KEY, JSON.stringify(migrated));
+  } catch (e) {
+    console.error('[Migration] Meal plans v1→v2 failed:', e);
+  }
+}
+
+// ============================================================
 // 菜谱初始化与增量更新
 // ============================================================
 
@@ -334,7 +509,7 @@ async function runRecipeInitialization(): Promise<void> {
 }
 
 // ============================================================
-// 主迁移入口：v0 → v1
+// 主迁移入口
 // ============================================================
 
 async function migrateV0toV1(): Promise<void> {
@@ -362,10 +537,51 @@ async function migrateV0toV1(): Promise<void> {
 
     await migrateCookingStateV0toV1();
 
-    await AsyncStorage.setItem(DATA_VERSION_KEY, String(CURRENT_DATA_VERSION));
+    await AsyncStorage.setItem(DATA_VERSION_KEY, '1');
     console.log('[DataMigration] v0 → v1 migration completed');
   } catch (error) {
     console.error('[DataMigration] Migration failed, rolling back:', error);
+    await restoreFromBackup();
+    throw error;
+  }
+}
+
+async function migrateV1toV2(): Promise<void> {
+  try {
+    console.log('[DataMigration] Starting v1 → v2 migration...');
+
+    await backupAllUserData();
+    console.log('[DataMigration] All user data backed up');
+
+    await migrateRecipesV1toV2();
+    console.log('[DataMigration] Recipes upgraded with imageUrls + sync fields');
+
+    await migrateNotesV1toV2();
+    await migrateInventoryV1toV2();
+    await migrateShoppingV1toV2();
+    await migrateMealPlansV1toV2();
+    console.log('[DataMigration] Private data upgraded with sync fields');
+
+    const initSyncConfig: SyncConfig = {
+      lastPullAt: 0,
+      lastPushAt: 0,
+      autoSync: false,
+      noteLastPullAt: 0,
+      noteLastPushAt: 0,
+      inventoryLastPullAt: 0,
+      inventoryLastPushAt: 0,
+      shoppingLastPullAt: 0,
+      shoppingLastPushAt: 0,
+      mealplanLastPullAt: 0,
+      mealplanLastPushAt: 0,
+    };
+    await AsyncStorage.setItem(SYNC_CONFIG_KEY, JSON.stringify(initSyncConfig));
+    await AsyncStorage.setItem(IGNORED_CLOUD_KEY, JSON.stringify([]));
+
+    await AsyncStorage.setItem(DATA_VERSION_KEY, '2');
+    console.log('[DataMigration] v1 → v2 migration completed');
+  } catch (error) {
+    console.error('[DataMigration] v1→v2 failed, rolling back:', error);
     await restoreFromBackup();
     throw error;
   }
@@ -381,6 +597,10 @@ async function runMigrations(): Promise<void> {
 
   if (currentVersion === 0) {
     await migrateV0toV1();
+  }
+
+  if (currentVersion <= 1) {
+    await migrateV1toV2();
   }
 }
 
@@ -554,4 +774,59 @@ export const loadRecentlyOpened = async (): Promise<string[]> => {
 
 export const saveRecentlyOpened = async (ids: string[]): Promise<void> => {
   await AsyncStorage.setItem(RECENT_KEY, JSON.stringify(ids));
+};
+
+// ============================================================
+// 认证会话
+// ============================================================
+
+export const loadAuthSession = async () => {
+  const data = await AsyncStorage.getItem(AUTH_SESSION_KEY);
+  return data ? JSON.parse(data) : null;
+};
+
+export const saveAuthSession = async (session: any): Promise<void> => {
+  await AsyncStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(session));
+};
+
+export const clearAuthSession = async (): Promise<void> => {
+  await AsyncStorage.removeItem(AUTH_SESSION_KEY);
+};
+
+// ============================================================
+// 同步配置
+// ============================================================
+
+export const loadSyncConfig = async (): Promise<SyncConfig> => {
+  const data = await AsyncStorage.getItem(SYNC_CONFIG_KEY);
+  return data ? JSON.parse(data) : {
+    lastPullAt: 0,
+    lastPushAt: 0,
+    autoSync: false,
+    noteLastPullAt: 0,
+    noteLastPushAt: 0,
+    inventoryLastPullAt: 0,
+    inventoryLastPushAt: 0,
+    shoppingLastPullAt: 0,
+    shoppingLastPushAt: 0,
+    mealplanLastPullAt: 0,
+    mealplanLastPushAt: 0,
+  };
+};
+
+export const saveSyncConfig = async (config: SyncConfig): Promise<void> => {
+  await AsyncStorage.setItem(SYNC_CONFIG_KEY, JSON.stringify(config));
+};
+
+// ============================================================
+// 忽略云端菜谱列表
+// ============================================================
+
+export const loadIgnoredCloud = async () => {
+  const data = await AsyncStorage.getItem(IGNORED_CLOUD_KEY);
+  return data ? JSON.parse(data) : [];
+};
+
+export const saveIgnoredCloud = async (list: any[]): Promise<void> => {
+  await AsyncStorage.setItem(IGNORED_CLOUD_KEY, JSON.stringify(list));
 };

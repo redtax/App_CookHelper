@@ -183,6 +183,7 @@ const RecipeEditScreen: React.FC = () => {
     preparationSteps,
     cookingSteps,
     imageUrl,
+    imageUrls: imageUrl ? [imageUrl] : [],
   });
 
   const performSave = async (trimmedName: string) => {

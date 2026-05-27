@@ -413,6 +413,7 @@ const parseRecipeText = (text: string) => {
     technique,
     flavor,
     imageUrl,
+    imageUrls: imageUrl ? [imageUrl] : [],
     overallFlow: overallFlow || undefined,
     ingredients,
     mainIngredients,

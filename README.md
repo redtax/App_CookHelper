@@ -397,11 +397,28 @@ MIT License
 - **菜谱增量更新保持**：官方菜谱更新时不覆盖用户已修改的菜谱，新官方菜谱自动追加
 - **可扩展迁移链**：迁移系统采用链式设计，未来新增数据格式变更只需添加新的迁移步骤
 
+### v3.5.0 (2026-05-27) - 类型系统与存储架构全面升级（阶段A）
+- **Recipe 类型扩展**：
+  - 新增 `imageUrls: string[]` 多图数组，原有 `imageUrl` 保留兼容
+  - 新增 `videoUrl` 视频链接字段（支持B站/抖音）
+  - 新增 `syncSource`、`cloudId`、`syncStatus`、`localVersion`、`cloudAuthorId`、`cloudAuthorName`、`lastSyncedAt`、`rejectionReason` 等云端同步字段
+- **私有数据类型扩展**：
+  - CookingNote / InventoryItem / ShoppingItem / MealPlanItem 各新增 `userId`、`cloudId`、`syncStatus`、`localVersion`、`updatedAt`、`deletedAt` 同步字段
+  - MealPlanItem 新增 `date` 固定日期排程和 `snack` 餐型
+- **新类型定义**：AuthSession、SyncConfig、IgnoredCloudRecipe
+- **存储键扩展**：新增 `cookhelper_auth_session`、`cookhelper_sync_config`、`cookhelper_ignored_cloud` 及对应备份键，全部纳入 BACKUP_PAIRS
+- **v1→v2 数据迁移**：
+  - 菜谱：自动将 `imageUrl` 单项转为 `imageUrls` 数组
+  - 私有数据：为所有历史记录初始化同步字段（syncStatus='local_only', localVersion=1, updatedAt=当前时间）
+  - 初始化同步配置和忽略云端菜谱列表
+- **代码适配**：RecipeEditScreen buildRecipe、parseRecipe.ts parseRecipeText 同步输出 imageUrls
+- **数据版本号升级**：CURRENT_DATA_VERSION 由 1 → 2
+
 ## 版本声明
 
-**当前版本**：v3.4.9
-**发布日期**：2026-05-26
-**版本状态**：用户数据保护系统完善，版本化迁移链就绪
+**当前版本**：v3.5.0
+**发布日期**：2026-05-27
+**版本状态**：类型系统全面升级，存储架构就绪阶段A，为云端同步做好数据结构准备
 
 ## 开发者信息
 
