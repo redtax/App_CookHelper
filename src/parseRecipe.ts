@@ -28,6 +28,18 @@ const parseIngredientLine = (line: string) => {
     }
   }
 
+  const notesMatch = line.match(/[（(](.+)[）)]/);
+  const cleanLine = line.replace(/[（(].+[）)]/, '').trim();
+  const amountMatch = cleanLine.match(/^(.+?)\s+([\d.]+)\s*(\S*)$/);
+  if (amountMatch) {
+    return {
+      name: amountMatch[1].trim(),
+      amount: amountMatch[2],
+      unit: amountMatch[3] || undefined,
+      notes: notesMatch ? notesMatch[1] : undefined,
+    };
+  }
+
   const delimParts = line.split(/[、，,。.;；\s]+/);
   if (delimParts.length > 1) {
     return null;
