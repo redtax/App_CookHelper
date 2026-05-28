@@ -409,7 +409,7 @@ MIT License
 - **存储键扩展**：新增 `cookhelper_auth_session`、`cookhelper_sync_config`、`cookhelper_ignored_cloud` 及对应备份键，全部纳入 BACKUP_PAIRS
 - **v1→v2 数据迁移**：
   - 菜谱：自动将 `imageUrl` 单项转为 `imageUrls` 数组
-  - 私有数据：为所有历史记录初始化同步字段（syncStatus='local_only', localVersion=1, updatedAt=当前时间）
+  - 私有数据：为所有历史记录初始化同步字段（syncStatus=undefined 不自动同步，由用户主动触发），localVersion=1, updatedAt=当前时间
   - 初始化同步配置和忽略云端菜谱列表
 - **代码适配**：RecipeEditScreen buildRecipe、parseRecipe.ts parseRecipeText 同步输出 imageUrls
 - **数据版本号升级**：CURRENT_DATA_VERSION 由 1 → 2
