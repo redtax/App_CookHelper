@@ -67,10 +67,16 @@ const parseRecipeText = (text: string) => {
   let auxiliaryIngredients: { name: string; amount: string; unit?: string; notes?: string }[] = [];
   let seasonings: { name: string; amount: string; unit?: string; notes?: string }[] = [];
   let currentIngredientCategory: 'main' | 'auxiliary' | 'seasoning' | undefined;
-  let preparationSteps: { description: string; tips?: string }[] = [];
+  let preparationSteps: { description: string; duration?: string; tips?: string }[] = [];
   let cookingSteps: { instruction: string; duration?: string; tips?: string; ingredients?: string[] }[] = [];
+  let currentPrepStep: { description: string; duration?: string; tips?: string } | null = null;
+  let currentCookStep: { instruction: string; duration?: string; tips?: string; ingredients?: string[] } | null = null;
 
   let currentSection = '';
+
+  const peekNextLine = (idx: number): string => (idx + 1 < lines.length) ? lines[idx + 1] : '';
+  const isBasicInfoKey = (l: string): boolean =>
+    /^(准备时间|烹饪时间|份[量数]|难度|分类|(烹饪)?技法|(菜肴)?味型)/.test(l);
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -135,30 +141,65 @@ const parseRecipeText = (text: string) => {
 
     if (currentSection === 'basicInfo') {
       if (line.match(/^准备时间/)) {
-        const val = line.replace(/^准备时间[\s：:]*/, '').trim();
+        let val = line.replace(/^准备时间[\s：:]*/, '').trim();
+        if (!val) {
+          const next = peekNextLine(i);
+          if (next && !isBasicInfoKey(next) && !next.match(/^(项目|信息|食材|用量)\s*$/)) {
+            val = next;
+            i++;
+          }
+        }
         prepTime = val || prepTime;
         continue;
       }
       if (line.match(/^烹饪时间/)) {
-        const val = line.replace(/^烹饪时间[\s：:]*/, '').trim();
+        let val = line.replace(/^烹饪时间[\s：:]*/, '').trim();
+        if (!val) {
+          const next = peekNextLine(i);
+          if (next && !isBasicInfoKey(next) && !next.match(/^(项目|信息|食材|用量)\s*$/)) {
+            val = next;
+            i++;
+          }
+        }
         cookTime = val || cookTime;
         continue;
       }
       if (line.match(/^份[量数]/)) {
-        const val = line.replace(/^份[量数][\s：:]*/, '').trim();
+        let val = line.replace(/^份[量数][\s：:]*/, '').trim();
+        if (!val) {
+          const next = peekNextLine(i);
+          if (next && !isBasicInfoKey(next) && !next.match(/^(项目|信息|食材|用量)\s*$/)) {
+            val = next;
+            i++;
+          }
+        }
         const numMatch = val.match(/(\d+)/);
         if (numMatch) servings = parseInt(numMatch[1]);
         continue;
       }
       if (line.match(/^难度/)) {
-        const val = line.replace(/^难度[\s：:]*/, '').trim();
+        let val = line.replace(/^难度[\s：:]*/, '').trim();
+        if (!val) {
+          const next = peekNextLine(i);
+          if (next && !isBasicInfoKey(next) && !next.match(/^(项目|信息|食材|用量)\s*$/)) {
+            val = next;
+            i++;
+          }
+        }
         if (val.match(/简单|容易|一星/)) difficulty = 'easy';
         else if (val.match(/困难|复杂|三星/)) difficulty = 'hard';
         else difficulty = 'medium';
         continue;
       }
       if (line.match(/^分类/)) {
-        const val = line.replace(/^分类[\s：:]*/, '').trim();
+        let val = line.replace(/^分类[\s：:]*/, '').trim();
+        if (!val) {
+          const next = peekNextLine(i);
+          if (next && !isBasicInfoKey(next) && !next.match(/^(项目|信息|食材|用量)\s*$/)) {
+            val = next;
+            i++;
+          }
+        }
         if (val) {
           categories = val.split(/[、，,\s]+/).filter(c => c.length > 0);
         }
@@ -166,12 +207,26 @@ const parseRecipeText = (text: string) => {
         continue;
       }
       if (line.match(/^(烹饪)?技法/)) {
-        const val = line.replace(/^(烹饪)?技法[\s：:]*/, '').trim();
+        let val = line.replace(/^(烹饪)?技法[\s：:]*/, '').trim();
+        if (!val) {
+          const next = peekNextLine(i);
+          if (next && !isBasicInfoKey(next) && !next.match(/^(项目|信息|食材|用量)\s*$/)) {
+            val = next;
+            i++;
+          }
+        }
         technique = val || undefined;
         continue;
       }
       if (line.match(/^(菜肴)?味型/)) {
-        const val = line.replace(/^(菜肴)?味型[\s：:]*/, '').trim();
+        let val = line.replace(/^(菜肴)?味型[\s：:]*/, '').trim();
+        if (!val) {
+          const next = peekNextLine(i);
+          if (next && !isBasicInfoKey(next) && !next.match(/^(项目|信息|食材|用量)\s*$/)) {
+            val = next;
+            i++;
+          }
+        }
         flavor = val || undefined;
         continue;
       }
@@ -269,89 +324,66 @@ const parseRecipeText = (text: string) => {
 
     if (currentSection === 'preparation') {
       const stepMatch = line.match(/^第?\s*\d+[.、)\s]+(.*)/);
-      let desc = stepMatch ? stepMatch[1] : line;
 
-      const tipsMatch = desc.match(/💡\s*小贴士[：:]?\s*(.*)/);
-      if (tipsMatch) {
-        const cleanDesc = desc.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
-        if (cleanDesc) {
-          const timeMatch = cleanDesc.match(/耗时[：:]\s*(.+)$/);
-          if (timeMatch) {
-            preparationSteps.push({
-              description: cleanDesc.replace(/耗时[：:]\s*.+$/, '').trim(),
-              tips: tipsMatch[1].trim(),
-            });
-          } else {
-            preparationSteps.push({
-              description: cleanDesc,
-              tips: tipsMatch[1].trim(),
-            });
-          }
-        } else if (preparationSteps.length > 0) {
-          preparationSteps[preparationSteps.length - 1].tips = tipsMatch[1].trim();
+      if (stepMatch) {
+        if (currentPrepStep) {
+          preparationSteps.push(currentPrepStep);
         }
+        currentPrepStep = { description: stepMatch[1].trim() };
         continue;
       }
 
-      const timeMatch = desc.match(/耗时[：:]\s*(.+)$/);
-      let cleanDesc = desc;
-      if (timeMatch) {
-        cleanDesc = desc.replace(/耗时[：:]\s*.+$/, '').trim();
-      }
-      const inlineTips = cleanDesc.match(/[（(]([^）)]+)[）)]/);
-      const finalDesc = cleanDesc.replace(/[（(].+[）)]/, '').trim();
+      if (!currentPrepStep) continue;
 
-      if (finalDesc) {
-        preparationSteps.push({
-          description: finalDesc,
-          tips: inlineTips ? inlineTips[1] : undefined,
-        });
+      const tipsMatch = line.match(/💡\s*小贴士[：:]?\s*(.*)/);
+      if (tipsMatch) {
+        currentPrepStep.tips = tipsMatch[1].trim();
+        continue;
+      }
+
+      const timeMatch = line.match(/耗时[：:]\s*(.+)$/);
+      if (timeMatch) {
+        currentPrepStep.duration = timeMatch[1].trim();
+        continue;
+      }
+
+      if (currentPrepStep.description) {
+        currentPrepStep.description += '\n' + line;
+      } else {
+        currentPrepStep.description = line;
       }
       continue;
     }
 
     if (currentSection === 'cooking') {
       const stepMatch = line.match(/^第?\s*\d+[.、)\s]+(.*)/);
-      let instruction = stepMatch ? stepMatch[1] : line;
 
-      const tipsMatch = instruction.match(/💡\s*小贴士[：:]?\s*(.*)/);
-      if (tipsMatch) {
-        const instructionWithoutTips = instruction.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
-        if (instructionWithoutTips) {
-          const timeMatch = instructionWithoutTips.match(/耗时[：:]\s*(.+)$/);
-          cookingSteps.push({
-            instruction: timeMatch ? instructionWithoutTips.replace(/耗时[：:]\s*.+$/, '').trim() : instructionWithoutTips,
-            duration: timeMatch ? timeMatch[1].trim() : undefined,
-            tips: tipsMatch[1].trim(),
-          });
-        } else if (cookingSteps.length > 0) {
-          cookingSteps[cookingSteps.length - 1].tips = tipsMatch[1].trim();
+      if (stepMatch) {
+        if (currentCookStep) {
+          cookingSteps.push(currentCookStep);
         }
+        currentCookStep = { instruction: stepMatch[1].trim() };
         continue;
       }
 
-      const timeMatch = instruction.match(/耗时[：:]\s*(.+?)(?:\s*💡|$)/);
-      let duration: string | undefined;
-      let tips: string | undefined;
-      let cleanInstruction = instruction;
+      if (!currentCookStep) continue;
 
+      const tipsMatch = line.match(/💡\s*小贴士[：:]?\s*(.*)/);
+      if (tipsMatch) {
+        currentCookStep.tips = tipsMatch[1].trim();
+        continue;
+      }
+
+      const timeMatch = line.match(/耗时[：:]\s*(.+)$/);
       if (timeMatch) {
-        duration = timeMatch[1].trim();
-        cleanInstruction = instruction.replace(/耗时[：:]\s*.+?(?=\s*💡|$)/, '').trim();
+        currentCookStep.duration = timeMatch[1].trim();
+        continue;
       }
 
-      const inlineTips = cleanInstruction.match(/💡\s*小贴士[：:]?\s*(.*)/);
-      if (inlineTips) {
-        tips = inlineTips[1].trim();
-        cleanInstruction = cleanInstruction.replace(/💡\s*小贴士[：:]?\s*.*/, '').trim();
-      }
-
-      if (cleanInstruction) {
-        cookingSteps.push({
-          instruction: cleanInstruction,
-          duration,
-          tips,
-        });
+      if (currentCookStep.instruction) {
+        currentCookStep.instruction += '\n' + line;
+      } else {
+        currentCookStep.instruction = line;
       }
       continue;
     }
@@ -400,6 +432,13 @@ const parseRecipeText = (text: string) => {
     }
   }
 
+  if (currentPrepStep) {
+    preparationSteps.push(currentPrepStep);
+  }
+  if (currentCookStep) {
+    cookingSteps.push(currentCookStep);
+  }
+
   if (ingredients.length === 0 && mainIngredients.length === 0 && auxiliaryIngredients.length === 0 && seasonings.length === 0) {
     ingredients = [{ name: '请补充食材', amount: '' }];
   }
@@ -435,6 +474,7 @@ const parseRecipeText = (text: string) => {
     preparationSteps: preparationSteps.map((step, index) => ({
       id: `prep_${index + 1}`,
       description: step.description,
+      duration: step.duration,
       tips: step.tips,
     })),
     cookingSteps: cookingSteps.map((step, index) => ({
@@ -502,6 +542,9 @@ const exportRecipeToText = (recipe: Recipe): string => {
   lines.push('📋 备料步骤');
   (recipe.preparationSteps || []).forEach((step, index) => {
     let line = `${index + 1}. ${step.description}`;
+    if (step.duration) {
+      line += ` 耗时：${step.duration}`;
+    }
     if (step.tips) {
       line += ` 💡 小贴士：${step.tips}`;
     }

@@ -8,6 +8,7 @@ export interface Ingredient {
 export interface PreparationStep {
   id: string;
   description: string;
+  duration?: string;
   ingredients?: string[];
   tips?: string;
 }
