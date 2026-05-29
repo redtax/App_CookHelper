@@ -69,7 +69,10 @@ const RecipeEditScreen: React.FC = () => {
   };
 
   const allCategories = Array.from(new Set(recipes.flatMap(r => r.categories || [])));
-  const allTags = Array.from(new Set(recipes.flatMap(r => r.tags || [])));
+  const allTags = Array.from(new Set([
+    ...recipes.flatMap(r => r.tags || []),
+    ...tags,
+  ]));
 
   const markChanged = () => { if (!hasChanges) setHasChanges(true); };
 
