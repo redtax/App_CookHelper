@@ -8,6 +8,7 @@ import PreparationIngredientsScreen from './screens/PreparationIngredientsScreen
 import PreparationStepsScreen from './screens/PreparationStepsScreen';
 import CookingScreen from './screens/CookingScreen';
 import RecipeEditScreen from './screens/RecipeEditScreen';
+import VideoPlayerScreen from './screens/VideoPlayerScreen';
 import IngredientScreen from './screens/IngredientScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import BottomNavigation from './BottomNavigation';
@@ -21,6 +22,7 @@ export type RootStackParamList = {
   PreparationSteps: { recipe: Recipe };
   Cooking: { recipe: Recipe };
   RecipeEdit: { recipe: Recipe, isNew?: boolean };
+  VideoPlayer: { recipe: Recipe };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -103,7 +105,6 @@ const AppNavigator: React.FC = () => {
                 title: '备料食材',
                 headerStyle: {
                     backgroundColor: '#f4511e',
-                    height: 40,
                 },
                 headerTitleStyle: {
                     fontSize: 16,
@@ -118,7 +119,6 @@ const AppNavigator: React.FC = () => {
                 title: '备料步骤',
                 headerStyle: {
                     backgroundColor: '#f4511e',
-                    height: 40,
                 },
                 headerTitleStyle: {
                     fontSize: 16,
@@ -135,6 +135,11 @@ const AppNavigator: React.FC = () => {
           name="RecipeEdit"
           component={RecipeEditScreen}
           options={{ title: '编辑菜谱' }}
+        />
+        <Stack.Screen
+          name="VideoPlayer"
+          component={VideoPlayerScreen}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

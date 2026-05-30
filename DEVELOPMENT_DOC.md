@@ -30,7 +30,8 @@
 | 备料食材 | 食材清单勾选管理 | `PreparationIngredientsScreen.tsx` |
 | 备料步骤 | 备料步骤指导 | `PreparationStepsScreen.tsx` |
 | 炒菜步骤 | 分步炒菜指导，支持计时和小贴士 | `CookingScreen.tsx` |
-| 菜谱编辑 | 创建/编辑菜谱，覆盖保存或另存为 | `RecipeEditScreen.tsx` |
+| 菜谱编辑 | 创建/编辑菜谱，支持实操视频上传和管理 | `RecipeEditScreen.tsx` |
+| 实操视频展示 | 播放/管理菜谱视频，支持本地/B站/快手 | `VideoPlayerScreen.tsx` |
 | 图片选择 | 支持相册图片上传和编辑 | `ImagePickerButton.tsx` |
 | 导入菜谱 | 统一的菜谱导入界面 | `ImportRecipeModal.tsx` |
 | 食材库存 | 管理家中食材库存 | `IngredientScreen.tsx` |
@@ -68,7 +69,10 @@ CookHelper/
 │   │   ├── CategoryScreen.tsx
 │   │   └── ImportRecipeModal.tsx
 │   ├── components/            # 可复用组件
-│   │   └── ImagePickerButton.tsx
+│   │   ├── ImagePickerButton.tsx
+│   │   ├── LocalVideoPlayer.tsx  # 本地视频播放器（expo-video）
+│   │   ├── BilibiliPlayer.tsx    # B站跳转播放器（bilibili:// URI）
+│   │   └── KuaishouPlayer.tsx    # 快手跳转播放器
 │   ├── context.tsx            # 全局状态管理
 │   ├── navigation.tsx         # 导航配置
 │   ├── storage.ts             # 数据持久化与版本化迁移系统
@@ -120,14 +124,14 @@ export interface CookingStep {
 export interface Recipe {
   id: string;                     // 菜谱唯一标识
   name: string;                   // 菜谱名称
-  description?: string;           // 简介
-  categories: string[];           // 分类标签
+  description?: string;            // 简介
+  categories: string[];            // 分类标签
   tags: string[];                 // 标签
   servings: number;               // 份量
-  prepTime: string;              // 准备时间
-  cookTime: string;              // 烹饪时间
+  prepTime: string;               // 准备时间
+  cookTime: string;               // 烹饪时间
   difficulty: 'easy' | 'medium' | 'hard'; // 难度
-  technique?: string;             // 烹饪技法
+  technique?: string;              // 烹饪技法
   flavor?: string;                // 菜肴味型
   ingredients: Ingredient[];      // 全部食材
   mainIngredients: Ingredient[];  // 主料
@@ -136,8 +140,10 @@ export interface Recipe {
   preparationSteps: PreparationStep[]; // 备料步骤
   cookingSteps: CookingStep[];    // 制作步骤
   imageUrl?: string;              // 成品图片路径
+  imageUrls?: string[];           // 多图数组（v2+）
+  videoUrl?: string;              // 实操视频链接（支持B站/抖音/快手/本地）
   overallFlow?: string;           // 整体流程
-  source: 'official' | 'user';    // 来源（官方/用户）
+  source: 'official' | 'user';   // 来源（官方/用户）
 }
 
 export function generateRecipeId(): string {
@@ -245,6 +251,7 @@ export interface AppState {
 |------|----------|------|
 | 首页/备料/我的 | Home | HomeNavigator 负责底部标签切换 |
 | 菜谱详情 | RecipeDetail | 展示菜谱完整信息 |
+| 实操视频展示 | VideoPlayer | 菜谱视频播放/管理 |
 | 备料食材 | PreparationIngredients | 食材清单勾选 |
 | 备料步骤 | PreparationSteps | 备料步骤指导 |
 | 炒菜步骤 | Cooking | 分步炒菜指导（自定义紧凑头部） |
@@ -723,6 +730,13 @@ npm start
 | v3.4.7 | 2026-05-26 | 制作界面头部重新设计 |
 | v3.4.8 | 2026-05-26 | 返回首页功能修复 |
 | v3.4.9 | 2026-05-26 | 用户数据保护与版本化迁移系统 |
+| v3.5.0 | 2026-05-27 | 类型系统与存储架构全面升级（阶段A） |
+| v3.5.1 | 2026-05-27 | 同步策略修正 |
+| v3.5.2 | 2026-05-28 | 菜谱导入食材识别增强 |
+| v3.5.3 | 2026-05-28 | 代码库维护 |
+| v3.5.4 | 2026-05-28 | 导入解析与标签功能修复 |
+| v3.5.5 | 2026-05-29 | 菜谱导入格式与视频功能基础设施 |
+| v3.6.0 | 2026-05-29 | 实操视频功能全面上线 |
 
 ---
 

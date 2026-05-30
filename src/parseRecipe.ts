@@ -1,4 +1,5 @@
 import { Recipe, generateRecipeId } from './types';
+import { isVideoUrl } from './utils/videoUtils';
 
 const parseIngredientLine = (line: string) => {
   const separatorPattern = /[\t]+|[ ]{2,}|[—–\-]+|[…\.]{3,}/;
@@ -61,6 +62,7 @@ const parseRecipeText = (text: string) => {
   let flavor: string | undefined;
   let tags: string[] = [];
   let imageUrl: string | undefined;
+  let videoUrl: string | undefined;
   let overallFlow: string | undefined;
   let ingredients: { name: string; amount: string; unit?: string; notes?: string }[] = [];
   let mainIngredients: { name: string; amount: string; unit?: string; notes?: string }[] = [];
@@ -415,6 +417,17 @@ const parseRecipeText = (text: string) => {
       continue;
     }
 
+    if (line.match(/^🎬\s*实操视频/) || line.match(/^实操视频/) || line.match(/^视频链接/)) {
+      if (i + 1 < lines.length) {
+        const nextLine = lines[i + 1];
+        if (nextLine.match(/^https?:\/\//)) {
+          videoUrl = nextLine;
+          i++;
+        }
+      }
+      continue;
+    }
+
     if (line.match(/^菜品图片/) || line.match(/^图片/)) {
       if (i + 1 < lines.length) {
         const nextLine = lines[i + 1];
@@ -423,6 +436,11 @@ const parseRecipeText = (text: string) => {
           i++;
         }
       }
+      continue;
+    }
+
+    if (line.match(/^https?:\/\//) && !videoUrl && isVideoUrl(line)) {
+      videoUrl = line;
       continue;
     }
 
@@ -465,6 +483,7 @@ const parseRecipeText = (text: string) => {
     flavor,
     imageUrl,
     imageUrls: imageUrl ? [imageUrl] : [],
+    videoUrl,
     overallFlow: overallFlow || undefined,
     ingredients,
     mainIngredients,
@@ -567,6 +586,13 @@ const exportRecipeToText = (recipe: Recipe): string => {
 
   lines.push('🏷️ 标签');
   lines.push((recipe.tags || []).join('、'));
+  lines.push('');
+
+  if (recipe.videoUrl) {
+    lines.push('🎬 实操视频');
+    lines.push(recipe.videoUrl);
+    lines.push('');
+  }
 
   return lines.join('\n');
 };

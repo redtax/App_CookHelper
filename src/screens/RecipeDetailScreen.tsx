@@ -82,6 +82,16 @@ const RecipeDetailScreen: React.FC = () => {
         {recipe.imageUrl ? (
           <OptimizedImage source={{ uri: recipe.imageUrl }} style={styles.recipeImage} resizeMode="cover" />
         ) : null}
+        <View style={styles.videoButtonContainer}>
+          <TouchableOpacity
+            style={styles.videoButton}
+            onPress={() => navigation.navigate('VideoPlayer', { recipe })}
+          >
+            <Text style={styles.videoButtonIcon}>{'\u25B6'}</Text>
+            <Text style={styles.videoButtonText}>实操视频展示</Text>
+            {recipe.videoUrl && <Text style={styles.videoButtonBadge}>已设置</Text>}
+          </TouchableOpacity>
+        </View>
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>📋 简介</Text>
@@ -320,6 +330,40 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 220,
     resizeMode: 'cover',
+  },
+  videoButtonContainer: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+  },
+  videoButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#2a2a2a',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#f4511e',
+  },
+  videoButtonIcon: {
+    fontSize: 16,
+    marginRight: 8,
+  },
+  videoButtonText: {
+    color: '#f4511e',
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  videoButtonBadge: {
+    backgroundColor: '#4caf50',
+    color: '#fff',
+    fontSize: 11,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 10,
+    marginLeft: 10,
+    overflow: 'hidden',
   },
   section: {
     backgroundColor: '#fff',

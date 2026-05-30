@@ -50,6 +50,7 @@ const RecipeEditScreen: React.FC = () => {
   const [preparationSteps, setPreparationSteps] = useState<PreparationStep[]>(initialRecipe.preparationSteps || []);
   const [cookingSteps, setCookingSteps] = useState<CookingStep[]>(initialRecipe.cookingSteps || []);
   const [imageUrl, setImageUrl] = useState<string | undefined>(initialRecipe.imageUrl);
+  const [videoUrl, setVideoUrl] = useState<string | undefined>(initialRecipe.videoUrl);
 
   const [showNewTag, setShowNewTag] = useState(false);
   const [newTagName, setNewTagName] = useState('');
@@ -91,6 +92,16 @@ const RecipeEditScreen: React.FC = () => {
     });
     return unsubscribe;
   }, [navigation, hasChanges]);
+
+  React.useEffect(() => {
+    const focusUnsubscribe = navigation.addListener('focus', () => {
+      const updatedRecipe = recipes.find((r: Recipe) => r.id === initialRecipe.id);
+      if (updatedRecipe?.videoUrl !== videoUrl) {
+        setVideoUrl(updatedRecipe?.videoUrl);
+      }
+    });
+    return focusUnsubscribe;
+  }, [navigation, recipes, initialRecipe.id, videoUrl]);
 
   const handleCancel = () => {
     if (hasChanges) {
@@ -187,6 +198,7 @@ const RecipeEditScreen: React.FC = () => {
     cookingSteps,
     imageUrl,
     imageUrls: imageUrl ? [imageUrl] : [],
+    videoUrl,
   });
 
   const performSave = async (trimmedName: string) => {
@@ -526,6 +538,14 @@ const RecipeEditScreen: React.FC = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>📋 基本信息</Text>
           <ImagePickerButton imageUri={imageUrl} onImagePicked={setImageUrl} />
+          <TouchableOpacity
+            style={styles.videoButton}
+            onPress={() => navigation.navigate('VideoPlayer', { recipe: buildRecipe(name.trim() || '未命名菜谱') })}
+          >
+            <Text style={styles.videoButtonIcon}>{'\u25B6'}</Text>
+            <Text style={styles.videoButtonText}>实操视频展示</Text>
+            {videoUrl && <Text style={styles.videoButtonBadge}>已设置</Text>}
+          </TouchableOpacity>
           <View style={styles.inputGroup}>
             <Text style={styles.inputLabel}>菜谱名称</Text>
             <TextInput
@@ -1301,6 +1321,37 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 15,
     fontWeight: 'bold',
+  },
+  videoButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#2a2a2a',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#f4511e',
+  },
+  videoButtonIcon: {
+    fontSize: 16,
+    marginRight: 8,
+  },
+  videoButtonText: {
+    color: '#f4511e',
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  videoButtonBadge: {
+    backgroundColor: '#4caf50',
+    color: '#fff',
+    fontSize: 11,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 10,
+    marginLeft: 10,
+    overflow: 'hidden',
   },
 });
 

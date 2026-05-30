@@ -89,6 +89,11 @@ const HomeScreen: React.FC = () => {
     >
       <View style={styles.recipeHeader}>
         <Text style={styles.recipeName}>{item.name}</Text>
+        {item.videoUrl ? (
+          <View style={styles.videoBadge}>
+            <Text style={styles.videoBadgeText}>🎬 视频</Text>
+          </View>
+        ) : null}
         <View style={[styles.difficultyBadge, { backgroundColor: getDifficultyColor(item.difficulty) }]}>
           <Text style={styles.difficultyText}>{getDifficultyText(item.difficulty)}</Text>
         </View>
@@ -271,6 +276,18 @@ const styles = StyleSheet.create({
   difficultyText: {
     color: '#fff',
     fontSize: 12,
+    fontWeight: 'bold',
+  },
+  videoBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 10,
+    marginLeft: 6,
+    backgroundColor: '#ff6b35',
+  },
+  videoBadgeText: {
+    color: '#fff',
+    fontSize: 11,
     fontWeight: 'bold',
   },
   recipeDescription: {

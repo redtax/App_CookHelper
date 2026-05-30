@@ -21,11 +21,25 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#f4511e"
       },
-      "package": "com.cookhelper.app"
+      "package": "com.cookhelper.app",
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      "expo-video",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "需要访问您的相册以选择视频",
+          "microphonePermission": false
+        }
+      ]
+    ],
     "assetBundlePatterns": [
       "assets/recipes.json",
       "media/images/*"

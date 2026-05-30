@@ -506,7 +506,14 @@ const ProfileScreen: React.FC = () => {
               onPress={() => navigation.navigate('RecipeDetail', { recipe })}
             >
               <View style={styles.recipeListItemInfo}>
-                <Text style={styles.recipeListItemName}>{recipe.name}</Text>
+                <View style={styles.recipeListItemNameRow}>
+                  <Text style={styles.recipeListItemName}>{recipe.name}</Text>
+                  {recipe.videoUrl ? (
+                    <View style={styles.recipeListItemVideoBadge}>
+                      <Text style={styles.recipeListItemVideoBadgeText}>视频</Text>
+                    </View>
+                  ) : null}
+                </View>
                 <Text style={styles.recipeListItemTags}>
                   {(recipe.categories || []).slice(0, 2).join(' · ')}
                   {recipe.tags && recipe.tags.length > 0
@@ -780,6 +787,22 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '500',
     color: '#333',
+  },
+  recipeListItemNameRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  recipeListItemVideoBadge: {
+    backgroundColor: '#ff6b35',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 8,
+    marginLeft: 8,
+  },
+  recipeListItemVideoBadgeText: {
+    color: '#fff',
+    fontSize: 10,
+    fontWeight: 'bold',
   },
   recipeListItemTags: {
     fontSize: 12,
